@@ -1,6 +1,6 @@
 {
- "versao": "2026.11.3",
- "atualizadoEm": "2026-11-01",
+ "versao": "2026.11.7",
+ "atualizadoEm": "2026-11-14",
  "modelos": [
   {
    "id": "relacao-intima",
@@ -149,18 +149,30 @@
          "rotulo": "Convivem",
          "texto": "QUE CONVIVEM POR APROXIMADAMENTE {d}",
          "detalhe": {
-          "rotulo": "Por quanto tempo (ex.: 5 ANOS)",
+          "rotulo": "Por quanto tempo",
           "obrigatorio": true,
-          "longo": false
+          "longo": false,
+          "duracao": true
          }
         },
         {
          "rotulo": "Conviveram",
          "texto": "QUE CONVIVERAM POR APROXIMADAMENTE {d}",
          "detalhe": {
-          "rotulo": "Por quanto tempo (ex.: 5 ANOS)",
+          "rotulo": "Por quanto tempo",
           "obrigatorio": true,
-          "longo": false
+          "longo": false,
+          "duracao": true
+         }
+        },
+        {
+         "rotulo": "Nunca conviveram",
+         "texto": "QUE NUNCA CONVIVERAM, MAS SE RELACIONARAM POR APROXIMADAMENTE {d}",
+         "detalhe": {
+          "rotulo": "Por quanto tempo se relacionaram",
+          "obrigatorio": true,
+          "longo": false,
+          "duracao": true
          }
         }
        ],
@@ -169,13 +181,18 @@
       {
        "id": "separados",
        "tipo": "texto",
-       "rotulo": "Há quanto tempo estão separados? (se aplicável)",
+       "rotulo": "Há quanto tempo estão separados?",
+       "aparece": {
+        "pergunta": "convivencia",
+        "opcao": "Conviveram"
+       },
        "texto": ", ENCONTRANDO-SE SEPARADOS HÁ {d}",
        "campos": [
         {
          "id": "d",
          "rotulo": "",
-         "longo": false
+         "longo": false,
+         "duracao": true
         }
        ]
       },
@@ -382,15 +399,22 @@
      "perguntas": [
       {
        "id": "inv_trabalho",
-       "tipo": "texto",
-       "rotulo": "Função / profissão do(a) investigado(a)",
-       "texto": "QUE ELE TRABALHA COMO {d}",
-       "campos": [
+       "tipo": "escolha",
+       "rotulo": "O(A) investigado(a) trabalha?",
+       "opcoes": [
         {
-         "id": "d",
-         "rotulo": "",
-         "longo": false,
-         "ph": "Ex.: PEDREIRO, MOTORISTA, DESEMPREGADO, POLICIAL MILITAR"
+         "rotulo": "Trabalha",
+         "texto": "QUE ELE TRABALHA[ COMO {d}]",
+         "detalhe": {
+          "rotulo": "Função / profissão",
+          "obrigatorio": true,
+          "longo": false,
+          "ph": "Ex.: PEDREIRO, MOTORISTA, POLICIAL MILITAR"
+         }
+        },
+        {
+         "rotulo": "Não trabalha (desempregado)",
+         "texto": "QUE NÃO TRABALHA"
         }
        ],
        "obrigatoria": true,
@@ -602,7 +626,8 @@
          "rotulo": "Não possui",
          "texto": "QUE NO MOMENTO NÃO POSSUI LESÕES CORPORAIS"
         }
-       ]
+       ],
+       "obrigatoria": true
       },
       {
        "id": "atendimento_saude",
@@ -634,7 +659,7 @@
        "id": "registro_lesoes",
        "tipo": "caixas",
        "rotulo": "Se mesmo não possuindo lesões no momento, houve lesão corporal anterior, no momento das agressões, houve alguma forma de registro das lesões?",
-       "texto": ", MAS QUE NA ÉPOCA {lista}",
+       "texto": ", E QUE NA ÉPOCA {lista}",
        "itens": [
         {
          "rotulo": "Fotografou as lesões",
@@ -670,7 +695,7 @@
         },
         {
          "rotulo": "Sim",
-         "texto": ", E QUE NO MOMENTO RELATA DORES {d}, MOTIVO PELO QUAL ESTÁ SENDO ENCAMINHADA AO IML PARA EXAME DE CORPO DE DELITO",
+         "texto": ", MAS QUE NO MOMENTO RELATA DORES {d}, MOTIVO PELO QUAL ESTÁ SENDO ENCAMINHADA AO IML PARA EXAME DE CORPO DE DELITO",
          "detalhe": {
           "rotulo": "Onde?",
           "obrigatorio": true,
@@ -760,11 +785,11 @@
        "opcoes": [
         {
          "rotulo": "Sim",
-         "texto": "QUE SE SENTE EM RISCO EM RELAÇÃO AO INVESTIGADO E POR ISSO DESEJA MEDIDAS PROTETIVAS DE URGÊNCIA"
+         "texto": "QUE DESEJA MEDIDAS PROTETIVAS DE URGÊNCIA"
         },
         {
          "rotulo": "Não",
-         "texto": ""
+         "texto": "QUE NÃO DESEJA MEDIDAS PROTETIVAS DE URGÊNCIA"
         }
        ],
        "obrigatoria": true
@@ -1219,15 +1244,22 @@
      "perguntas": [
       {
        "id": "inv_trabalho",
-       "tipo": "texto",
-       "rotulo": "Função / profissão do(a) investigado(a)",
-       "texto": "QUE ELE TRABALHA COMO {d}",
-       "campos": [
+       "tipo": "escolha",
+       "rotulo": "O(A) investigado(a) trabalha?",
+       "opcoes": [
         {
-         "id": "d",
-         "rotulo": "",
-         "longo": false,
-         "ph": "Ex.: PEDREIRO, MOTORISTA, DESEMPREGADO, POLICIAL MILITAR"
+         "rotulo": "Trabalha",
+         "texto": "QUE ELE TRABALHA[ COMO {d}]",
+         "detalhe": {
+          "rotulo": "Função / profissão",
+          "obrigatorio": true,
+          "longo": false,
+          "ph": "Ex.: PEDREIRO, MOTORISTA, POLICIAL MILITAR"
+         }
+        },
+        {
+         "rotulo": "Não trabalha (desempregado)",
+         "texto": "QUE NÃO TRABALHA"
         }
        ],
        "obrigatoria": true,
@@ -1439,7 +1471,8 @@
          "rotulo": "Não possui",
          "texto": "QUE NO MOMENTO NÃO POSSUI LESÕES CORPORAIS"
         }
-       ]
+       ],
+       "obrigatoria": true
       },
       {
        "id": "atendimento_saude",
@@ -1471,7 +1504,7 @@
        "id": "registro_lesoes",
        "tipo": "caixas",
        "rotulo": "Se mesmo não possuindo lesões no momento, houve lesão corporal anterior, no momento das agressões, houve alguma forma de registro das lesões?",
-       "texto": ", MAS QUE NA ÉPOCA {lista}",
+       "texto": ", E QUE NA ÉPOCA {lista}",
        "itens": [
         {
          "rotulo": "Fotografou as lesões",
@@ -1507,7 +1540,7 @@
         },
         {
          "rotulo": "Sim",
-         "texto": ", E QUE NO MOMENTO RELATA DORES {d}, MOTIVO PELO QUAL ESTÁ SENDO ENCAMINHADA AO IML PARA EXAME DE CORPO DE DELITO",
+         "texto": ", MAS QUE NO MOMENTO RELATA DORES {d}, MOTIVO PELO QUAL ESTÁ SENDO ENCAMINHADA AO IML PARA EXAME DE CORPO DE DELITO",
          "detalhe": {
           "rotulo": "Onde?",
           "obrigatorio": true,
@@ -1597,11 +1630,11 @@
        "opcoes": [
         {
          "rotulo": "Sim",
-         "texto": "QUE SE SENTE EM RISCO EM RELAÇÃO AO INVESTIGADO E POR ISSO DESEJA MEDIDAS PROTETIVAS DE URGÊNCIA"
+         "texto": "QUE DESEJA MEDIDAS PROTETIVAS DE URGÊNCIA"
         },
         {
          "rotulo": "Não",
-         "texto": ""
+         "texto": "QUE NÃO DESEJA MEDIDAS PROTETIVAS DE URGÊNCIA"
         }
        ],
        "obrigatoria": true
@@ -1764,7 +1797,7 @@
        "opcoes": [
         {
          "rotulo": "Não",
-         "texto": "PERGUNTADA SE REATARAM O RELACIONAMENTO OU MANTIVERAM CONTATO APÓS O DEFERIMENTO DAS MPU’S INFORMOU QUE NÃO"
+         "texto": "PERGUNTADA SE REATARAM O RELACIONAMENTO OU MANTIVERAM CONTATO APÓS O DEFERIMENTO DAS MPU’S, INFORMOU QUE NÃO"
         }
        ],
        "obrigatoria": true,
@@ -1807,18 +1840,30 @@
          "rotulo": "Convivem",
          "texto": "QUE CONVIVEM POR APROXIMADAMENTE {d}",
          "detalhe": {
-          "rotulo": "Por quanto tempo (ex.: 5 ANOS)",
+          "rotulo": "Por quanto tempo",
           "obrigatorio": true,
-          "longo": false
+          "longo": false,
+          "duracao": true
          }
         },
         {
          "rotulo": "Conviveram",
          "texto": "QUE CONVIVERAM POR APROXIMADAMENTE {d}",
          "detalhe": {
-          "rotulo": "Por quanto tempo (ex.: 5 ANOS)",
+          "rotulo": "Por quanto tempo",
           "obrigatorio": true,
-          "longo": false
+          "longo": false,
+          "duracao": true
+         }
+        },
+        {
+         "rotulo": "Nunca conviveram",
+         "texto": "QUE NUNCA CONVIVERAM, MAS SE RELACIONARAM POR APROXIMADAMENTE {d}",
+         "detalhe": {
+          "rotulo": "Por quanto tempo se relacionaram",
+          "obrigatorio": true,
+          "longo": false,
+          "duracao": true
          }
         }
        ],
@@ -1827,13 +1872,18 @@
       {
        "id": "separados",
        "tipo": "texto",
-       "rotulo": "Há quanto tempo estão separados? (se aplicável)",
+       "rotulo": "Há quanto tempo estão separados?",
+       "aparece": {
+        "pergunta": "convivencia",
+        "opcao": "Conviveram"
+       },
        "texto": ", ENCONTRANDO-SE SEPARADOS HÁ {d}",
        "campos": [
         {
          "id": "d",
          "rotulo": "",
-         "longo": false
+         "longo": false,
+         "duracao": true
         }
        ]
       },
@@ -2040,15 +2090,22 @@
      "perguntas": [
       {
        "id": "inv_trabalho",
-       "tipo": "texto",
-       "rotulo": "Função / profissão do(a) investigado(a)",
-       "texto": "QUE ELE TRABALHA COMO {d}",
-       "campos": [
+       "tipo": "escolha",
+       "rotulo": "O(A) investigado(a) trabalha?",
+       "opcoes": [
         {
-         "id": "d",
-         "rotulo": "",
-         "longo": false,
-         "ph": "Ex.: PEDREIRO, MOTORISTA, DESEMPREGADO, POLICIAL MILITAR"
+         "rotulo": "Trabalha",
+         "texto": "QUE ELE TRABALHA[ COMO {d}]",
+         "detalhe": {
+          "rotulo": "Função / profissão",
+          "obrigatorio": true,
+          "longo": false,
+          "ph": "Ex.: PEDREIRO, MOTORISTA, POLICIAL MILITAR"
+         }
+        },
+        {
+         "rotulo": "Não trabalha (desempregado)",
+         "texto": "QUE NÃO TRABALHA"
         }
        ],
        "obrigatoria": true,
@@ -2260,7 +2317,8 @@
          "rotulo": "Não possui",
          "texto": "QUE NO MOMENTO NÃO POSSUI LESÕES CORPORAIS"
         }
-       ]
+       ],
+       "obrigatoria": true
       },
       {
        "id": "atendimento_saude",
@@ -2292,7 +2350,7 @@
        "id": "registro_lesoes",
        "tipo": "caixas",
        "rotulo": "Se mesmo não possuindo lesões no momento, houve lesão corporal anterior, no momento das agressões, houve alguma forma de registro das lesões?",
-       "texto": ", MAS QUE NA ÉPOCA {lista}",
+       "texto": ", E QUE NA ÉPOCA {lista}",
        "itens": [
         {
          "rotulo": "Fotografou as lesões",
@@ -2328,7 +2386,7 @@
         },
         {
          "rotulo": "Sim",
-         "texto": ", E QUE NO MOMENTO RELATA DORES {d}, MOTIVO PELO QUAL ESTÁ SENDO ENCAMINHADA AO IML PARA EXAME DE CORPO DE DELITO",
+         "texto": ", MAS QUE NO MOMENTO RELATA DORES {d}, MOTIVO PELO QUAL ESTÁ SENDO ENCAMINHADA AO IML PARA EXAME DE CORPO DE DELITO",
          "detalhe": {
           "rotulo": "Onde?",
           "obrigatorio": true,
@@ -2585,7 +2643,7 @@
        "opcoes": [
         {
          "rotulo": "Não",
-         "texto": "PERGUNTADA SE MANTIVERAM CONTATO APÓS O DEFERIMENTO DAS MPU’S INFORMOU QUE NÃO"
+         "texto": "PERGUNTADA SE MANTIVERAM CONTATO APÓS O DEFERIMENTO DAS MPU’S, INFORMOU QUE NÃO"
         }
        ],
        "obrigatoria": true,
@@ -2849,15 +2907,22 @@
      "perguntas": [
       {
        "id": "inv_trabalho",
-       "tipo": "texto",
-       "rotulo": "Função / profissão do(a) investigado(a)",
-       "texto": "QUE ELE TRABALHA COMO {d}",
-       "campos": [
+       "tipo": "escolha",
+       "rotulo": "O(A) investigado(a) trabalha?",
+       "opcoes": [
         {
-         "id": "d",
-         "rotulo": "",
-         "longo": false,
-         "ph": "Ex.: PEDREIRO, MOTORISTA, DESEMPREGADO, POLICIAL MILITAR"
+         "rotulo": "Trabalha",
+         "texto": "QUE ELE TRABALHA[ COMO {d}]",
+         "detalhe": {
+          "rotulo": "Função / profissão",
+          "obrigatorio": true,
+          "longo": false,
+          "ph": "Ex.: PEDREIRO, MOTORISTA, POLICIAL MILITAR"
+         }
+        },
+        {
+         "rotulo": "Não trabalha (desempregado)",
+         "texto": "QUE NÃO TRABALHA"
         }
        ],
        "obrigatoria": true,
@@ -3069,7 +3134,8 @@
          "rotulo": "Não possui",
          "texto": "QUE NO MOMENTO NÃO POSSUI LESÕES CORPORAIS"
         }
-       ]
+       ],
+       "obrigatoria": true
       },
       {
        "id": "atendimento_saude",
@@ -3101,7 +3167,7 @@
        "id": "registro_lesoes",
        "tipo": "caixas",
        "rotulo": "Se mesmo não possuindo lesões no momento, houve lesão corporal anterior, no momento das agressões, houve alguma forma de registro das lesões?",
-       "texto": ", MAS QUE NA ÉPOCA {lista}",
+       "texto": ", E QUE NA ÉPOCA {lista}",
        "itens": [
         {
          "rotulo": "Fotografou as lesões",
@@ -3137,7 +3203,7 @@
         },
         {
          "rotulo": "Sim",
-         "texto": ", E QUE NO MOMENTO RELATA DORES {d}, MOTIVO PELO QUAL ESTÁ SENDO ENCAMINHADA AO IML PARA EXAME DE CORPO DE DELITO",
+         "texto": ", MAS QUE NO MOMENTO RELATA DORES {d}, MOTIVO PELO QUAL ESTÁ SENDO ENCAMINHADA AO IML PARA EXAME DE CORPO DE DELITO",
          "detalhe": {
           "rotulo": "Onde?",
           "obrigatorio": true,
@@ -3441,18 +3507,30 @@
          "rotulo": "Convivem",
          "texto": "QUE CONVIVEM POR APROXIMADAMENTE {d}",
          "detalhe": {
-          "rotulo": "Por quanto tempo (ex.: 5 ANOS)",
+          "rotulo": "Por quanto tempo",
           "obrigatorio": true,
-          "longo": false
+          "longo": false,
+          "duracao": true
          }
         },
         {
          "rotulo": "Conviveram",
          "texto": "QUE CONVIVERAM POR APROXIMADAMENTE {d}",
          "detalhe": {
-          "rotulo": "Por quanto tempo (ex.: 5 ANOS)",
+          "rotulo": "Por quanto tempo",
           "obrigatorio": true,
-          "longo": false
+          "longo": false,
+          "duracao": true
+         }
+        },
+        {
+         "rotulo": "Nunca conviveram",
+         "texto": "QUE NUNCA CONVIVERAM, MAS SE RELACIONARAM POR APROXIMADAMENTE {d}",
+         "detalhe": {
+          "rotulo": "Por quanto tempo se relacionaram",
+          "obrigatorio": true,
+          "longo": false,
+          "duracao": true
          }
         }
        ],
@@ -3461,13 +3539,18 @@
       {
        "id": "separados",
        "tipo": "texto",
-       "rotulo": "Há quanto tempo estão separados? (se aplicável)",
+       "rotulo": "Há quanto tempo estão separados?",
+       "aparece": {
+        "pergunta": "convivencia",
+        "opcao": "Conviveram"
+       },
        "texto": ", ENCONTRANDO-SE SEPARADOS HÁ {d}",
        "campos": [
         {
          "id": "d",
          "rotulo": "",
-         "longo": false
+         "longo": false,
+         "duracao": true
         }
        ]
       },
@@ -3674,15 +3757,22 @@
      "perguntas": [
       {
        "id": "inv_trabalho",
-       "tipo": "texto",
-       "rotulo": "Função / profissão do(a) investigado(a)",
-       "texto": "QUE ELE TRABALHA COMO {d}",
-       "campos": [
+       "tipo": "escolha",
+       "rotulo": "O(A) investigado(a) trabalha?",
+       "opcoes": [
         {
-         "id": "d",
-         "rotulo": "",
-         "longo": false,
-         "ph": "Ex.: PEDREIRO, MOTORISTA, DESEMPREGADO, POLICIAL MILITAR"
+         "rotulo": "Trabalha",
+         "texto": "QUE ELE TRABALHA[ COMO {d}]",
+         "detalhe": {
+          "rotulo": "Função / profissão",
+          "obrigatorio": true,
+          "longo": false,
+          "ph": "Ex.: PEDREIRO, MOTORISTA, POLICIAL MILITAR"
+         }
+        },
+        {
+         "rotulo": "Não trabalha (desempregado)",
+         "texto": "QUE NÃO TRABALHA"
         }
        ],
        "obrigatoria": true,
@@ -3879,7 +3969,7 @@
       {
        "id": "meio",
        "tipo": "texto",
-       "rotulo": "Meio empregado pelo autor(a)",
+       "rotulo": "Meio empregado pelo(a) investigado(a)",
        "texto": "QUE {d}",
        "campos": [
         {
@@ -4007,8 +4097,16 @@
          "texto": "QUE ESTAVA ACORDADA DURANTE O ATO"
         },
         {
+         "rotulo": "Semiconsciente",
+         "texto": "QUE ESTAVA SEMICONSCIENTE DURANTE O ATO"
+        },
+        {
          "rotulo": "Desacordada",
          "texto": "QUE ESTAVA DESACORDADA DURANTE O ATO"
+        },
+        {
+         "rotulo": "Não sabe informar",
+         "texto": "QUE NÃO SABE INFORMAR SE ESTAVA ACORDADA DURANTE O ATO"
         }
        ],
        "obrigatoria": true
@@ -4104,13 +4202,14 @@
          "rotulo": "Não possui",
          "texto": "QUE NO MOMENTO NÃO POSSUI LESÕES CORPORAIS"
         }
-       ]
+       ],
+       "obrigatoria": true
       },
       {
        "id": "registro_lesoes",
        "tipo": "caixas",
        "rotulo": "Se mesmo não possuindo lesões no momento, houve lesão corporal anterior, no momento das agressões, houve alguma forma de registro das lesões?",
-       "texto": ", MAS QUE NA ÉPOCA {lista}",
+       "texto": ", E QUE NA ÉPOCA {lista}",
        "itens": [
         {
          "rotulo": "Fotografou as lesões",
@@ -4146,7 +4245,7 @@
         },
         {
          "rotulo": "Sim",
-         "texto": ", E QUE NO MOMENTO RELATA DORES {d}, MOTIVO PELO QUAL ESTÁ SENDO ENCAMINHADA AO IML PARA EXAME DE CORPO DE DELITO",
+         "texto": ", MAS QUE NO MOMENTO RELATA DORES {d}",
          "detalhe": {
           "rotulo": "Onde?",
           "obrigatorio": true,
@@ -4216,11 +4315,11 @@
        "opcoes": [
         {
          "rotulo": "Sim",
-         "texto": "QUE SE SENTE EM RISCO EM RELAÇÃO AO INVESTIGADO E POR ISSO DESEJA MEDIDAS PROTETIVAS DE URGÊNCIA"
+         "texto": "QUE DESEJA MEDIDAS PROTETIVAS DE URGÊNCIA"
         },
         {
          "rotulo": "Não",
-         "texto": ""
+         "texto": "QUE NÃO DESEJA MEDIDAS PROTETIVAS DE URGÊNCIA"
         }
        ],
        "obrigatoria": true
@@ -4274,8 +4373,16 @@
        "id": "exame",
        "tipo": "caixas",
        "rotulo": "Exames periciais orientados",
-       "texto": "QUE FOI ORIENTADA E ENCAMINHADA PARA EXAME PERICIAL, SENDO {lista}",
+       "texto": "QUE FOI ORIENTADA E ENCAMINHADA PARA EXAME PERICIAL, SENDO OS EXAMES DE {lista}",
        "itens": [
+        {
+         "rotulo": "Corpo de delito (entra sozinho se a dor foi marcada)",
+         "texto": "CORPO DE DELITO (DEVIDO ÀS DORES RELATADAS)",
+         "automatica": {
+          "pergunta": "dor_agressao",
+          "opcao": "Sim"
+         }
+        },
         {
          "rotulo": "Conjunção carnal",
          "texto": "CONJUNÇÃO CARNAL"
@@ -4287,10 +4394,6 @@
         {
          "rotulo": "Lesões corporais",
          "texto": "LESÕES CORPORAIS"
-        },
-        {
-         "rotulo": "Corpo de delito, por relato de dor corporal",
-         "texto": "CORPO DE DELITO, DEVIDO A RELATO DE DOR CORPORAL"
         },
         {
          "rotulo": "Toxicológico",
@@ -4354,7 +4457,7 @@
    "id": "estupro-sem-vinculo",
    "grupo": "Violência sexual",
    "nome": "Estupro — Sem vínculo doméstico ou familiar",
-   "descricao": "Estupro por autor(a) conhecido sem vínculo doméstico, ou desconhecido.",
+   "descricao": "Estupro por investigado(a) conhecido(a) sem vínculo doméstico, ou desconhecido(a).",
    "avisos": [
     "Se no relato a vítima trouxer situação de risco em relação ao investigado, é possível solicitar medidas protetivas de urgência."
    ],
@@ -4368,7 +4471,7 @@
      {
       "id": "genero",
       "tipo": "escolha",
-      "rotulo": "O(A) autor(a) é…",
+      "rotulo": "O(A) investigado(a) é…",
       "obrigatorio": true,
       "opcoes": [
        {
@@ -4383,7 +4486,7 @@
      },
      {
       "id": "investigado",
-      "rotulo": "Nome completo do(a) autor(a) (ou HOMEM/MULHER DESCONHECIDO/A)",
+      "rotulo": "Nome completo do(a) investigado(a) (ou HOMEM/MULHER DESCONHECIDO/A)",
       "obrigatorio": true,
       "sugestoes": {
        "M": [
@@ -4399,17 +4502,17 @@
    },
    "blocos": [
     {
-     "titulo": "O(A) autor(a)",
-     "inicio": "PERGUNTADA SOBRE O AUTOR, RESPONDEU",
+     "titulo": "O(A) investigado(a)",
+     "inicio": "PERGUNTADA SOBRE O INVESTIGADO, RESPONDEU",
      "perguntas": [
       {
        "id": "autor",
        "tipo": "escolha",
-       "rotulo": "Conhece o(a) autor(a)?",
+       "rotulo": "Conhece o(a) investigado(a)?",
        "opcoes": [
         {
-         "rotulo": "Autor(a) desconhecido(a)",
-         "texto": "QUE NÃO CONHECE O AUTOR[, RECORDANDO-SE DAS SEGUINTES CARACTERÍSTICAS: {d}]",
+         "rotulo": "Investigado(a) desconhecido(a)",
+         "texto": "QUE NÃO CONHECE O INVESTIGADO[, RECORDANDO-SE DAS SEGUINTES CARACTERÍSTICAS: {d}]",
          "detalhe": {
           "rotulo": "Características de que a vítima se recorda (opcional)",
           "obrigatorio": false,
@@ -4418,13 +4521,13 @@
          }
         },
         {
-         "rotulo": "Conhece o(a) autor(a)",
+         "rotulo": "Conhece o(a) investigado(a)",
          "texto": "QUE {d}",
          "detalhe": {
           "rotulo": "De onde e há quanto tempo o(a) conhece",
           "obrigatorio": true,
           "longo": false,
-          "ph": "Ex.: O AUTOR É AMIGO DE UMA AMIGA DE SEU TRABALHO, E O CONHECEU RECENTEMENTE"
+          "ph": "Ex.: O INVESTIGADO É AMIGO DE UMA AMIGA DE SEU TRABALHO, E O CONHECEU RECENTEMENTE"
          }
         }
        ],
@@ -4553,7 +4656,7 @@
          "id": "d",
          "rotulo": "",
          "longo": true,
-         "ph": "Ex.: NA DATA DE 20/01/2026, POR VOLTA DAS 22H, ESTAVA EM UM BAR COM O INVESTIGADO QUANDO ELE PROPÔS QUE FOSSEM PARA SUA RESIDÊNCIA; NO LOCAL O AUTOR MANTEVE RELAÇÃO SEXUAL SEM SEU CONSENTIMENTO"
+         "ph": "Ex.: NA DATA DE 20/01/2026, POR VOLTA DAS 22H, ESTAVA EM UM BAR COM O INVESTIGADO QUANDO ELE PROPÔS QUE FOSSEM PARA SUA RESIDÊNCIA; NO LOCAL O INVESTIGADO MANTEVE RELAÇÃO SEXUAL SEM SEU CONSENTIMENTO"
         }
        ],
        "obrigatoria": true,
@@ -4562,14 +4665,14 @@
       {
        "id": "meio",
        "tipo": "texto",
-       "rotulo": "Meio empregado pelo autor(a)",
+       "rotulo": "Meio empregado pelo(a) investigado(a)",
        "texto": "QUE {d}",
        "campos": [
         {
          "id": "d",
          "rotulo": "",
          "longo": true,
-         "ph": "Ex.: O AUTOR USOU DE FORÇA FÍSICA, RASGANDO AS SUAS ROUPAS E A EMPURRANDO NA CAMA, QUE O AUTOR A XINGOU DE \"PUTA\" E \"SAFADA\""
+         "ph": "Ex.: O INVESTIGADO USOU DE FORÇA FÍSICA, RASGANDO AS SUAS ROUPAS E A EMPURRANDO NA CAMA, QUE O INVESTIGADO A XINGOU DE \"PUTA\" E \"SAFADA\""
         }
        ],
        "obrigatoria": true,
@@ -4690,8 +4793,16 @@
          "texto": "QUE ESTAVA ACORDADA DURANTE O ATO"
         },
         {
+         "rotulo": "Semiconsciente",
+         "texto": "QUE ESTAVA SEMICONSCIENTE DURANTE O ATO"
+        },
+        {
          "rotulo": "Desacordada",
          "texto": "QUE ESTAVA DESACORDADA DURANTE O ATO"
+        },
+        {
+         "rotulo": "Não sabe informar",
+         "texto": "QUE NÃO SABE INFORMAR SE ESTAVA ACORDADA DURANTE O ATO"
         }
        ],
        "obrigatoria": true
@@ -4787,13 +4898,14 @@
          "rotulo": "Não possui",
          "texto": "QUE NO MOMENTO NÃO POSSUI LESÕES CORPORAIS"
         }
-       ]
+       ],
+       "obrigatoria": true
       },
       {
        "id": "registro_lesoes",
        "tipo": "caixas",
        "rotulo": "Se mesmo não possuindo lesões no momento, houve lesão corporal anterior, no momento das agressões, houve alguma forma de registro das lesões?",
-       "texto": ", MAS QUE NA ÉPOCA {lista}",
+       "texto": ", E QUE NA ÉPOCA {lista}",
        "itens": [
         {
          "rotulo": "Fotografou as lesões",
@@ -4829,7 +4941,7 @@
         },
         {
          "rotulo": "Sim",
-         "texto": ", E QUE NO MOMENTO RELATA DORES {d}, MOTIVO PELO QUAL ESTÁ SENDO ENCAMINHADA AO IML PARA EXAME DE CORPO DE DELITO",
+         "texto": ", MAS QUE NO MOMENTO RELATA DORES {d}",
          "detalhe": {
           "rotulo": "Onde?",
           "obrigatorio": true,
@@ -4893,11 +5005,35 @@
      "titulo": "Providências e encaminhamentos",
      "perguntas": [
       {
+       "id": "mpu_deseja",
+       "tipo": "escolha",
+       "rotulo": "Deseja medidas protetivas de urgência?",
+       "opcoes": [
+        {
+         "rotulo": "Sim",
+         "texto": "QUE DESEJA MEDIDAS PROTETIVAS DE URGÊNCIA"
+        },
+        {
+         "rotulo": "Não",
+         "texto": ""
+        }
+       ],
+       "obrigatoria": true
+      },
+      {
        "id": "exame",
        "tipo": "caixas",
        "rotulo": "Exames periciais orientados",
-       "texto": "QUE FOI ORIENTADA E ENCAMINHADA PARA EXAME PERICIAL, SENDO {lista}",
+       "texto": "QUE FOI ORIENTADA E ENCAMINHADA PARA EXAME PERICIAL, SENDO OS EXAMES DE {lista}",
        "itens": [
+        {
+         "rotulo": "Corpo de delito (entra sozinho se a dor foi marcada)",
+         "texto": "CORPO DE DELITO (DEVIDO ÀS DORES RELATADAS)",
+         "automatica": {
+          "pergunta": "dor_agressao",
+          "opcao": "Sim"
+         }
+        },
         {
          "rotulo": "Conjunção carnal",
          "texto": "CONJUNÇÃO CARNAL"
@@ -4909,10 +5045,6 @@
         {
          "rotulo": "Lesões corporais",
          "texto": "LESÕES CORPORAIS"
-        },
-        {
-         "rotulo": "Corpo de delito, por relato de dor corporal",
-         "texto": "CORPO DE DELITO, DEVIDO A RELATO DE DOR CORPORAL"
         },
         {
          "rotulo": "Toxicológico",
@@ -4949,7 +5081,7 @@
        "alerta": "Se a vítima responder que sim, é necessário realizar o encaminhamento para o setor de retrato falado da perícia",
        "aparece": {
         "pergunta": "autor",
-        "opcao": "Autor(a) desconhecido(a)"
+        "opcao": "Investigado(a) desconhecido(a)"
        },
        "naTelaDepoisDe": "autor"
       },
@@ -5223,7 +5355,8 @@
          "rotulo": "Não possui",
          "texto": "QUE NO MOMENTO NÃO POSSUI LESÕES CORPORAIS"
         }
-       ]
+       ],
+       "obrigatoria": true
       },
       {
        "id": "atendimento_saude",
@@ -5255,7 +5388,7 @@
        "id": "registro_lesoes",
        "tipo": "caixas",
        "rotulo": "Se mesmo não possuindo lesões no momento, houve lesão corporal anterior, no momento das agressões, houve alguma forma de registro das lesões?",
-       "texto": ", MAS QUE NA ÉPOCA {lista}",
+       "texto": ", E QUE NA ÉPOCA {lista}",
        "itens": [
         {
          "rotulo": "Fotografou as lesões",
@@ -5291,7 +5424,7 @@
         },
         {
          "rotulo": "Sim",
-         "texto": ", E QUE NO MOMENTO RELATA DORES {d}, MOTIVO PELO QUAL ESTÁ SENDO ENCAMINHADA AO IML PARA EXAME DE CORPO DE DELITO",
+         "texto": ", MAS QUE NO MOMENTO RELATA DORES {d}, MOTIVO PELO QUAL ESTÁ SENDO ENCAMINHADA AO IML PARA EXAME DE CORPO DE DELITO",
          "detalhe": {
           "rotulo": "Onde?",
           "obrigatorio": true,
@@ -5370,6 +5503,22 @@
        "obrigatoria": true
       },
       {
+       "id": "mpu_deseja",
+       "tipo": "escolha",
+       "rotulo": "Deseja medidas protetivas de urgência?",
+       "opcoes": [
+        {
+         "rotulo": "Sim",
+         "texto": "QUE DESEJA MEDIDAS PROTETIVAS DE URGÊNCIA"
+        },
+        {
+         "rotulo": "Não",
+         "texto": ""
+        }
+       ],
+       "obrigatoria": true
+      },
+      {
        "id": "psicossocial",
        "tipo": "escolha",
        "rotulo": "Deseja atendimento psicossocial?",
@@ -5412,7 +5561,7 @@
      {
       "id": "genero",
       "tipo": "escolha",
-      "rotulo": "O(A) autor(a) é…",
+      "rotulo": "O(A) investigado(a) é…",
       "obrigatorio": true,
       "opcoes": [
        {
@@ -5435,17 +5584,17 @@
    },
    "blocos": [
     {
-     "titulo": "O(A) autor(a)",
-     "inicio": "PERGUNTADA SOBRE O AUTOR, RESPONDEU",
+     "titulo": "O(A) investigado(a)",
+     "inicio": "PERGUNTADA SOBRE O INVESTIGADO, RESPONDEU",
      "perguntas": [
       {
        "id": "autor",
        "tipo": "escolha",
-       "rotulo": "Conhece o(a) autor(a)?",
+       "rotulo": "Conhece o(a) investigado(a)?",
        "opcoes": [
         {
-         "rotulo": "Autor(a) desconhecido(a)",
-         "texto": "QUE NÃO CONHECE O AUTOR[, RECORDANDO-SE DAS SEGUINTES CARACTERÍSTICAS: {d}]",
+         "rotulo": "Investigado(a) desconhecido(a)",
+         "texto": "QUE NÃO CONHECE O INVESTIGADO[, RECORDANDO-SE DAS SEGUINTES CARACTERÍSTICAS: {d}]",
          "detalhe": {
           "rotulo": "Características de que a vítima se recorda (opcional)",
           "obrigatorio": false,
@@ -5454,13 +5603,13 @@
          }
         },
         {
-         "rotulo": "Conhece o(a) autor(a)",
+         "rotulo": "Conhece o(a) investigado(a)",
          "texto": "QUE {d}",
          "detalhe": {
           "rotulo": "De onde e há quanto tempo o(a) conhece",
           "obrigatorio": true,
           "longo": false,
-          "ph": "Ex.: O AUTOR É AMIGO DE UMA AMIGA DE SEU TRABALHO, E O CONHECEU RECENTEMENTE"
+          "ph": "Ex.: O INVESTIGADO É AMIGO DE UMA AMIGA DE SEU TRABALHO, E O CONHECEU RECENTEMENTE"
          }
         }
        ],
@@ -5583,7 +5732,7 @@
        "id": "fatos",
        "tipo": "texto",
        "rotulo": "Relato dos fatos",
-       "texto": ": NO DIA {data}, POR VOLTA DAS {hora}, NO LOCAL {local}, O AUTOR {conduta}",
+       "texto": ": NO DIA {data}, POR VOLTA DAS {hora}, NO LOCAL {local}, O INVESTIGADO {conduta}",
        "campos": [
         {
          "id": "data",
@@ -5617,15 +5766,15 @@
        "opcoes": [
         {
          "rotulo": "Libidinoso",
-         "texto": "QUE AFIRMA QUE O AUTOR PRATICOU O ATO LIBIDINOSO DIRECIONADO À DECLARANTE, SEM SEU CONSENTIMENTO"
+         "texto": "QUE AFIRMA QUE O INVESTIGADO PRATICOU O ATO LIBIDINOSO DIRECIONADO À DECLARANTE, SEM SEU CONSENTIMENTO"
         },
         {
          "rotulo": "Obsceno",
-         "texto": "QUE AFIRMA QUE O AUTOR PRATICOU O ATO OBSCENO DIRECIONADO À DECLARANTE, SEM SEU CONSENTIMENTO"
+         "texto": "QUE AFIRMA QUE O INVESTIGADO PRATICOU O ATO OBSCENO DIRECIONADO À DECLARANTE, SEM SEU CONSENTIMENTO"
         },
         {
          "rotulo": "Libidinoso e obsceno",
-         "texto": "QUE AFIRMA QUE O AUTOR PRATICOU O ATO LIBIDINOSO E OBSCENO DIRECIONADO À DECLARANTE, SEM SEU CONSENTIMENTO"
+         "texto": "QUE AFIRMA QUE O INVESTIGADO PRATICOU O ATO LIBIDINOSO E OBSCENO DIRECIONADO À DECLARANTE, SEM SEU CONSENTIMENTO"
         }
        ],
        "obrigatoria": true
@@ -5633,8 +5782,8 @@
       {
        "id": "apos",
        "tipo": "texto",
-       "rotulo": "O que o(a) autor(a) fez após os fatos?",
-       "texto": "QUE APÓS OS FATOS O AUTOR {d}",
+       "rotulo": "O que o(a) investigado(a) fez após os fatos?",
+       "texto": "QUE APÓS OS FATOS O INVESTIGADO {d}",
        "campos": [
         {
          "id": "d",
@@ -5662,7 +5811,8 @@
          "rotulo": "Não possui",
          "texto": "QUE NO MOMENTO NÃO POSSUI LESÕES CORPORAIS"
         }
-       ]
+       ],
+       "obrigatoria": true
       },
       {
        "id": "atendimento_saude",
@@ -5694,7 +5844,7 @@
        "id": "registro_lesoes",
        "tipo": "caixas",
        "rotulo": "Se mesmo não possuindo lesões no momento, houve lesão corporal anterior, no momento das agressões, houve alguma forma de registro das lesões?",
-       "texto": ", MAS QUE NA ÉPOCA {lista}",
+       "texto": ", E QUE NA ÉPOCA {lista}",
        "itens": [
         {
          "rotulo": "Fotografou as lesões",
@@ -5730,7 +5880,7 @@
         },
         {
          "rotulo": "Sim",
-         "texto": ", E QUE NO MOMENTO RELATA DORES {d}, MOTIVO PELO QUAL ESTÁ SENDO ENCAMINHADA AO IML PARA EXAME DE CORPO DE DELITO",
+         "texto": ", MAS QUE NO MOMENTO RELATA DORES {d}, MOTIVO PELO QUAL ESTÁ SENDO ENCAMINHADA AO IML PARA EXAME DE CORPO DE DELITO",
          "detalhe": {
           "rotulo": "Onde?",
           "obrigatorio": true,
@@ -5772,7 +5922,7 @@
        "opcoes": [
         {
          "rotulo": "Apresenta",
-         "texto": "QUE APRESENTA PROVAS DIGITAIS, FOTOS, VÍDEOS OU OUTROS ELEMENTOS RELACIONADOS AOS FATOS[, SENDO {d}]",
+         "texto": "QUE APRESENTA PROVAS DIGITAIS, FOTOS, VÍDEOS, PRINTS OU OUTROS ELEMENTOS RELACIONADOS AOS FATOS[, SENDO {d}]",
          "detalhe": {
           "rotulo": "Descreva o que está sendo apresentado",
           "obrigatorio": true,
@@ -5782,10 +5932,26 @@
         },
         {
          "rotulo": "Não possui",
-         "texto": "QUE NÃO POSSUI PROVAS DIGITAIS, FOTOS, VÍDEOS OU OUTROS ELEMENTOS RELACIONADOS AOS FATOS"
+         "texto": "QUE NÃO POSSUI PROVAS DIGITAIS, FOTOS, VÍDEOS, PRINTS OU OUTROS ELEMENTOS RELACIONADOS AOS FATOS"
         }
        ],
        "alerta": "Responda essa pergunta apenas se couberem provas digitais nos fatos (ex.: houve menção a prints ou mensagens). Se houver provas digitais, lembre-se de seguir as orientações sobre a coleta e de inserir os arquivos no Deon, além de imprimir os arquivos quando aplicável."
+      },
+      {
+       "id": "mpu_deseja",
+       "tipo": "escolha",
+       "rotulo": "Deseja medidas protetivas de urgência?",
+       "opcoes": [
+        {
+         "rotulo": "Sim",
+         "texto": "QUE DESEJA MEDIDAS PROTETIVAS DE URGÊNCIA"
+        },
+        {
+         "rotulo": "Não",
+         "texto": ""
+        }
+       ],
+       "obrigatoria": true
       },
       {
        "id": "psicossocial",
@@ -5820,7 +5986,7 @@
        "alerta": "Se a vítima responder que sim, é necessário realizar o encaminhamento para o setor de retrato falado da perícia",
        "aparece": {
         "pergunta": "autor",
-        "opcao": "Autor(a) desconhecido(a)"
+        "opcao": "Investigado(a) desconhecido(a)"
        },
        "naTelaDepoisDe": "autor"
       },
@@ -5848,7 +6014,7 @@
      },
      {
       "id": "investigado",
-      "rotulo": "Nome do/a autor(a)/a",
+      "rotulo": "Nome do(a) investigado(a)",
       "obrigatorio": true
      },
      {
@@ -5896,7 +6062,7 @@
        "id": "fatos",
        "tipo": "texto",
        "rotulo": "Relato dos fatos",
-       "texto": "PERGUNTADA SOBRE OS FATOS, RELATOU: NA DATA DE {data}, POR VOLTA DE {hora}, {descricao}",
+       "texto": "PERGUNTADA SOBRE OS FATOS, RESPONDEU: NA DATA DE {data}, POR VOLTA DE {hora}, {descricao}",
        "campos": [
         {
          "id": "data",
@@ -5916,7 +6082,7 @@
         }
        ],
        "obrigatoria": true,
-       "ajuda": "Indique as condutas praticadas pelo/a autor(a)/a: ameaças, perseguições, agressões, constrangimentos ou outras formas de violência."
+       "ajuda": "Indique as condutas praticadas pelo(a) investigado(a): ameaças, perseguições, agressões, constrangimentos ou outras formas de violência."
       },
       {
        "id": "lesao",
@@ -5938,7 +6104,7 @@
         }
        ],
        "obrigatoria": true,
-       "alerta": "Se houver lesão, encaminhar ao DML."
+       "alerta": "Se houver lesão, encaminhar ao IML."
       },
       {
        "id": "atendimento_saude",
@@ -5970,7 +6136,7 @@
        "id": "registro_lesoes",
        "tipo": "caixas",
        "rotulo": "Se mesmo não possuindo lesões no momento, houve lesão corporal anterior, no momento das agressões, houve alguma forma de registro das lesões?",
-       "texto": ", MAS QUE NA ÉPOCA {lista}",
+       "texto": ", E QUE NA ÉPOCA {lista}",
        "itens": [
         {
          "rotulo": "Fotografou as lesões",
@@ -6006,7 +6172,7 @@
         },
         {
          "rotulo": "Sim",
-         "texto": ", E QUE NO MOMENTO RELATA DORES {d}, MOTIVO PELO QUAL ESTÁ SENDO ENCAMINHADA AO IML PARA EXAME DE CORPO DE DELITO",
+         "texto": ", MAS QUE NO MOMENTO RELATA DORES {d}, MOTIVO PELO QUAL ESTÁ SENDO ENCAMINHADA AO IML PARA EXAME DE CORPO DE DELITO",
          "detalhe": {
           "rotulo": "Onde?",
           "obrigatorio": true,
@@ -6154,7 +6320,7 @@
         }
        ],
        "obrigatoria": true,
-       "alerta": "Se houver lesão, encaminhar ao DML."
+       "alerta": "Se houver lesão, encaminhar ao IML."
       },
       {
        "id": "atendimento_saude",
@@ -6186,7 +6352,7 @@
        "id": "registro_lesoes",
        "tipo": "caixas",
        "rotulo": "Se mesmo não possuindo lesões no momento, houve lesão corporal anterior, no momento das agressões, houve alguma forma de registro das lesões?",
-       "texto": ", MAS QUE NA ÉPOCA {lista}",
+       "texto": ", E QUE NA ÉPOCA {lista}",
        "itens": [
         {
          "rotulo": "Fotografou as lesões",
@@ -6222,7 +6388,7 @@
         },
         {
          "rotulo": "Sim",
-         "texto": ", E QUE NO MOMENTO RELATA DORES {d}, MOTIVO PELO QUAL ESTÁ SENDO ENCAMINHADA AO IML PARA EXAME DE CORPO DE DELITO",
+         "texto": ", MAS QUE NO MOMENTO RELATA DORES {d}, MOTIVO PELO QUAL ESTÁ SENDO ENCAMINHADA AO IML PARA EXAME DE CORPO DE DELITO",
          "detalhe": {
           "rotulo": "Onde?",
           "obrigatorio": true,
