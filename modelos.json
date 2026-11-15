@@ -1,12 +1,12 @@
 {
- "versao": "2026.11.36",
+ "versao": "2026.11.51",
  "atualizadoEm": "2026-11-14",
  "modelos": [
   {
    "id": "relacao-intima",
    "grupo": "Lei Maria da Penha",
    "nome": "Relação Íntima de Afeto",
-   "descricao": "Violência doméstica por cônjuge, companheiro(a), namorado(a) ou ex — inclusive em relações homoafetivas.",
+   "descricao": "Violência doméstica por cônjuge, companheiro(a), namorado(a), convivente ou ex — inclusive em relações homoafetivas.",
    "abertura": {
     "campos": [
      {
@@ -819,11 +819,29 @@
         }
        ],
        "obrigatoria": true,
-       "juntaCom": {
-        "pergunta": "vit_alcool",
-        "opcao": "Não faz uso",
-        "texto": "QUE NÃO FAZ USO NEM DE ÁLCOOL NEM DE DROGAS"
-       }
+       "juntaCom": [
+        {
+         "com": [
+          "vit_alcool"
+         ],
+         "opcao": "Não faz uso",
+         "texto": "QUE NÃO FAZ USO NEM DE ÁLCOOL NEM DE DROGAS"
+        },
+        {
+         "com": [
+          "vit_alcool"
+         ],
+         "opcao": "Faz uso",
+         "iguais": [
+          "vit_alcool_freq",
+          "vit_drogas_freq"
+         ],
+         "somem": [
+          "vit_alcool_freq"
+         ],
+         "texto": "QUE FAZ USO DE ÁLCOOL E DE DROGAS"
+        }
+       ]
       },
       {
        "id": "vit_drogas_freq",
@@ -886,6 +904,18 @@
          "texto": "CRACK"
         },
         {
+         "rotulo": "LSD",
+         "texto": "LSD"
+        },
+        {
+         "rotulo": "Ecstasy",
+         "texto": "ECSTASY"
+        },
+        {
+         "rotulo": "Anfetaminas",
+         "texto": "ANFETAMINAS"
+        },
+        {
          "rotulo": "Outra droga",
          "texto": "{d}",
          "detalhe": {
@@ -896,7 +926,11 @@
          }
         }
        ],
-       "obrigatoria": true
+       "obrigatoria": true,
+       "emLugarDe": {
+        "pergunta": "vit_drogas",
+        "palavra": "DROGAS"
+       }
       },
       {
        "id": "vit_psiq",
@@ -912,7 +946,17 @@
          "texto": "QUE FAZ USO DE MEDICAMENTOS PSIQUIÁTRICOS"
         }
        ],
-       "obrigatoria": true
+       "obrigatoria": true,
+       "juntaCom": [
+        {
+         "com": [
+          "vit_drogas",
+          "vit_alcool"
+         ],
+         "opcao": "Não faz uso",
+         "texto": "QUE NÃO FAZ USO NEM DE ÁLCOOL, NEM DE DROGAS, NEM DE MEDICAMENTOS PSIQUIÁTRICOS"
+        }
+       ]
       },
       {
        "id": "vit_psiq_quais",
@@ -1075,11 +1119,36 @@
         }
        ],
        "obrigatoria": true,
-       "juntaCom": {
-        "pergunta": "inv_alcool",
-        "opcao": "Não faz uso",
-        "texto": "QUE NÃO FAZ USO NEM DE ÁLCOOL NEM DE DROGAS"
-       }
+       "juntaCom": [
+        {
+         "com": [
+          "inv_alcool"
+         ],
+         "opcao": "Não faz uso",
+         "texto": "QUE NÃO FAZ USO NEM DE ÁLCOOL NEM DE DROGAS"
+        },
+        {
+         "com": [
+          "inv_alcool"
+         ],
+         "opcao": "Faz uso",
+         "iguais": [
+          "inv_alcool_freq",
+          "inv_drogas_freq"
+         ],
+         "somem": [
+          "inv_alcool_freq"
+         ],
+         "texto": "QUE FAZ USO DE ÁLCOOL E DE DROGAS"
+        },
+        {
+         "com": [
+          "inv_alcool"
+         ],
+         "opcao": "Não sabe informar",
+         "texto": "QUE NÃO SABE INFORMAR SE FAZ USO DE ÁLCOOL OU DE DROGAS"
+        }
+       ]
       },
       {
        "id": "inv_drogas_freq",
@@ -1141,7 +1210,20 @@
          "texto": ", NÃO SABENDO INFORMAR QUAIS"
         }
        ],
-       "obrigatoria": true
+       "obrigatoria": true,
+       "juntaCom": [
+        {
+         "com": [
+          "inv_drogas_freq"
+         ],
+         "texto": ", NÃO SABENDO INFORMAR QUAIS E COM QUAL FREQUÊNCIA",
+         "exige": {
+          "inv_drogas": "Faz uso",
+          "inv_drogas_freq": "Não sabe informar a frequência",
+          "inv_drogas_tipo": "Não sabe informar quais"
+         }
+        }
+       ]
       },
       {
        "id": "inv_drogas_quais",
@@ -1166,6 +1248,18 @@
          "texto": "CRACK"
         },
         {
+         "rotulo": "LSD",
+         "texto": "LSD"
+        },
+        {
+         "rotulo": "Ecstasy",
+         "texto": "ECSTASY"
+        },
+        {
+         "rotulo": "Anfetaminas",
+         "texto": "ANFETAMINAS"
+        },
+        {
          "rotulo": "Outra droga",
          "texto": "{d}",
          "detalhe": {
@@ -1176,7 +1270,11 @@
          }
         }
        ],
-       "obrigatoria": true
+       "obrigatoria": true,
+       "emLugarDe": {
+        "pergunta": "inv_drogas",
+        "palavra": "DROGAS"
+       }
       },
       {
        "id": "inv_trafico",
@@ -1185,7 +1283,7 @@
        "opcoes": [
         {
          "rotulo": "Sim",
-         "texto": "QUE O INVESTIGADO POSSUI ENVOLVIMENTO COM O TRÁFICO DE DROGAS[, {d}]",
+         "texto": "QUE POSSUI ENVOLVIMENTO COM O TRÁFICO DE DROGAS[, {d}]",
          "detalhe": {
           "rotulo": "Observações (opcional)",
           "obrigatorio": false,
@@ -1194,11 +1292,11 @@
         },
         {
          "rotulo": "Não",
-         "texto": "QUE O INVESTIGADO NÃO POSSUI ENVOLVIMENTO COM O TRÁFICO DE DROGAS"
+         "texto": "QUE NÃO POSSUI ENVOLVIMENTO COM O TRÁFICO DE DROGAS"
         },
         {
          "rotulo": "Não sabe informar",
-         "texto": "QUE NÃO SABE INFORMAR SE O INVESTIGADO POSSUI ENVOLVIMENTO COM O TRÁFICO DE DROGAS"
+         "texto": "QUE NÃO SABE INFORMAR SE POSSUI ENVOLVIMENTO COM O TRÁFICO DE DROGAS"
         }
        ],
        "obrigatoria": true
@@ -1456,9 +1554,9 @@
        "opcoes": [
         {
          "rotulo": "Sim, havia menores",
-         "texto": "QUE OS FATOS OCORRERAM NA PRESENÇA DE MENORES DE IDADE, SENDO {d}",
+         "texto": "QUE OS FATOS OCORRERAM NA PRESENÇA DE {d}",
          "detalhe": {
-          "rotulo": "Vínculo com a vítima, nome e idade atual (ex.: SEU FILHO, PEDRO DE 9 ANOS DE IDADE)",
+          "rotulo": "Quem estava presente: vínculo com a vítima, nome e idade (ex.: SUA FILHA EVA, DE 4 ANOS DE IDADE)",
           "obrigatorio": true,
           "longo": false
          }
@@ -1646,7 +1744,7 @@
    "id": "demais-vinculos",
    "grupo": "Lei Maria da Penha",
    "nome": "Demais Vínculos Familiares ou Domésticos",
-   "descricao": "Violência doméstica ou familiar por mãe, irmã/irmão, tia/tio, cunhada/cunhado, filho(a) e demais vínculos.",
+   "descricao": "Violência doméstica ou familiar por pai, mãe, irmão(ã), tio(a), primo(a), cunhado(a), ex-cunhado(a), filho(a), avô(ó) e demais vínculos, independentemente de coabitação.",
    "abertura": {
     "campos": [
      {
@@ -1693,7 +1791,15 @@
         "GENRO",
         "CUNHADO",
         "SOGRO",
-        "EX-CUNHADO"
+        "EX-CUNHADO",
+        "EX-SOGRO",
+        "EX-GENRO",
+        "PADRINHO",
+        "AFILHADO",
+        "BISAVÔ",
+        "BISNETO",
+        "MEIO-IRMÃO",
+        "FILHO DE CRIAÇÃO"
        ],
        "F": [
         "CÔNJUGE",
@@ -1711,7 +1817,15 @@
         "NORA",
         "CUNHADA",
         "SOGRA",
-        "EX-CUNHADA"
+        "EX-CUNHADA",
+        "EX-SOGRA",
+        "EX-NORA",
+        "MADRINHA",
+        "AFILHADA",
+        "BISAVÓ",
+        "BISNETA",
+        "MEIA-IRMÃ",
+        "FILHA DE CRIAÇÃO"
        ]
       }
      },
@@ -1914,6 +2028,10 @@
         {
          "rotulo": "O(A) investigado(a) cuida da declarante",
          "texto": "O INVESTIGADO CUIDA DA DECLARANTE"
+        },
+        {
+         "rotulo": "O(A) investigado(a) é dependente químico(a)",
+         "texto": "O INVESTIGADO POSSUI DEPENDÊNCIA QUÍMICA"
         },
         {
          "rotulo": "Pouco contato entre as partes",
@@ -2152,11 +2270,29 @@
         }
        ],
        "obrigatoria": true,
-       "juntaCom": {
-        "pergunta": "vit_alcool",
-        "opcao": "Não faz uso",
-        "texto": "QUE NÃO FAZ USO NEM DE ÁLCOOL NEM DE DROGAS"
-       }
+       "juntaCom": [
+        {
+         "com": [
+          "vit_alcool"
+         ],
+         "opcao": "Não faz uso",
+         "texto": "QUE NÃO FAZ USO NEM DE ÁLCOOL NEM DE DROGAS"
+        },
+        {
+         "com": [
+          "vit_alcool"
+         ],
+         "opcao": "Faz uso",
+         "iguais": [
+          "vit_alcool_freq",
+          "vit_drogas_freq"
+         ],
+         "somem": [
+          "vit_alcool_freq"
+         ],
+         "texto": "QUE FAZ USO DE ÁLCOOL E DE DROGAS"
+        }
+       ]
       },
       {
        "id": "vit_drogas_freq",
@@ -2219,6 +2355,18 @@
          "texto": "CRACK"
         },
         {
+         "rotulo": "LSD",
+         "texto": "LSD"
+        },
+        {
+         "rotulo": "Ecstasy",
+         "texto": "ECSTASY"
+        },
+        {
+         "rotulo": "Anfetaminas",
+         "texto": "ANFETAMINAS"
+        },
+        {
          "rotulo": "Outra droga",
          "texto": "{d}",
          "detalhe": {
@@ -2229,7 +2377,11 @@
          }
         }
        ],
-       "obrigatoria": true
+       "obrigatoria": true,
+       "emLugarDe": {
+        "pergunta": "vit_drogas",
+        "palavra": "DROGAS"
+       }
       },
       {
        "id": "vit_psiq",
@@ -2245,7 +2397,17 @@
          "texto": "QUE FAZ USO DE MEDICAMENTOS PSIQUIÁTRICOS"
         }
        ],
-       "obrigatoria": true
+       "obrigatoria": true,
+       "juntaCom": [
+        {
+         "com": [
+          "vit_drogas",
+          "vit_alcool"
+         ],
+         "opcao": "Não faz uso",
+         "texto": "QUE NÃO FAZ USO NEM DE ÁLCOOL, NEM DE DROGAS, NEM DE MEDICAMENTOS PSIQUIÁTRICOS"
+        }
+       ]
       },
       {
        "id": "vit_psiq_quais",
@@ -2408,11 +2570,36 @@
         }
        ],
        "obrigatoria": true,
-       "juntaCom": {
-        "pergunta": "inv_alcool",
-        "opcao": "Não faz uso",
-        "texto": "QUE NÃO FAZ USO NEM DE ÁLCOOL NEM DE DROGAS"
-       }
+       "juntaCom": [
+        {
+         "com": [
+          "inv_alcool"
+         ],
+         "opcao": "Não faz uso",
+         "texto": "QUE NÃO FAZ USO NEM DE ÁLCOOL NEM DE DROGAS"
+        },
+        {
+         "com": [
+          "inv_alcool"
+         ],
+         "opcao": "Faz uso",
+         "iguais": [
+          "inv_alcool_freq",
+          "inv_drogas_freq"
+         ],
+         "somem": [
+          "inv_alcool_freq"
+         ],
+         "texto": "QUE FAZ USO DE ÁLCOOL E DE DROGAS"
+        },
+        {
+         "com": [
+          "inv_alcool"
+         ],
+         "opcao": "Não sabe informar",
+         "texto": "QUE NÃO SABE INFORMAR SE FAZ USO DE ÁLCOOL OU DE DROGAS"
+        }
+       ]
       },
       {
        "id": "inv_drogas_freq",
@@ -2474,7 +2661,20 @@
          "texto": ", NÃO SABENDO INFORMAR QUAIS"
         }
        ],
-       "obrigatoria": true
+       "obrigatoria": true,
+       "juntaCom": [
+        {
+         "com": [
+          "inv_drogas_freq"
+         ],
+         "texto": ", NÃO SABENDO INFORMAR QUAIS E COM QUAL FREQUÊNCIA",
+         "exige": {
+          "inv_drogas": "Faz uso",
+          "inv_drogas_freq": "Não sabe informar a frequência",
+          "inv_drogas_tipo": "Não sabe informar quais"
+         }
+        }
+       ]
       },
       {
        "id": "inv_drogas_quais",
@@ -2499,6 +2699,18 @@
          "texto": "CRACK"
         },
         {
+         "rotulo": "LSD",
+         "texto": "LSD"
+        },
+        {
+         "rotulo": "Ecstasy",
+         "texto": "ECSTASY"
+        },
+        {
+         "rotulo": "Anfetaminas",
+         "texto": "ANFETAMINAS"
+        },
+        {
          "rotulo": "Outra droga",
          "texto": "{d}",
          "detalhe": {
@@ -2509,7 +2721,11 @@
          }
         }
        ],
-       "obrigatoria": true
+       "obrigatoria": true,
+       "emLugarDe": {
+        "pergunta": "inv_drogas",
+        "palavra": "DROGAS"
+       }
       },
       {
        "id": "inv_trafico",
@@ -2518,7 +2734,7 @@
        "opcoes": [
         {
          "rotulo": "Sim",
-         "texto": "QUE O INVESTIGADO POSSUI ENVOLVIMENTO COM O TRÁFICO DE DROGAS[, {d}]",
+         "texto": "QUE POSSUI ENVOLVIMENTO COM O TRÁFICO DE DROGAS[, {d}]",
          "detalhe": {
           "rotulo": "Observações (opcional)",
           "obrigatorio": false,
@@ -2527,11 +2743,11 @@
         },
         {
          "rotulo": "Não",
-         "texto": "QUE O INVESTIGADO NÃO POSSUI ENVOLVIMENTO COM O TRÁFICO DE DROGAS"
+         "texto": "QUE NÃO POSSUI ENVOLVIMENTO COM O TRÁFICO DE DROGAS"
         },
         {
          "rotulo": "Não sabe informar",
-         "texto": "QUE NÃO SABE INFORMAR SE O INVESTIGADO POSSUI ENVOLVIMENTO COM O TRÁFICO DE DROGAS"
+         "texto": "QUE NÃO SABE INFORMAR SE POSSUI ENVOLVIMENTO COM O TRÁFICO DE DROGAS"
         }
        ],
        "obrigatoria": true
@@ -2789,9 +3005,9 @@
        "opcoes": [
         {
          "rotulo": "Sim, havia menores",
-         "texto": "QUE OS FATOS OCORRERAM NA PRESENÇA DE MENORES DE IDADE, SENDO {d}",
+         "texto": "QUE OS FATOS OCORRERAM NA PRESENÇA DE {d}",
          "detalhe": {
-          "rotulo": "Vínculo com a vítima, nome e idade atual (ex.: SEU FILHO, PEDRO DE 9 ANOS DE IDADE)",
+          "rotulo": "Quem estava presente: vínculo com a vítima, nome e idade (ex.: SUA FILHA EVA, DE 4 ANOS DE IDADE)",
           "obrigatorio": true,
           "longo": false
          }
@@ -3727,11 +3943,29 @@
         }
        ],
        "obrigatoria": true,
-       "juntaCom": {
-        "pergunta": "vit_alcool",
-        "opcao": "Não faz uso",
-        "texto": "QUE NÃO FAZ USO NEM DE ÁLCOOL NEM DE DROGAS"
-       }
+       "juntaCom": [
+        {
+         "com": [
+          "vit_alcool"
+         ],
+         "opcao": "Não faz uso",
+         "texto": "QUE NÃO FAZ USO NEM DE ÁLCOOL NEM DE DROGAS"
+        },
+        {
+         "com": [
+          "vit_alcool"
+         ],
+         "opcao": "Faz uso",
+         "iguais": [
+          "vit_alcool_freq",
+          "vit_drogas_freq"
+         ],
+         "somem": [
+          "vit_alcool_freq"
+         ],
+         "texto": "QUE FAZ USO DE ÁLCOOL E DE DROGAS"
+        }
+       ]
       },
       {
        "id": "vit_drogas_freq",
@@ -3794,6 +4028,18 @@
          "texto": "CRACK"
         },
         {
+         "rotulo": "LSD",
+         "texto": "LSD"
+        },
+        {
+         "rotulo": "Ecstasy",
+         "texto": "ECSTASY"
+        },
+        {
+         "rotulo": "Anfetaminas",
+         "texto": "ANFETAMINAS"
+        },
+        {
          "rotulo": "Outra droga",
          "texto": "{d}",
          "detalhe": {
@@ -3804,7 +4050,11 @@
          }
         }
        ],
-       "obrigatoria": true
+       "obrigatoria": true,
+       "emLugarDe": {
+        "pergunta": "vit_drogas",
+        "palavra": "DROGAS"
+       }
       },
       {
        "id": "vit_psiq",
@@ -3820,7 +4070,17 @@
          "texto": "QUE FAZ USO DE MEDICAMENTOS PSIQUIÁTRICOS"
         }
        ],
-       "obrigatoria": true
+       "obrigatoria": true,
+       "juntaCom": [
+        {
+         "com": [
+          "vit_drogas",
+          "vit_alcool"
+         ],
+         "opcao": "Não faz uso",
+         "texto": "QUE NÃO FAZ USO NEM DE ÁLCOOL, NEM DE DROGAS, NEM DE MEDICAMENTOS PSIQUIÁTRICOS"
+        }
+       ]
       },
       {
        "id": "vit_psiq_quais",
@@ -3983,11 +4243,36 @@
         }
        ],
        "obrigatoria": true,
-       "juntaCom": {
-        "pergunta": "inv_alcool",
-        "opcao": "Não faz uso",
-        "texto": "QUE NÃO FAZ USO NEM DE ÁLCOOL NEM DE DROGAS"
-       }
+       "juntaCom": [
+        {
+         "com": [
+          "inv_alcool"
+         ],
+         "opcao": "Não faz uso",
+         "texto": "QUE NÃO FAZ USO NEM DE ÁLCOOL NEM DE DROGAS"
+        },
+        {
+         "com": [
+          "inv_alcool"
+         ],
+         "opcao": "Faz uso",
+         "iguais": [
+          "inv_alcool_freq",
+          "inv_drogas_freq"
+         ],
+         "somem": [
+          "inv_alcool_freq"
+         ],
+         "texto": "QUE FAZ USO DE ÁLCOOL E DE DROGAS"
+        },
+        {
+         "com": [
+          "inv_alcool"
+         ],
+         "opcao": "Não sabe informar",
+         "texto": "QUE NÃO SABE INFORMAR SE FAZ USO DE ÁLCOOL OU DE DROGAS"
+        }
+       ]
       },
       {
        "id": "inv_drogas_freq",
@@ -4049,7 +4334,20 @@
          "texto": ", NÃO SABENDO INFORMAR QUAIS"
         }
        ],
-       "obrigatoria": true
+       "obrigatoria": true,
+       "juntaCom": [
+        {
+         "com": [
+          "inv_drogas_freq"
+         ],
+         "texto": ", NÃO SABENDO INFORMAR QUAIS E COM QUAL FREQUÊNCIA",
+         "exige": {
+          "inv_drogas": "Faz uso",
+          "inv_drogas_freq": "Não sabe informar a frequência",
+          "inv_drogas_tipo": "Não sabe informar quais"
+         }
+        }
+       ]
       },
       {
        "id": "inv_drogas_quais",
@@ -4074,6 +4372,18 @@
          "texto": "CRACK"
         },
         {
+         "rotulo": "LSD",
+         "texto": "LSD"
+        },
+        {
+         "rotulo": "Ecstasy",
+         "texto": "ECSTASY"
+        },
+        {
+         "rotulo": "Anfetaminas",
+         "texto": "ANFETAMINAS"
+        },
+        {
          "rotulo": "Outra droga",
          "texto": "{d}",
          "detalhe": {
@@ -4084,7 +4394,11 @@
          }
         }
        ],
-       "obrigatoria": true
+       "obrigatoria": true,
+       "emLugarDe": {
+        "pergunta": "inv_drogas",
+        "palavra": "DROGAS"
+       }
       },
       {
        "id": "inv_trafico",
@@ -4093,7 +4407,7 @@
        "opcoes": [
         {
          "rotulo": "Sim",
-         "texto": "QUE O INVESTIGADO POSSUI ENVOLVIMENTO COM O TRÁFICO DE DROGAS[, {d}]",
+         "texto": "QUE POSSUI ENVOLVIMENTO COM O TRÁFICO DE DROGAS[, {d}]",
          "detalhe": {
           "rotulo": "Observações (opcional)",
           "obrigatorio": false,
@@ -4102,11 +4416,11 @@
         },
         {
          "rotulo": "Não",
-         "texto": "QUE O INVESTIGADO NÃO POSSUI ENVOLVIMENTO COM O TRÁFICO DE DROGAS"
+         "texto": "QUE NÃO POSSUI ENVOLVIMENTO COM O TRÁFICO DE DROGAS"
         },
         {
          "rotulo": "Não sabe informar",
-         "texto": "QUE NÃO SABE INFORMAR SE O INVESTIGADO POSSUI ENVOLVIMENTO COM O TRÁFICO DE DROGAS"
+         "texto": "QUE NÃO SABE INFORMAR SE POSSUI ENVOLVIMENTO COM O TRÁFICO DE DROGAS"
         }
        ],
        "obrigatoria": true
@@ -4364,9 +4678,9 @@
        "opcoes": [
         {
          "rotulo": "Sim, havia menores",
-         "texto": "QUE OS FATOS OCORRERAM NA PRESENÇA DE MENORES DE IDADE, SENDO {d}",
+         "texto": "QUE OS FATOS OCORRERAM NA PRESENÇA DE {d}",
          "detalhe": {
-          "rotulo": "Vínculo com a vítima, nome e idade atual (ex.: SEU FILHO, PEDRO DE 9 ANOS DE IDADE)",
+          "rotulo": "Quem estava presente: vínculo com a vítima, nome e idade (ex.: SUA FILHA EVA, DE 4 ANOS DE IDADE)",
           "obrigatorio": true,
           "longo": false
          }
@@ -4618,7 +4932,15 @@
         "GENRO",
         "CUNHADO",
         "SOGRO",
-        "EX-CUNHADO"
+        "EX-CUNHADO",
+        "EX-SOGRO",
+        "EX-GENRO",
+        "PADRINHO",
+        "AFILHADO",
+        "BISAVÔ",
+        "BISNETO",
+        "MEIO-IRMÃO",
+        "FILHO DE CRIAÇÃO"
        ],
        "F": [
         "CÔNJUGE",
@@ -4636,7 +4958,15 @@
         "NORA",
         "CUNHADA",
         "SOGRA",
-        "EX-CUNHADA"
+        "EX-CUNHADA",
+        "EX-SOGRA",
+        "EX-NORA",
+        "MADRINHA",
+        "AFILHADA",
+        "BISAVÓ",
+        "BISNETA",
+        "MEIA-IRMÃ",
+        "FILHA DE CRIAÇÃO"
        ]
       }
      }
@@ -4761,6 +5091,10 @@
         {
          "rotulo": "O(A) investigado(a) cuida da declarante",
          "texto": "O INVESTIGADO CUIDA DA DECLARANTE"
+        },
+        {
+         "rotulo": "O(A) investigado(a) é dependente químico(a)",
+         "texto": "O INVESTIGADO POSSUI DEPENDÊNCIA QUÍMICA"
         },
         {
          "rotulo": "Pouco contato entre as partes",
@@ -4999,11 +5333,29 @@
         }
        ],
        "obrigatoria": true,
-       "juntaCom": {
-        "pergunta": "vit_alcool",
-        "opcao": "Não faz uso",
-        "texto": "QUE NÃO FAZ USO NEM DE ÁLCOOL NEM DE DROGAS"
-       }
+       "juntaCom": [
+        {
+         "com": [
+          "vit_alcool"
+         ],
+         "opcao": "Não faz uso",
+         "texto": "QUE NÃO FAZ USO NEM DE ÁLCOOL NEM DE DROGAS"
+        },
+        {
+         "com": [
+          "vit_alcool"
+         ],
+         "opcao": "Faz uso",
+         "iguais": [
+          "vit_alcool_freq",
+          "vit_drogas_freq"
+         ],
+         "somem": [
+          "vit_alcool_freq"
+         ],
+         "texto": "QUE FAZ USO DE ÁLCOOL E DE DROGAS"
+        }
+       ]
       },
       {
        "id": "vit_drogas_freq",
@@ -5066,6 +5418,18 @@
          "texto": "CRACK"
         },
         {
+         "rotulo": "LSD",
+         "texto": "LSD"
+        },
+        {
+         "rotulo": "Ecstasy",
+         "texto": "ECSTASY"
+        },
+        {
+         "rotulo": "Anfetaminas",
+         "texto": "ANFETAMINAS"
+        },
+        {
          "rotulo": "Outra droga",
          "texto": "{d}",
          "detalhe": {
@@ -5076,7 +5440,11 @@
          }
         }
        ],
-       "obrigatoria": true
+       "obrigatoria": true,
+       "emLugarDe": {
+        "pergunta": "vit_drogas",
+        "palavra": "DROGAS"
+       }
       },
       {
        "id": "vit_psiq",
@@ -5092,7 +5460,17 @@
          "texto": "QUE FAZ USO DE MEDICAMENTOS PSIQUIÁTRICOS"
         }
        ],
-       "obrigatoria": true
+       "obrigatoria": true,
+       "juntaCom": [
+        {
+         "com": [
+          "vit_drogas",
+          "vit_alcool"
+         ],
+         "opcao": "Não faz uso",
+         "texto": "QUE NÃO FAZ USO NEM DE ÁLCOOL, NEM DE DROGAS, NEM DE MEDICAMENTOS PSIQUIÁTRICOS"
+        }
+       ]
       },
       {
        "id": "vit_psiq_quais",
@@ -5255,11 +5633,36 @@
         }
        ],
        "obrigatoria": true,
-       "juntaCom": {
-        "pergunta": "inv_alcool",
-        "opcao": "Não faz uso",
-        "texto": "QUE NÃO FAZ USO NEM DE ÁLCOOL NEM DE DROGAS"
-       }
+       "juntaCom": [
+        {
+         "com": [
+          "inv_alcool"
+         ],
+         "opcao": "Não faz uso",
+         "texto": "QUE NÃO FAZ USO NEM DE ÁLCOOL NEM DE DROGAS"
+        },
+        {
+         "com": [
+          "inv_alcool"
+         ],
+         "opcao": "Faz uso",
+         "iguais": [
+          "inv_alcool_freq",
+          "inv_drogas_freq"
+         ],
+         "somem": [
+          "inv_alcool_freq"
+         ],
+         "texto": "QUE FAZ USO DE ÁLCOOL E DE DROGAS"
+        },
+        {
+         "com": [
+          "inv_alcool"
+         ],
+         "opcao": "Não sabe informar",
+         "texto": "QUE NÃO SABE INFORMAR SE FAZ USO DE ÁLCOOL OU DE DROGAS"
+        }
+       ]
       },
       {
        "id": "inv_drogas_freq",
@@ -5321,7 +5724,20 @@
          "texto": ", NÃO SABENDO INFORMAR QUAIS"
         }
        ],
-       "obrigatoria": true
+       "obrigatoria": true,
+       "juntaCom": [
+        {
+         "com": [
+          "inv_drogas_freq"
+         ],
+         "texto": ", NÃO SABENDO INFORMAR QUAIS E COM QUAL FREQUÊNCIA",
+         "exige": {
+          "inv_drogas": "Faz uso",
+          "inv_drogas_freq": "Não sabe informar a frequência",
+          "inv_drogas_tipo": "Não sabe informar quais"
+         }
+        }
+       ]
       },
       {
        "id": "inv_drogas_quais",
@@ -5346,6 +5762,18 @@
          "texto": "CRACK"
         },
         {
+         "rotulo": "LSD",
+         "texto": "LSD"
+        },
+        {
+         "rotulo": "Ecstasy",
+         "texto": "ECSTASY"
+        },
+        {
+         "rotulo": "Anfetaminas",
+         "texto": "ANFETAMINAS"
+        },
+        {
          "rotulo": "Outra droga",
          "texto": "{d}",
          "detalhe": {
@@ -5356,7 +5784,11 @@
          }
         }
        ],
-       "obrigatoria": true
+       "obrigatoria": true,
+       "emLugarDe": {
+        "pergunta": "inv_drogas",
+        "palavra": "DROGAS"
+       }
       },
       {
        "id": "inv_trafico",
@@ -5365,7 +5797,7 @@
        "opcoes": [
         {
          "rotulo": "Sim",
-         "texto": "QUE O INVESTIGADO POSSUI ENVOLVIMENTO COM O TRÁFICO DE DROGAS[, {d}]",
+         "texto": "QUE POSSUI ENVOLVIMENTO COM O TRÁFICO DE DROGAS[, {d}]",
          "detalhe": {
           "rotulo": "Observações (opcional)",
           "obrigatorio": false,
@@ -5374,11 +5806,11 @@
         },
         {
          "rotulo": "Não",
-         "texto": "QUE O INVESTIGADO NÃO POSSUI ENVOLVIMENTO COM O TRÁFICO DE DROGAS"
+         "texto": "QUE NÃO POSSUI ENVOLVIMENTO COM O TRÁFICO DE DROGAS"
         },
         {
          "rotulo": "Não sabe informar",
-         "texto": "QUE NÃO SABE INFORMAR SE O INVESTIGADO POSSUI ENVOLVIMENTO COM O TRÁFICO DE DROGAS"
+         "texto": "QUE NÃO SABE INFORMAR SE POSSUI ENVOLVIMENTO COM O TRÁFICO DE DROGAS"
         }
        ],
        "obrigatoria": true
@@ -5636,9 +6068,9 @@
        "opcoes": [
         {
          "rotulo": "Sim, havia menores",
-         "texto": "QUE OS FATOS OCORRERAM NA PRESENÇA DE MENORES DE IDADE, SENDO {d}",
+         "texto": "QUE OS FATOS OCORRERAM NA PRESENÇA DE {d}",
          "detalhe": {
-          "rotulo": "Vínculo com a vítima, nome e idade atual (ex.: SEU FILHO, PEDRO DE 9 ANOS DE IDADE)",
+          "rotulo": "Quem estava presente: vínculo com a vítima, nome e idade (ex.: SUA FILHA EVA, DE 4 ANOS DE IDADE)",
           "obrigatorio": true,
           "longo": false
          }
@@ -6643,11 +7075,29 @@
         }
        ],
        "obrigatoria": true,
-       "juntaCom": {
-        "pergunta": "vit_alcool",
-        "opcao": "Não faz uso",
-        "texto": "QUE NÃO FAZ USO NEM DE ÁLCOOL NEM DE DROGAS"
-       }
+       "juntaCom": [
+        {
+         "com": [
+          "vit_alcool"
+         ],
+         "opcao": "Não faz uso",
+         "texto": "QUE NÃO FAZ USO NEM DE ÁLCOOL NEM DE DROGAS"
+        },
+        {
+         "com": [
+          "vit_alcool"
+         ],
+         "opcao": "Faz uso",
+         "iguais": [
+          "vit_alcool_freq",
+          "vit_drogas_freq"
+         ],
+         "somem": [
+          "vit_alcool_freq"
+         ],
+         "texto": "QUE FAZ USO DE ÁLCOOL E DE DROGAS"
+        }
+       ]
       },
       {
        "id": "vit_drogas_freq",
@@ -6710,6 +7160,18 @@
          "texto": "CRACK"
         },
         {
+         "rotulo": "LSD",
+         "texto": "LSD"
+        },
+        {
+         "rotulo": "Ecstasy",
+         "texto": "ECSTASY"
+        },
+        {
+         "rotulo": "Anfetaminas",
+         "texto": "ANFETAMINAS"
+        },
+        {
          "rotulo": "Outra droga",
          "texto": "{d}",
          "detalhe": {
@@ -6720,7 +7182,11 @@
          }
         }
        ],
-       "obrigatoria": true
+       "obrigatoria": true,
+       "emLugarDe": {
+        "pergunta": "vit_drogas",
+        "palavra": "DROGAS"
+       }
       },
       {
        "id": "vit_psiq",
@@ -6736,7 +7202,17 @@
          "texto": "QUE FAZ USO DE MEDICAMENTOS PSIQUIÁTRICOS"
         }
        ],
-       "obrigatoria": true
+       "obrigatoria": true,
+       "juntaCom": [
+        {
+         "com": [
+          "vit_drogas",
+          "vit_alcool"
+         ],
+         "opcao": "Não faz uso",
+         "texto": "QUE NÃO FAZ USO NEM DE ÁLCOOL, NEM DE DROGAS, NEM DE MEDICAMENTOS PSIQUIÁTRICOS"
+        }
+       ]
       },
       {
        "id": "vit_psiq_quais",
@@ -6899,11 +7375,36 @@
         }
        ],
        "obrigatoria": true,
-       "juntaCom": {
-        "pergunta": "inv_alcool",
-        "opcao": "Não faz uso",
-        "texto": "QUE NÃO FAZ USO NEM DE ÁLCOOL NEM DE DROGAS"
-       }
+       "juntaCom": [
+        {
+         "com": [
+          "inv_alcool"
+         ],
+         "opcao": "Não faz uso",
+         "texto": "QUE NÃO FAZ USO NEM DE ÁLCOOL NEM DE DROGAS"
+        },
+        {
+         "com": [
+          "inv_alcool"
+         ],
+         "opcao": "Faz uso",
+         "iguais": [
+          "inv_alcool_freq",
+          "inv_drogas_freq"
+         ],
+         "somem": [
+          "inv_alcool_freq"
+         ],
+         "texto": "QUE FAZ USO DE ÁLCOOL E DE DROGAS"
+        },
+        {
+         "com": [
+          "inv_alcool"
+         ],
+         "opcao": "Não sabe informar",
+         "texto": "QUE NÃO SABE INFORMAR SE FAZ USO DE ÁLCOOL OU DE DROGAS"
+        }
+       ]
       },
       {
        "id": "inv_drogas_freq",
@@ -6965,7 +7466,20 @@
          "texto": ", NÃO SABENDO INFORMAR QUAIS"
         }
        ],
-       "obrigatoria": true
+       "obrigatoria": true,
+       "juntaCom": [
+        {
+         "com": [
+          "inv_drogas_freq"
+         ],
+         "texto": ", NÃO SABENDO INFORMAR QUAIS E COM QUAL FREQUÊNCIA",
+         "exige": {
+          "inv_drogas": "Faz uso",
+          "inv_drogas_freq": "Não sabe informar a frequência",
+          "inv_drogas_tipo": "Não sabe informar quais"
+         }
+        }
+       ]
       },
       {
        "id": "inv_drogas_quais",
@@ -6990,6 +7504,18 @@
          "texto": "CRACK"
         },
         {
+         "rotulo": "LSD",
+         "texto": "LSD"
+        },
+        {
+         "rotulo": "Ecstasy",
+         "texto": "ECSTASY"
+        },
+        {
+         "rotulo": "Anfetaminas",
+         "texto": "ANFETAMINAS"
+        },
+        {
          "rotulo": "Outra droga",
          "texto": "{d}",
          "detalhe": {
@@ -7000,7 +7526,11 @@
          }
         }
        ],
-       "obrigatoria": true
+       "obrigatoria": true,
+       "emLugarDe": {
+        "pergunta": "inv_drogas",
+        "palavra": "DROGAS"
+       }
       },
       {
        "id": "inv_trafico",
@@ -7009,7 +7539,7 @@
        "opcoes": [
         {
          "rotulo": "Sim",
-         "texto": "QUE O INVESTIGADO POSSUI ENVOLVIMENTO COM O TRÁFICO DE DROGAS[, {d}]",
+         "texto": "QUE POSSUI ENVOLVIMENTO COM O TRÁFICO DE DROGAS[, {d}]",
          "detalhe": {
           "rotulo": "Observações (opcional)",
           "obrigatorio": false,
@@ -7018,11 +7548,11 @@
         },
         {
          "rotulo": "Não",
-         "texto": "QUE O INVESTIGADO NÃO POSSUI ENVOLVIMENTO COM O TRÁFICO DE DROGAS"
+         "texto": "QUE NÃO POSSUI ENVOLVIMENTO COM O TRÁFICO DE DROGAS"
         },
         {
          "rotulo": "Não sabe informar",
-         "texto": "QUE NÃO SABE INFORMAR SE O INVESTIGADO POSSUI ENVOLVIMENTO COM O TRÁFICO DE DROGAS"
+         "texto": "QUE NÃO SABE INFORMAR SE POSSUI ENVOLVIMENTO COM O TRÁFICO DE DROGAS"
         }
        ],
        "obrigatoria": true
@@ -7405,9 +7935,9 @@
        "opcoes": [
         {
          "rotulo": "Sim, havia menores",
-         "texto": "QUE OS FATOS OCORRERAM NA PRESENÇA DE MENORES DE IDADE, SENDO {d}",
+         "texto": "QUE OS FATOS OCORRERAM NA PRESENÇA DE {d}",
          "detalhe": {
-          "rotulo": "Vínculo com a vítima, nome e idade atual (ex.: SEU FILHO, PEDRO DE 9 ANOS DE IDADE)",
+          "rotulo": "Quem estava presente: vínculo com a vítima, nome e idade (ex.: SUA FILHA EVA, DE 4 ANOS DE IDADE)",
           "obrigatorio": true,
           "longo": false
          }
@@ -8082,11 +8612,23 @@
         }
        ],
        "obrigatoria": true,
-       "juntaCom": {
-        "pergunta": "vit_alcool",
-        "opcao": "Não faz uso",
-        "texto": "QUE NÃO FAZ USO NEM DE ÁLCOOL NEM DE DROGAS"
-       }
+       "juntaCom": [
+        {
+         "com": [
+          "vit_alcool",
+          "vit_psiq"
+         ],
+         "opcao": "Não faz uso",
+         "texto": "QUE NÃO FAZ USO NEM DE ÁLCOOL, NEM DE DROGAS, NEM DE MEDICAMENTOS PSIQUIÁTRICOS"
+        },
+        {
+         "com": [
+          "vit_alcool"
+         ],
+         "opcao": "Não faz uso",
+         "texto": "QUE NÃO FAZ USO NEM DE ÁLCOOL NEM DE DROGAS"
+        }
+       ]
       }
      ]
     },
@@ -8344,9 +8886,9 @@
        "opcoes": [
         {
          "rotulo": "Sim, havia menores",
-         "texto": "QUE OS FATOS OCORRERAM NA PRESENÇA DE MENORES DE IDADE, SENDO {d}",
+         "texto": "QUE OS FATOS OCORRERAM NA PRESENÇA DE {d}",
          "detalhe": {
-          "rotulo": "Vínculo com a vítima, nome e idade atual (ex.: SEU FILHO, PEDRO DE 9 ANOS DE IDADE)",
+          "rotulo": "Quem estava presente: vínculo com a vítima, nome e idade (ex.: SUA FILHA EVA, DE 4 ANOS DE IDADE)",
           "obrigatorio": true,
           "longo": false
          }
@@ -9440,11 +9982,23 @@
         }
        ],
        "obrigatoria": true,
-       "juntaCom": {
-        "pergunta": "vit_alcool",
-        "opcao": "Não faz uso",
-        "texto": "QUE NÃO FAZ USO NEM DE ÁLCOOL NEM DE DROGAS"
-       }
+       "juntaCom": [
+        {
+         "com": [
+          "vit_alcool",
+          "vit_psiq"
+         ],
+         "opcao": "Não faz uso",
+         "texto": "QUE NÃO FAZ USO NEM DE ÁLCOOL, NEM DE DROGAS, NEM DE MEDICAMENTOS PSIQUIÁTRICOS"
+        },
+        {
+         "com": [
+          "vit_alcool"
+         ],
+         "opcao": "Não faz uso",
+         "texto": "QUE NÃO FAZ USO NEM DE ÁLCOOL NEM DE DROGAS"
+        }
+       ]
       }
      ]
     },
@@ -9963,7 +10517,9 @@
      ]
     }
    ],
-   "fechamento": "A DECLARANTE INFORMA QUE LEU E ESTÁ DE ACORDO COM O PRESENTE TERMO, NÃO TENDO NADA A ACRESCENTAR, OPOR OU RECLAMAR."
+   "fechamento": "A DECLARANTE INFORMA QUE LEU E ESTÁ DE ACORDO COM O PRESENTE TERMO, NÃO TENDO NADA A ACRESCENTAR, OPOR OU RECLAMAR.",
+   "avisos": [],
+   "avisoDoGrupo": "Para mulheres idosas, adolescentes e fatos ocorridos em outro município ou estado, quando se tratar de relação íntima de afeto, demais vínculos familiares ou domésticos, descumprimento de MPU ou violência sexual, use os modelos anteriores (Lei Maria da Penha ou Violência sexual): este modelo de fora da atribuição não se aplica a esses casos."
   },
   {
    "id": "fora-atribuicao",
@@ -10210,7 +10766,8 @@
      ]
     }
    ],
-   "fechamento": "A DECLARANTE INFORMA QUE LEU E ESTÁ DE ACORDO COM O PRESENTE TERMO, NÃO TENDO NADA A ACRESCENTAR, OPOR OU RECLAMAR."
+   "fechamento": "A DECLARANTE INFORMA QUE LEU E ESTÁ DE ACORDO COM O PRESENTE TERMO, NÃO TENDO NADA A ACRESCENTAR, OPOR OU RECLAMAR.",
+   "avisos": []
   }
  ]
 }
