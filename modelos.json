@@ -1,5 +1,5 @@
 {
- "versao": "2026.11.32",
+ "versao": "2026.11.36",
  "atualizadoEm": "2026-11-14",
  "modelos": [
   {
@@ -635,7 +635,7 @@
          "texto": "QUE ESTÁ GESTANTE DE OUTRO RELACIONAMENTO"
         }
        ],
-       "obrigatoria": true
+       "obrigatoria": false
       },
       {
        "id": "vit_trabalho",
@@ -818,7 +818,12 @@
          "texto": "QUE FAZ USO DE DROGAS"
         }
        ],
-       "obrigatoria": true
+       "obrigatoria": true,
+       "juntaCom": {
+        "pergunta": "vit_alcool",
+        "opcao": "Não faz uso",
+        "texto": "QUE NÃO FAZ USO NEM DE ÁLCOOL NEM DE DROGAS"
+       }
       },
       {
        "id": "vit_drogas_freq",
@@ -1069,7 +1074,12 @@
          "texto": "QUE NÃO SABE INFORMAR SE FAZ USO DE DROGAS"
         }
        ],
-       "obrigatoria": true
+       "obrigatoria": true,
+       "juntaCom": {
+        "pergunta": "inv_alcool",
+        "opcao": "Não faz uso",
+        "texto": "QUE NÃO FAZ USO NEM DE ÁLCOOL NEM DE DROGAS"
+       }
       },
       {
        "id": "inv_drogas_freq",
@@ -2141,7 +2151,12 @@
          "texto": "QUE FAZ USO DE DROGAS"
         }
        ],
-       "obrigatoria": true
+       "obrigatoria": true,
+       "juntaCom": {
+        "pergunta": "vit_alcool",
+        "opcao": "Não faz uso",
+        "texto": "QUE NÃO FAZ USO NEM DE ÁLCOOL NEM DE DROGAS"
+       }
       },
       {
        "id": "vit_drogas_freq",
@@ -2392,7 +2407,12 @@
          "texto": "QUE NÃO SABE INFORMAR SE FAZ USO DE DROGAS"
         }
        ],
-       "obrigatoria": true
+       "obrigatoria": true,
+       "juntaCom": {
+        "pergunta": "inv_alcool",
+        "opcao": "Não faz uso",
+        "texto": "QUE NÃO FAZ USO NEM DE ÁLCOOL NEM DE DROGAS"
+       }
       },
       {
        "id": "inv_drogas_freq",
@@ -3523,7 +3543,7 @@
          "texto": "QUE ESTÁ GESTANTE DE OUTRO RELACIONAMENTO"
         }
        ],
-       "obrigatoria": true
+       "obrigatoria": false
       },
       {
        "id": "vit_trabalho",
@@ -3706,7 +3726,12 @@
          "texto": "QUE FAZ USO DE DROGAS"
         }
        ],
-       "obrigatoria": true
+       "obrigatoria": true,
+       "juntaCom": {
+        "pergunta": "vit_alcool",
+        "opcao": "Não faz uso",
+        "texto": "QUE NÃO FAZ USO NEM DE ÁLCOOL NEM DE DROGAS"
+       }
       },
       {
        "id": "vit_drogas_freq",
@@ -3957,7 +3982,12 @@
          "texto": "QUE NÃO SABE INFORMAR SE FAZ USO DE DROGAS"
         }
        ],
-       "obrigatoria": true
+       "obrigatoria": true,
+       "juntaCom": {
+        "pergunta": "inv_alcool",
+        "opcao": "Não faz uso",
+        "texto": "QUE NÃO FAZ USO NEM DE ÁLCOOL NEM DE DROGAS"
+       }
       },
       {
        "id": "inv_drogas_freq",
@@ -4968,7 +4998,12 @@
          "texto": "QUE FAZ USO DE DROGAS"
         }
        ],
-       "obrigatoria": true
+       "obrigatoria": true,
+       "juntaCom": {
+        "pergunta": "vit_alcool",
+        "opcao": "Não faz uso",
+        "texto": "QUE NÃO FAZ USO NEM DE ÁLCOOL NEM DE DROGAS"
+       }
       },
       {
        "id": "vit_drogas_freq",
@@ -5219,7 +5254,12 @@
          "texto": "QUE NÃO SABE INFORMAR SE FAZ USO DE DROGAS"
         }
        ],
-       "obrigatoria": true
+       "obrigatoria": true,
+       "juntaCom": {
+        "pergunta": "inv_alcool",
+        "opcao": "Não faz uso",
+        "texto": "QUE NÃO FAZ USO NEM DE ÁLCOOL NEM DE DROGAS"
+       }
       },
       {
        "id": "inv_drogas_freq",
@@ -6408,7 +6448,7 @@
        "opcoes": [
         {
          "rotulo": "Não",
-         "texto": ""
+         "texto": "QUE NÃO ESTÁ GESTANTE"
         },
         {
          "rotulo": "Sim, do(a) investigado(a)",
@@ -6602,7 +6642,12 @@
          "texto": "QUE FAZ USO DE DROGAS"
         }
        ],
-       "obrigatoria": true
+       "obrigatoria": true,
+       "juntaCom": {
+        "pergunta": "vit_alcool",
+        "opcao": "Não faz uso",
+        "texto": "QUE NÃO FAZ USO NEM DE ÁLCOOL NEM DE DROGAS"
+       }
       },
       {
        "id": "vit_drogas_freq",
@@ -6853,7 +6898,12 @@
          "texto": "QUE NÃO SABE INFORMAR SE FAZ USO DE DROGAS"
         }
        ],
-       "obrigatoria": true
+       "obrigatoria": true,
+       "juntaCom": {
+        "pergunta": "inv_alcool",
+        "opcao": "Não faz uso",
+        "texto": "QUE NÃO FAZ USO NEM DE ÁLCOOL NEM DE DROGAS"
+       }
       },
       {
        "id": "inv_drogas_freq",
@@ -7122,22 +7172,6 @@
        "ajuda": "Descreva data, local, horário e a dinâmica completa dos fatos, usando as palavras da vítima sempre que possível, inclusive xingamentos."
       },
       {
-       "id": "meio",
-       "tipo": "texto",
-       "rotulo": "Meio empregado pelo(a) investigado(a)",
-       "texto": "QUE {d}",
-       "campos": [
-        {
-         "id": "d",
-         "rotulo": "",
-         "longo": true,
-         "ph": "Ex.: O INVESTIGADO USOU DE FORÇA FÍSICA, RASGANDO AS SUAS ROUPAS E A EMPURRANDO NA CAMA, QUE O INVESTIGADO A XINGOU DE \"PUTA\" E \"SAFADA\""
-        }
-       ],
-       "obrigatoria": true,
-       "ajuda": "Precisa constar o meio: violência, ameaça, força física, intimidação ou outro. Escreva a frase completa. Se a vítima cedeu após pedidos insistentes, sem violência ou grave ameaça, diga isso."
-      },
-      {
        "id": "pratica",
        "tipo": "caixas",
        "rotulo": "Prática sexual ocorrida",
@@ -7170,19 +7204,78 @@
       {
        "id": "consentimento",
        "tipo": "escolha",
-       "rotulo": "Consentimento",
+       "rotulo": "Consentimento e meio empregado pelo(a) investigado(a)",
        "opcoes": [
         {
-         "rotulo": "Sem consentimento",
-         "texto": "A DECLARANTE AFIRMA QUE A PRÁTICA DE ATO SEXUAL OCORREU SEM SEU CONSENTIMENTO"
+         "rotulo": "Não consentiu",
+         "texto": "A DECLARANTE AFIRMA QUE NÃO CONSENTIU COM A PRÁTICA DO ATO SEXUAL"
         },
         {
-         "rotulo": "Cedeu após pedidos insistentes",
-         "texto": ""
+         "rotulo": "Sem violência nem grave ameaça, mas cedeu após pedidos insistentes",
+         "texto": "A DECLARANTE AFIRMA QUE NÃO HOUVE VIOLÊNCIA NEM GRAVE AMEAÇA, MAS QUE CEDEU À PRÁTICA DO ATO SEXUAL APÓS PEDIDOS INSISTENTES DO INVESTIGADO"
         }
        ],
        "obrigatoria": true,
-       "ajuda": "Se a vítima cedeu ao ato após pedidos insistentes, a afirmação de ausência de consentimento NÃO entra no texto."
+       "ajuda": "Se não consentiu, marque a seguir o meio que o investigado empregou. Se a vítima cedeu após pedidos insistentes, sem violência ou grave ameaça, escolha a segunda opção."
+      },
+      {
+       "id": "consentimento_meio",
+       "tipo": "caixas",
+       "rotulo": "Meio empregado pelo(a) investigado(a)",
+       "aparece": {
+        "pergunta": "consentimento",
+        "opcao": "Não consentiu"
+       },
+       "texto": ", TENDO O INVESTIGADO UTILIZADO DE {lista}",
+       "itens": [
+        {
+         "rotulo": "Violência",
+         "texto": "VIOLÊNCIA"
+        },
+        {
+         "rotulo": "Ameaça",
+         "texto": "AMEAÇA"
+        },
+        {
+         "rotulo": "Força física",
+         "texto": "FORÇA FÍSICA"
+        },
+        {
+         "rotulo": "Intimidação",
+         "texto": "INTIMIDAÇÃO"
+        },
+        {
+         "rotulo": "Outro meio",
+         "texto": "{d}",
+         "detalhe": {
+          "rotulo": "Qual meio",
+          "obrigatorio": true,
+          "longo": false,
+          "ph": "Ex.: CHANTAGEM"
+         }
+        }
+       ],
+       "obrigatoria": true
+      },
+      {
+       "id": "consentimento_compl",
+       "tipo": "texto",
+       "rotulo": "Complemente o meio empregado (opcional)",
+       "aparece": {
+        "pergunta": "consentimento",
+        "opcao": "Não consentiu"
+       },
+       "texto": ", {d}",
+       "campos": [
+        {
+         "id": "d",
+         "rotulo": "",
+         "obrigatorio": false,
+         "longo": true,
+         "ph": "Ex.: RASGANDO AS SUAS ROUPAS E A EMPURRANDO NA CAMA, TENDO O INVESTIGADO A XINGADO DE \"PUTA\" E \"SAFADA\""
+        }
+       ],
+       "obrigatoria": false
       },
       {
        "id": "efeito_subst",
@@ -7876,7 +7969,7 @@
         },
         {
          "rotulo": "Não",
-         "texto": ""
+         "texto": "QUE NÃO ESTAVA GESTANTE NA DATA DOS FATOS"
         }
        ],
        "obrigatoria": true
@@ -7988,7 +8081,12 @@
          "texto": "QUE NÃO FAZ USO DE DROGAS"
         }
        ],
-       "obrigatoria": true
+       "obrigatoria": true,
+       "juntaCom": {
+        "pergunta": "vit_alcool",
+        "opcao": "Não faz uso",
+        "texto": "QUE NÃO FAZ USO NEM DE ÁLCOOL NEM DE DROGAS"
+       }
       }
      ]
     },
@@ -8011,22 +8109,6 @@
        ],
        "obrigatoria": true,
        "ajuda": "Descreva data, local, horário e a dinâmica completa dos fatos, usando as palavras da vítima sempre que possível, inclusive xingamentos."
-      },
-      {
-       "id": "meio",
-       "tipo": "texto",
-       "rotulo": "Meio empregado pelo(a) investigado(a)",
-       "texto": "QUE {d}",
-       "campos": [
-        {
-         "id": "d",
-         "rotulo": "",
-         "longo": true,
-         "ph": "Ex.: O INVESTIGADO USOU DE FORÇA FÍSICA, RASGANDO AS SUAS ROUPAS E A EMPURRANDO NA CAMA, QUE O INVESTIGADO A XINGOU DE \"PUTA\" E \"SAFADA\""
-        }
-       ],
-       "obrigatoria": true,
-       "ajuda": "Precisa constar o meio: violência, ameaça, força física, intimidação ou outro. Escreva a frase completa. Se a vítima cedeu após pedidos insistentes, sem violência ou grave ameaça, diga isso."
       },
       {
        "id": "pratica",
@@ -8061,19 +8143,78 @@
       {
        "id": "consentimento",
        "tipo": "escolha",
-       "rotulo": "Consentimento",
+       "rotulo": "Consentimento e meio empregado pelo(a) investigado(a)",
        "opcoes": [
         {
-         "rotulo": "Sem consentimento",
-         "texto": "A DECLARANTE AFIRMA QUE A PRÁTICA DE ATO SEXUAL OCORREU SEM SEU CONSENTIMENTO"
+         "rotulo": "Não consentiu",
+         "texto": "A DECLARANTE AFIRMA QUE NÃO CONSENTIU COM A PRÁTICA DO ATO SEXUAL"
         },
         {
-         "rotulo": "Cedeu após pedidos insistentes",
-         "texto": ""
+         "rotulo": "Sem violência nem grave ameaça, mas cedeu após pedidos insistentes",
+         "texto": "A DECLARANTE AFIRMA QUE NÃO HOUVE VIOLÊNCIA NEM GRAVE AMEAÇA, MAS QUE CEDEU À PRÁTICA DO ATO SEXUAL APÓS PEDIDOS INSISTENTES DO INVESTIGADO"
         }
        ],
        "obrigatoria": true,
-       "ajuda": "Se a vítima cedeu ao ato após pedidos insistentes, a afirmação de ausência de consentimento NÃO entra no texto."
+       "ajuda": "Se não consentiu, marque a seguir o meio que o investigado empregou. Se a vítima cedeu após pedidos insistentes, sem violência ou grave ameaça, escolha a segunda opção."
+      },
+      {
+       "id": "consentimento_meio",
+       "tipo": "caixas",
+       "rotulo": "Meio empregado pelo(a) investigado(a)",
+       "aparece": {
+        "pergunta": "consentimento",
+        "opcao": "Não consentiu"
+       },
+       "texto": ", TENDO O INVESTIGADO UTILIZADO DE {lista}",
+       "itens": [
+        {
+         "rotulo": "Violência",
+         "texto": "VIOLÊNCIA"
+        },
+        {
+         "rotulo": "Ameaça",
+         "texto": "AMEAÇA"
+        },
+        {
+         "rotulo": "Força física",
+         "texto": "FORÇA FÍSICA"
+        },
+        {
+         "rotulo": "Intimidação",
+         "texto": "INTIMIDAÇÃO"
+        },
+        {
+         "rotulo": "Outro meio",
+         "texto": "{d}",
+         "detalhe": {
+          "rotulo": "Qual meio",
+          "obrigatorio": true,
+          "longo": false,
+          "ph": "Ex.: CHANTAGEM"
+         }
+        }
+       ],
+       "obrigatoria": true
+      },
+      {
+       "id": "consentimento_compl",
+       "tipo": "texto",
+       "rotulo": "Complemente o meio empregado (opcional)",
+       "aparece": {
+        "pergunta": "consentimento",
+        "opcao": "Não consentiu"
+       },
+       "texto": ", {d}",
+       "campos": [
+        {
+         "id": "d",
+         "rotulo": "",
+         "obrigatorio": false,
+         "longo": true,
+         "ph": "Ex.: RASGANDO AS SUAS ROUPAS E A EMPURRANDO NA CAMA, TENDO O INVESTIGADO A XINGADO DE \"PUTA\" E \"SAFADA\""
+        }
+       ],
+       "obrigatoria": false
       },
       {
        "id": "efeito_subst",
@@ -8611,7 +8752,7 @@
         },
         {
          "rotulo": "Não",
-         "texto": ""
+         "texto": "QUE NÃO ESTAVA GESTANTE NA DATA DOS FATOS"
         }
        ],
        "obrigatoria": true
@@ -9186,7 +9327,7 @@
         },
         {
          "rotulo": "Não",
-         "texto": ""
+         "texto": "QUE NÃO ESTAVA GESTANTE NA DATA DOS FATOS"
         }
        ],
        "obrigatoria": true
@@ -9298,7 +9439,12 @@
          "texto": "QUE NÃO FAZ USO DE DROGAS"
         }
        ],
-       "obrigatoria": true
+       "obrigatoria": true,
+       "juntaCom": {
+        "pergunta": "vit_alcool",
+        "opcao": "Não faz uso",
+        "texto": "QUE NÃO FAZ USO NEM DE ÁLCOOL NEM DE DROGAS"
+       }
       }
      ]
     },
