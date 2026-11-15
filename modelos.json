@@ -1,5 +1,5 @@
 {
- "versao": "2026.11.31",
+ "versao": "2026.11.32",
  "atualizadoEm": "2026-11-14",
  "modelos": [
   {
@@ -624,7 +624,7 @@
        "opcoes": [
         {
          "rotulo": "Não",
-         "texto": "QUE NÃO ESTÁ GESTANTE"
+         "texto": ""
         },
         {
          "rotulo": "Sim, do(a) investigado(a)",
@@ -1164,6 +1164,31 @@
           "longo": false,
           "ph": "Ex.: ECSTASY"
          }
+        }
+       ],
+       "obrigatoria": true
+      },
+      {
+       "id": "inv_trafico",
+       "tipo": "escolha",
+       "rotulo": "O(A) investigado(a) possui envolvimento com o tráfico de drogas?",
+       "opcoes": [
+        {
+         "rotulo": "Sim",
+         "texto": "QUE O INVESTIGADO POSSUI ENVOLVIMENTO COM O TRÁFICO DE DROGAS[, {d}]",
+         "detalhe": {
+          "rotulo": "Observações (opcional)",
+          "obrigatorio": false,
+          "longo": true
+         }
+        },
+        {
+         "rotulo": "Não",
+         "texto": "QUE O INVESTIGADO NÃO POSSUI ENVOLVIMENTO COM O TRÁFICO DE DROGAS"
+        },
+        {
+         "rotulo": "Não sabe informar",
+         "texto": "QUE NÃO SABE INFORMAR SE O INVESTIGADO POSSUI ENVOLVIMENTO COM O TRÁFICO DE DROGAS"
         }
        ],
        "obrigatoria": true
@@ -2467,6 +2492,31 @@
        "obrigatoria": true
       },
       {
+       "id": "inv_trafico",
+       "tipo": "escolha",
+       "rotulo": "O(A) investigado(a) possui envolvimento com o tráfico de drogas?",
+       "opcoes": [
+        {
+         "rotulo": "Sim",
+         "texto": "QUE O INVESTIGADO POSSUI ENVOLVIMENTO COM O TRÁFICO DE DROGAS[, {d}]",
+         "detalhe": {
+          "rotulo": "Observações (opcional)",
+          "obrigatorio": false,
+          "longo": true
+         }
+        },
+        {
+         "rotulo": "Não",
+         "texto": "QUE O INVESTIGADO NÃO POSSUI ENVOLVIMENTO COM O TRÁFICO DE DROGAS"
+        },
+        {
+         "rotulo": "Não sabe informar",
+         "texto": "QUE NÃO SABE INFORMAR SE O INVESTIGADO POSSUI ENVOLVIMENTO COM O TRÁFICO DE DROGAS"
+        }
+       ],
+       "obrigatoria": true
+      },
+      {
        "id": "inv_preso",
        "tipo": "escolha",
        "rotulo": "Já esteve preso?",
@@ -3462,7 +3512,7 @@
        "opcoes": [
         {
          "rotulo": "Não",
-         "texto": "QUE NÃO ESTÁ GESTANTE"
+         "texto": ""
         },
         {
          "rotulo": "Sim, do(a) investigado(a)",
@@ -4002,6 +4052,31 @@
           "longo": false,
           "ph": "Ex.: ECSTASY"
          }
+        }
+       ],
+       "obrigatoria": true
+      },
+      {
+       "id": "inv_trafico",
+       "tipo": "escolha",
+       "rotulo": "O(A) investigado(a) possui envolvimento com o tráfico de drogas?",
+       "opcoes": [
+        {
+         "rotulo": "Sim",
+         "texto": "QUE O INVESTIGADO POSSUI ENVOLVIMENTO COM O TRÁFICO DE DROGAS[, {d}]",
+         "detalhe": {
+          "rotulo": "Observações (opcional)",
+          "obrigatorio": false,
+          "longo": true
+         }
+        },
+        {
+         "rotulo": "Não",
+         "texto": "QUE O INVESTIGADO NÃO POSSUI ENVOLVIMENTO COM O TRÁFICO DE DROGAS"
+        },
+        {
+         "rotulo": "Não sabe informar",
+         "texto": "QUE NÃO SABE INFORMAR SE O INVESTIGADO POSSUI ENVOLVIMENTO COM O TRÁFICO DE DROGAS"
         }
        ],
        "obrigatoria": true
@@ -5244,6 +5319,31 @@
        "obrigatoria": true
       },
       {
+       "id": "inv_trafico",
+       "tipo": "escolha",
+       "rotulo": "O(A) investigado(a) possui envolvimento com o tráfico de drogas?",
+       "opcoes": [
+        {
+         "rotulo": "Sim",
+         "texto": "QUE O INVESTIGADO POSSUI ENVOLVIMENTO COM O TRÁFICO DE DROGAS[, {d}]",
+         "detalhe": {
+          "rotulo": "Observações (opcional)",
+          "obrigatorio": false,
+          "longo": true
+         }
+        },
+        {
+         "rotulo": "Não",
+         "texto": "QUE O INVESTIGADO NÃO POSSUI ENVOLVIMENTO COM O TRÁFICO DE DROGAS"
+        },
+        {
+         "rotulo": "Não sabe informar",
+         "texto": "QUE NÃO SABE INFORMAR SE O INVESTIGADO POSSUI ENVOLVIMENTO COM O TRÁFICO DE DROGAS"
+        }
+       ],
+       "obrigatoria": true
+      },
+      {
        "id": "inv_preso",
        "tipo": "escolha",
        "rotulo": "Já esteve preso?",
@@ -6308,7 +6408,7 @@
        "opcoes": [
         {
          "rotulo": "Não",
-         "texto": "QUE NÃO ESTÁ GESTANTE"
+         "texto": ""
         },
         {
          "rotulo": "Sim, do(a) investigado(a)",
@@ -6848,6 +6948,31 @@
           "longo": false,
           "ph": "Ex.: ECSTASY"
          }
+        }
+       ],
+       "obrigatoria": true
+      },
+      {
+       "id": "inv_trafico",
+       "tipo": "escolha",
+       "rotulo": "O(A) investigado(a) possui envolvimento com o tráfico de drogas?",
+       "opcoes": [
+        {
+         "rotulo": "Sim",
+         "texto": "QUE O INVESTIGADO POSSUI ENVOLVIMENTO COM O TRÁFICO DE DROGAS[, {d}]",
+         "detalhe": {
+          "rotulo": "Observações (opcional)",
+          "obrigatorio": false,
+          "longo": true
+         }
+        },
+        {
+         "rotulo": "Não",
+         "texto": "QUE O INVESTIGADO NÃO POSSUI ENVOLVIMENTO COM O TRÁFICO DE DROGAS"
+        },
+        {
+         "rotulo": "Não sabe informar",
+         "texto": "QUE NÃO SABE INFORMAR SE O INVESTIGADO POSSUI ENVOLVIMENTO COM O TRÁFICO DE DROGAS"
         }
        ],
        "obrigatoria": true
@@ -7751,7 +7876,7 @@
         },
         {
          "rotulo": "Não",
-         "texto": "QUE NÃO ESTAVA GESTANTE NA DATA DOS FATOS"
+         "texto": ""
         }
        ],
        "obrigatoria": true
@@ -8486,7 +8611,7 @@
         },
         {
          "rotulo": "Não",
-         "texto": "QUE NÃO ESTAVA GESTANTE NA DATA DOS FATOS"
+         "texto": ""
         }
        ],
        "obrigatoria": true
@@ -9061,7 +9186,7 @@
         },
         {
          "rotulo": "Não",
-         "texto": "QUE NÃO ESTAVA GESTANTE NA DATA DOS FATOS"
+         "texto": ""
         }
        ],
        "obrigatoria": true
