@@ -1,5 +1,5 @@
 {
- "versao": "2026.11.7",
+ "versao": "2026.11.31",
  "atualizadoEm": "2026-11-14",
  "modelos": [
   {
@@ -33,7 +33,8 @@
      {
       "id": "vinculo",
       "chips": true,
-      "rotulo": "Relacionamento (ex.: CÔNJUGE, NAMORADA, EX-COMPANHEIRO)",
+      "comOutro": true,
+      "rotulo": "Relacionamento",
       "obrigatorio": true,
       "sugestoes": {
        "M": [
@@ -72,6 +73,42 @@
    },
    "blocos": [
     {
+     "titulo": "Acompanhamento da declarante",
+     "perguntas": [
+      {
+       "id": "advogado",
+       "tipo": "escolha",
+       "rotulo": "A declarante comparece acompanhada de advogado(a)?",
+       "opcoes": [
+        {
+         "rotulo": "Não",
+         "texto": ""
+        },
+        {
+         "rotulo": "Sim, de advogado",
+         "texto": "QUE ENCONTRA-SE ACOMPANHADA DE SEU ADVOGADO, DR. {d}",
+         "detalhe": {
+          "rotulo": "Nome completo e número da OAB",
+          "obrigatorio": true,
+          "longo": false,
+          "ph": "Ex.: JOÃO DA SILVA, OAB/ES Nº 12345"
+         }
+        },
+        {
+         "rotulo": "Sim, de advogada",
+         "texto": "QUE ENCONTRA-SE ACOMPANHADA DE SUA ADVOGADA, DRA. {d}",
+         "detalhe": {
+          "rotulo": "Nome completo e número da OAB",
+          "obrigatorio": true,
+          "longo": false,
+          "ph": "Ex.: MARIA DA SILVA, OAB/ES Nº 12345"
+         }
+        }
+       ]
+      }
+     ]
+    },
+    {
      "titulo": "Medidas protetivas e registros anteriores",
      "junto": true,
      "perguntas": [
@@ -86,16 +123,65 @@
         },
         {
          "rotulo": "Sim",
-         "texto": "PERGUNTADA SE JÁ SOLICITOU MEDIDAS PROTETIVAS ANTERIORMENTE, RESPONDEU QUE SIM[, {d}]",
-         "detalhe": {
-          "rotulo": "Se retirou, informe o motivo (ex.: QUE REATARAM O RELACIONAMENTO / QUE SOLICITOU A REVOGAÇÃO PORQUE HAVIAM SE ENTENDIDO)",
-          "obrigatorio": false,
-          "longo": false
-         }
+         "texto": "PERGUNTADA SE JÁ SOLICITOU MEDIDAS PROTETIVAS ANTERIORMENTE, RESPONDEU QUE SIM"
         }
        ],
        "obrigatoria": true,
        "alerta": "Confira se a MPU está EM VIGOR. Se estiver, não use este modelo: use o modelo de Descumprimento de MPU."
+      },
+      {
+       "id": "mpu_motivo",
+       "tipo": "caixas",
+       "rotulo": "O que aconteceu com as MPU’S anteriores?",
+       "aparece": {
+        "pergunta": "mpu_anterior",
+        "opcao": "Sim"
+       },
+       "texto": ", SENDO QUE {lista}",
+       "itens": [
+        {
+         "rotulo": "Reataram o relacionamento",
+         "texto": "AS PARTES REATARAM O RELACIONAMENTO"
+        },
+        {
+         "rotulo": "Juiz indeferiu o pedido",
+         "texto": "O PEDIDO DE MPU’S FOI INDEFERIDO PELO JUÍZO"
+        },
+        {
+         "rotulo": "Juiz revogou as MPU’S",
+         "texto": "AS MPU’S FORAM REVOGADAS PELO JUÍZO"
+        },
+        {
+         "rotulo": "Prazo terminou",
+         "texto": "AS MPU’S PERDERAM A VALIDADE POR DECURSO DO PRAZO"
+        },
+        {
+         "rotulo": "Ela pediu a revogação: porque se entenderam",
+         "texto": "A DECLARANTE SOLICITOU A REVOGAÇÃO DAS MPU’S PORQUE HAVIAM SE ENTENDIDO"
+        },
+        {
+         "rotulo": "Ela pediu a revogação: pressão ou ameaça do(a) investigado(a)",
+         "texto": "A DECLARANTE SOLICITOU A REVOGAÇÃO DAS MPU’S POR PRESSÃO OU AMEAÇA DO INVESTIGADO"
+        },
+        {
+         "rotulo": "Ela pediu a revogação: pressão de familiares",
+         "texto": "A DECLARANTE SOLICITOU A REVOGAÇÃO DAS MPU’S POR PRESSÃO DE FAMILIARES"
+        },
+        {
+         "rotulo": "Ela pediu a revogação: por terem filhos em comum",
+         "texto": "A DECLARANTE SOLICITOU A REVOGAÇÃO DAS MPU’S POR POSSUÍREM FILHOS EM COMUM"
+        },
+        {
+         "rotulo": "Outro motivo",
+         "texto": "{d}",
+         "detalhe": {
+          "rotulo": "Qual foi o motivo",
+          "obrigatorio": true,
+          "longo": false,
+          "ph": "Ex.: AS MPU’S FORAM CANCELADAS PORQUE O INVESTIGADO SE MUDOU DE CIDADE"
+         }
+        }
+       ]
       },
       {
        "id": "outros_registros",
@@ -147,33 +233,98 @@
        "opcoes": [
         {
          "rotulo": "Convivem",
-         "texto": "QUE CONVIVEM POR APROXIMADAMENTE {d}",
-         "detalhe": {
-          "rotulo": "Por quanto tempo",
-          "obrigatorio": true,
-          "longo": false,
-          "duracao": true
-         }
+         "texto": "QUE CONVIVEM"
         },
         {
          "rotulo": "Conviveram",
-         "texto": "QUE CONVIVERAM POR APROXIMADAMENTE {d}",
-         "detalhe": {
-          "rotulo": "Por quanto tempo",
-          "obrigatorio": true,
-          "longo": false,
-          "duracao": true
-         }
+         "texto": "QUE CONVIVERAM"
         },
         {
          "rotulo": "Nunca conviveram",
-         "texto": "QUE NUNCA CONVIVERAM, MAS SE RELACIONARAM POR APROXIMADAMENTE {d}",
-         "detalhe": {
-          "rotulo": "Por quanto tempo se relacionaram",
-          "obrigatorio": true,
-          "longo": false,
-          "duracao": true
-         }
+         "texto": "QUE NUNCA CONVIVERAM, MAS SE RELACIONARAM"
+        }
+       ],
+       "obrigatoria": true
+      },
+      {
+       "id": "tempo_convivem",
+       "tipo": "texto",
+       "rotulo": "Por quanto tempo convivem?",
+       "ajuda": "Obs.: se relaciona ao tempo em que moram juntos.",
+       "aparece": {
+        "pergunta": "convivencia",
+        "opcao": "Convivem"
+       },
+       "texto": ", POR APROXIMADAMENTE {anos} ANO(S)[ E {meses} MÊS(ES)]",
+       "textoDuracao": ", POR APROXIMADAMENTE {tempo}",
+       "campos": [
+        {
+         "id": "anos",
+         "rotulo": "Anos",
+         "obrigatorio": true,
+         "longo": false,
+         "ph": "Ex.: 5 (se menos de um ano, 0)"
+        },
+        {
+         "id": "meses",
+         "rotulo": "Meses (opcional)",
+         "longo": false,
+         "ph": "Ex.: 3"
+        }
+       ],
+       "obrigatoria": true
+      },
+      {
+       "id": "tempo_conviveram",
+       "tipo": "texto",
+       "rotulo": "Por quanto tempo conviveram?",
+       "ajuda": "Obs.: se relaciona ao tempo em que moraram juntos.",
+       "aparece": {
+        "pergunta": "convivencia",
+        "opcao": "Conviveram"
+       },
+       "texto": ", POR APROXIMADAMENTE {anos} ANO(S)[ E {meses} MÊS(ES)]",
+       "textoDuracao": ", POR APROXIMADAMENTE {tempo}",
+       "campos": [
+        {
+         "id": "anos",
+         "rotulo": "Anos",
+         "obrigatorio": true,
+         "longo": false,
+         "ph": "Ex.: 5 (se menos de um ano, 0)"
+        },
+        {
+         "id": "meses",
+         "rotulo": "Meses (opcional)",
+         "longo": false,
+         "ph": "Ex.: 3"
+        }
+       ],
+       "obrigatoria": true
+      },
+      {
+       "id": "tempo_relacao",
+       "tipo": "texto",
+       "rotulo": "Mas se relacionaram por quanto tempo?",
+       "aparece": {
+        "pergunta": "convivencia",
+        "opcao": "Nunca conviveram"
+       },
+       "texto": ", POR APROXIMADAMENTE {anos} ANO(S)[ E {meses} MÊS(ES)]",
+       "textoDuracao": ", POR APROXIMADAMENTE {tempo}",
+       "campos": [
+        {
+         "id": "anos",
+         "rotulo": "Anos",
+         "obrigatorio": true,
+         "longo": false,
+         "ph": "Ex.: 5 (se menos de um ano, 0)"
+        },
+        {
+         "id": "meses",
+         "rotulo": "Meses (opcional)",
+         "longo": false,
+         "ph": "Ex.: 3"
         }
        ],
        "obrigatoria": true
@@ -186,13 +337,21 @@
         "pergunta": "convivencia",
         "opcao": "Conviveram"
        },
-       "texto": ", ENCONTRANDO-SE SEPARADOS HÁ {d}",
+       "texto": ", ENCONTRANDO-SE SEPARADOS HÁ {anos} ANO(S)[ E {meses} MÊS(ES)]",
+       "textoDuracao": ", ENCONTRANDO-SE SEPARADOS HÁ {tempo}",
        "campos": [
         {
-         "id": "d",
-         "rotulo": "",
+         "id": "anos",
+         "rotulo": "Anos",
+         "obrigatorio": true,
          "longo": false,
-         "duracao": true
+         "ph": "Ex.: 1 (se menos de um ano, 0)"
+        },
+        {
+         "id": "meses",
+         "rotulo": "Meses (opcional)",
+         "longo": false,
+         "ph": "Ex.: 6"
         }
        ]
       },
@@ -202,17 +361,124 @@
        "rotulo": "Possui filhos em comum?",
        "opcoes": [
         {
+         "rotulo": "Não possui",
+         "texto": "QUE NÃO POSSUI FILHOS EM COMUM"
+        },
+        {
          "rotulo": "Possui",
-         "texto": "QUE POSSUI FILHOS EM COMUM[, SENDO {d}]",
+         "texto": ""
+        }
+       ],
+       "obrigatoria": true
+      },
+      {
+       "id": "filhos_comum_qtd",
+       "tipo": "escolha",
+       "rotulo": "Quantos filhos em comum?",
+       "aparece": {
+        "pergunta": "filhos_comum",
+        "opcao": "Possui"
+       },
+       "opcoes": [
+        {
+         "rotulo": "1 filho",
+         "texto": "QUE POSSUI 1 FILHO EM COMUM[, SENDO {d}]",
          "detalhe": {
-          "rotulo": "Quantidade, nome, idade e se possuem alguma deficiência",
+          "rotulo": "Nome(s), idade(s) e se possuem alguma deficiência",
           "obrigatorio": true,
-          "longo": false
+          "longo": false,
+          "filhos": 1
          }
         },
         {
-         "rotulo": "Não possui",
-         "texto": "QUE NÃO POSSUI FILHOS EM COMUM"
+         "rotulo": "2 filhos",
+         "texto": "QUE POSSUI 2 FILHOS EM COMUM[, SENDO {d}]",
+         "detalhe": {
+          "rotulo": "Nome(s), idade(s) e se possuem alguma deficiência",
+          "obrigatorio": true,
+          "longo": false,
+          "filhos": 2
+         }
+        },
+        {
+         "rotulo": "3 filhos",
+         "texto": "QUE POSSUI 3 FILHOS EM COMUM[, SENDO {d}]",
+         "detalhe": {
+          "rotulo": "Nome(s), idade(s) e se possuem alguma deficiência",
+          "obrigatorio": true,
+          "longo": false,
+          "filhos": 3
+         }
+        },
+        {
+         "rotulo": "4 filhos",
+         "texto": "QUE POSSUI 4 FILHOS EM COMUM[, SENDO {d}]",
+         "detalhe": {
+          "rotulo": "Nome(s), idade(s) e se possuem alguma deficiência",
+          "obrigatorio": true,
+          "longo": false,
+          "filhos": 4
+         }
+        },
+        {
+         "rotulo": "5 filhos",
+         "texto": "QUE POSSUI 5 FILHOS EM COMUM[, SENDO {d}]",
+         "detalhe": {
+          "rotulo": "Nome(s), idade(s) e se possuem alguma deficiência",
+          "obrigatorio": true,
+          "longo": false,
+          "filhos": 5
+         }
+        },
+        {
+         "rotulo": "6 filhos",
+         "texto": "QUE POSSUI 6 FILHOS EM COMUM[, SENDO {d}]",
+         "detalhe": {
+          "rotulo": "Nome(s), idade(s) e se possuem alguma deficiência",
+          "obrigatorio": true,
+          "longo": false,
+          "filhos": 6
+         }
+        },
+        {
+         "rotulo": "7 filhos",
+         "texto": "QUE POSSUI 7 FILHOS EM COMUM[, SENDO {d}]",
+         "detalhe": {
+          "rotulo": "Nome(s), idade(s) e se possuem alguma deficiência",
+          "obrigatorio": true,
+          "longo": false,
+          "filhos": 7
+         }
+        },
+        {
+         "rotulo": "8 filhos",
+         "texto": "QUE POSSUI 8 FILHOS EM COMUM[, SENDO {d}]",
+         "detalhe": {
+          "rotulo": "Nome(s), idade(s) e se possuem alguma deficiência",
+          "obrigatorio": true,
+          "longo": false,
+          "filhos": 8
+         }
+        },
+        {
+         "rotulo": "9 filhos",
+         "texto": "QUE POSSUI 9 FILHOS EM COMUM[, SENDO {d}]",
+         "detalhe": {
+          "rotulo": "Nome(s), idade(s) e se possuem alguma deficiência",
+          "obrigatorio": true,
+          "longo": false,
+          "filhos": 9
+         }
+        },
+        {
+         "rotulo": "10 filhos",
+         "texto": "QUE POSSUI 10 FILHOS EM COMUM[, SENDO {d}]",
+         "detalhe": {
+          "rotulo": "Nome(s), idade(s) e se possuem alguma deficiência",
+          "obrigatorio": true,
+          "longo": false,
+          "filhos": 10
+         }
         }
        ],
        "obrigatoria": true
@@ -223,17 +489,124 @@
        "rotulo": "Possui filhos de outro relacionamento?",
        "opcoes": [
         {
+         "rotulo": "Não possui",
+         "texto": "QUE NÃO POSSUI FILHOS DE OUTRO RELACIONAMENTO"
+        },
+        {
          "rotulo": "Possui",
-         "texto": "QUE POSSUI FILHOS DE OUTRO RELACIONAMENTO[, SENDO {d}]",
+         "texto": ""
+        }
+       ],
+       "obrigatoria": true
+      },
+      {
+       "id": "filhos_outro_qtd",
+       "tipo": "escolha",
+       "rotulo": "Quantos filhos de outro relacionamento?",
+       "aparece": {
+        "pergunta": "filhos_outro",
+        "opcao": "Possui"
+       },
+       "opcoes": [
+        {
+         "rotulo": "1 filho",
+         "texto": "QUE POSSUI 1 FILHO DE OUTRO RELACIONAMENTO[, SENDO {d}]",
          "detalhe": {
-          "rotulo": "Quantidade, nome, idade e se possuem alguma deficiência",
+          "rotulo": "Nome(s), idade(s) e se possuem alguma deficiência",
           "obrigatorio": true,
-          "longo": false
+          "longo": false,
+          "filhos": 1
          }
         },
         {
-         "rotulo": "Não possui",
-         "texto": "QUE NÃO POSSUI FILHOS DE OUTRO RELACIONAMENTO"
+         "rotulo": "2 filhos",
+         "texto": "QUE POSSUI 2 FILHOS DE OUTRO RELACIONAMENTO[, SENDO {d}]",
+         "detalhe": {
+          "rotulo": "Nome(s), idade(s) e se possuem alguma deficiência",
+          "obrigatorio": true,
+          "longo": false,
+          "filhos": 2
+         }
+        },
+        {
+         "rotulo": "3 filhos",
+         "texto": "QUE POSSUI 3 FILHOS DE OUTRO RELACIONAMENTO[, SENDO {d}]",
+         "detalhe": {
+          "rotulo": "Nome(s), idade(s) e se possuem alguma deficiência",
+          "obrigatorio": true,
+          "longo": false,
+          "filhos": 3
+         }
+        },
+        {
+         "rotulo": "4 filhos",
+         "texto": "QUE POSSUI 4 FILHOS DE OUTRO RELACIONAMENTO[, SENDO {d}]",
+         "detalhe": {
+          "rotulo": "Nome(s), idade(s) e se possuem alguma deficiência",
+          "obrigatorio": true,
+          "longo": false,
+          "filhos": 4
+         }
+        },
+        {
+         "rotulo": "5 filhos",
+         "texto": "QUE POSSUI 5 FILHOS DE OUTRO RELACIONAMENTO[, SENDO {d}]",
+         "detalhe": {
+          "rotulo": "Nome(s), idade(s) e se possuem alguma deficiência",
+          "obrigatorio": true,
+          "longo": false,
+          "filhos": 5
+         }
+        },
+        {
+         "rotulo": "6 filhos",
+         "texto": "QUE POSSUI 6 FILHOS DE OUTRO RELACIONAMENTO[, SENDO {d}]",
+         "detalhe": {
+          "rotulo": "Nome(s), idade(s) e se possuem alguma deficiência",
+          "obrigatorio": true,
+          "longo": false,
+          "filhos": 6
+         }
+        },
+        {
+         "rotulo": "7 filhos",
+         "texto": "QUE POSSUI 7 FILHOS DE OUTRO RELACIONAMENTO[, SENDO {d}]",
+         "detalhe": {
+          "rotulo": "Nome(s), idade(s) e se possuem alguma deficiência",
+          "obrigatorio": true,
+          "longo": false,
+          "filhos": 7
+         }
+        },
+        {
+         "rotulo": "8 filhos",
+         "texto": "QUE POSSUI 8 FILHOS DE OUTRO RELACIONAMENTO[, SENDO {d}]",
+         "detalhe": {
+          "rotulo": "Nome(s), idade(s) e se possuem alguma deficiência",
+          "obrigatorio": true,
+          "longo": false,
+          "filhos": 8
+         }
+        },
+        {
+         "rotulo": "9 filhos",
+         "texto": "QUE POSSUI 9 FILHOS DE OUTRO RELACIONAMENTO[, SENDO {d}]",
+         "detalhe": {
+          "rotulo": "Nome(s), idade(s) e se possuem alguma deficiência",
+          "obrigatorio": true,
+          "longo": false,
+          "filhos": 9
+         }
+        },
+        {
+         "rotulo": "10 filhos",
+         "texto": "QUE POSSUI 10 FILHOS DE OUTRO RELACIONAMENTO[, SENDO {d}]",
+         "detalhe": {
+          "rotulo": "Nome(s), idade(s) e se possuem alguma deficiência",
+          "obrigatorio": true,
+          "longo": false,
+          "filhos": 10
+         }
         }
        ],
        "obrigatoria": true
@@ -244,6 +617,26 @@
      "titulo": "Situação da declarante",
      "inicio": "PERGUNTADA SOBRE SUA SITUAÇÃO, RESPONDEU",
      "perguntas": [
+      {
+       "id": "gestante_atual",
+       "tipo": "escolha",
+       "rotulo": "Está gestante?",
+       "opcoes": [
+        {
+         "rotulo": "Não",
+         "texto": "QUE NÃO ESTÁ GESTANTE"
+        },
+        {
+         "rotulo": "Sim, do(a) investigado(a)",
+         "texto": "QUE ESTÁ GESTANTE DO INVESTIGADO"
+        },
+        {
+         "rotulo": "Sim, de outro relacionamento",
+         "texto": "QUE ESTÁ GESTANTE DE OUTRO RELACIONAMENTO"
+        }
+       ],
+       "obrigatoria": true
+      },
       {
        "id": "vit_trabalho",
        "tipo": "escolha",
@@ -289,13 +682,7 @@
        "opcoes": [
         {
          "rotulo": "Recebe",
-         "texto": "QUE RECEBE BENEFÍCIO SOCIAL[, SENDO {d}]",
-         "detalhe": {
-          "rotulo": "Qual benefício (ex.: BOLSA FAMÍLIA, BPC/LOAS, AUXÍLIO-DOENÇA)",
-          "obrigatorio": false,
-          "longo": false,
-          "ph": "Ex.: BOLSA FAMÍLIA"
-         }
+         "texto": "QUE RECEBE BENEFÍCIO SOCIAL"
         },
         {
          "rotulo": "Não recebe",
@@ -304,6 +691,44 @@
        ],
        "obrigatoria": true,
        "ajuda": "Pergunte se a declarante recebe algum benefício social (Bolsa Família, BPC/LOAS, auxílio, pensão…)."
+      },
+      {
+       "id": "vit_beneficio_qual",
+       "tipo": "caixas",
+       "rotulo": "Qual benefício?",
+       "aparece": {
+        "pergunta": "vit_beneficio",
+        "opcao": "Recebe"
+       },
+       "texto": ", SENDO {lista}",
+       "itens": [
+        {
+         "rotulo": "Bolsa Família",
+         "texto": "BOLSA FAMÍLIA"
+        },
+        {
+         "rotulo": "BPC/LOAS",
+         "texto": "BPC/LOAS"
+        },
+        {
+         "rotulo": "Auxílio-doença",
+         "texto": "AUXÍLIO-DOENÇA"
+        },
+        {
+         "rotulo": "Aluguel social",
+         "texto": "ALUGUEL SOCIAL"
+        },
+        {
+         "rotulo": "Outro benefício",
+         "texto": "{d}",
+         "detalhe": {
+          "rotulo": "Qual benefício",
+          "obrigatorio": true,
+          "longo": false,
+          "ph": "Ex.: PENSÃO POR MORTE"
+         }
+        }
+       ]
       },
       {
        "id": "vit_imovel",
@@ -331,18 +756,50 @@
        "rotulo": "Faz uso de álcool?",
        "opcoes": [
         {
-         "rotulo": "Faz uso",
-         "texto": "QUE FAZ USO DE ÁLCOOL[, {d}]",
-         "detalhe": {
-          "rotulo": "Frequência (opcional)",
-          "obrigatorio": false,
-          "longo": false,
-          "ph": "Ex.: COM FREQUÊNCIA DIÁRIA"
-         }
-        },
-        {
          "rotulo": "Não faz uso",
          "texto": "QUE NÃO FAZ USO DE ÁLCOOL"
+        },
+        {
+         "rotulo": "Faz uso",
+         "texto": "QUE FAZ USO DE ÁLCOOL"
+        }
+       ],
+       "obrigatoria": true
+      },
+      {
+       "id": "vit_alcool_freq",
+       "tipo": "escolha",
+       "rotulo": "Com que frequência?",
+       "aparece": {
+        "pergunta": "vit_alcool",
+        "opcao": "Faz uso"
+       },
+       "opcoes": [
+        {
+         "rotulo": "Diariamente",
+         "texto": ", DIARIAMENTE"
+        },
+        {
+         "rotulo": "Várias vezes por semana",
+         "texto": ", VÁRIAS VEZES POR SEMANA"
+        },
+        {
+         "rotulo": "Aos fins de semana",
+         "texto": ", AOS FINS DE SEMANA"
+        },
+        {
+         "rotulo": "Ocasionalmente",
+         "texto": ", OCASIONALMENTE"
+        },
+        {
+         "rotulo": "Outra frequência",
+         "texto": ", {d}",
+         "detalhe": {
+          "rotulo": "Qual a frequência",
+          "obrigatorio": true,
+          "longo": false,
+          "ph": "Ex.: UMA VEZ POR MÊS"
+         }
         }
        ],
        "obrigatoria": true
@@ -353,18 +810,85 @@
        "rotulo": "Faz uso de drogas?",
        "opcoes": [
         {
-         "rotulo": "Faz uso",
-         "texto": "QUE FAZ USO DE DROGAS[, SENDO {d}]",
-         "detalhe": {
-          "rotulo": "Quais e a frequência",
-          "obrigatorio": true,
-          "longo": false,
-          "ph": "Ex.: MACONHA, AOS FINS DE SEMANA"
-         }
-        },
-        {
          "rotulo": "Não faz uso",
          "texto": "QUE NÃO FAZ USO DE DROGAS"
+        },
+        {
+         "rotulo": "Faz uso",
+         "texto": "QUE FAZ USO DE DROGAS"
+        }
+       ],
+       "obrigatoria": true
+      },
+      {
+       "id": "vit_drogas_freq",
+       "tipo": "escolha",
+       "rotulo": "Com que frequência?",
+       "aparece": {
+        "pergunta": "vit_drogas",
+        "opcao": "Faz uso"
+       },
+       "opcoes": [
+        {
+         "rotulo": "Diariamente",
+         "texto": ", DIARIAMENTE"
+        },
+        {
+         "rotulo": "Várias vezes por semana",
+         "texto": ", VÁRIAS VEZES POR SEMANA"
+        },
+        {
+         "rotulo": "Aos fins de semana",
+         "texto": ", AOS FINS DE SEMANA"
+        },
+        {
+         "rotulo": "Ocasionalmente",
+         "texto": ", OCASIONALMENTE"
+        },
+        {
+         "rotulo": "Outra frequência",
+         "texto": ", {d}",
+         "detalhe": {
+          "rotulo": "Qual a frequência",
+          "obrigatorio": true,
+          "longo": false,
+          "ph": "Ex.: UMA VEZ POR MÊS"
+         }
+        }
+       ],
+       "obrigatoria": true
+      },
+      {
+       "id": "vit_drogas_quais",
+       "tipo": "caixas",
+       "rotulo": "Quais drogas?",
+       "aparece": {
+        "pergunta": "vit_drogas",
+        "opcao": "Faz uso"
+       },
+       "texto": ", SENDO {lista}",
+       "itens": [
+        {
+         "rotulo": "Maconha",
+         "texto": "MACONHA"
+        },
+        {
+         "rotulo": "Cocaína",
+         "texto": "COCAÍNA"
+        },
+        {
+         "rotulo": "Crack",
+         "texto": "CRACK"
+        },
+        {
+         "rotulo": "Outra droga",
+         "texto": "{d}",
+         "detalhe": {
+          "rotulo": "Qual droga",
+          "obrigatorio": true,
+          "longo": false,
+          "ph": "Ex.: ECSTASY"
+         }
         }
        ],
        "obrigatoria": true
@@ -375,18 +899,63 @@
        "rotulo": "Faz uso de medicamentos psiquiátricos?",
        "opcoes": [
         {
-         "rotulo": "Faz uso",
-         "texto": "QUE FAZ USO DE MEDICAMENTOS PSIQUIÁTRICOS[, SENDO {d}]",
-         "detalhe": {
-          "rotulo": "Quais",
-          "obrigatorio": true,
-          "longo": false,
-          "ph": "Ex.: FLUOXETINA"
-         }
-        },
-        {
          "rotulo": "Não faz uso",
          "texto": "QUE NÃO FAZ USO DE MEDICAMENTOS PSIQUIÁTRICOS"
+        },
+        {
+         "rotulo": "Faz uso",
+         "texto": "QUE FAZ USO DE MEDICAMENTOS PSIQUIÁTRICOS"
+        }
+       ],
+       "obrigatoria": true
+      },
+      {
+       "id": "vit_psiq_quais",
+       "tipo": "caixas",
+       "rotulo": "Quais medicamentos?",
+       "aparece": {
+        "pergunta": "vit_psiq",
+        "opcao": "Faz uso"
+       },
+       "texto": ", SENDO {lista}",
+       "itens": [
+        {
+         "rotulo": "Fluoxetina",
+         "texto": "FLUOXETINA"
+        },
+        {
+         "rotulo": "Sertralina",
+         "texto": "SERTRALINA"
+        },
+        {
+         "rotulo": "Escitalopram",
+         "texto": "ESCITALOPRAM"
+        },
+        {
+         "rotulo": "Amitriptilina",
+         "texto": "AMITRIPTILINA"
+        },
+        {
+         "rotulo": "Clonazepam",
+         "texto": "CLONAZEPAM"
+        },
+        {
+         "rotulo": "Diazepam",
+         "texto": "DIAZEPAM"
+        },
+        {
+         "rotulo": "Alprazolam",
+         "texto": "ALPRAZOLAM"
+        },
+        {
+         "rotulo": "Outro medicamento",
+         "texto": "{d}",
+         "detalhe": {
+          "rotulo": "Qual medicamento",
+          "obrigatorio": true,
+          "longo": false,
+          "ph": "Ex.: LÍTIO"
+         }
         }
        ],
        "obrigatoria": true
@@ -426,18 +995,58 @@
        "rotulo": "O(A) investigado(a) faz uso de álcool?",
        "opcoes": [
         {
+         "rotulo": "Não faz uso",
+         "texto": "QUE NÃO FAZ USO DE ÁLCOOL"
+        },
+        {
          "rotulo": "Faz uso",
-         "texto": "QUE FAZ USO DE ÁLCOOL[, {d}]",
+         "texto": "QUE FAZ USO DE ÁLCOOL"
+        },
+        {
+         "rotulo": "Não sabe informar",
+         "texto": "QUE NÃO SABE INFORMAR SE FAZ USO DE ÁLCOOL"
+        }
+       ],
+       "obrigatoria": true
+      },
+      {
+       "id": "inv_alcool_freq",
+       "tipo": "escolha",
+       "rotulo": "Com que frequência?",
+       "aparece": {
+        "pergunta": "inv_alcool",
+        "opcao": "Faz uso"
+       },
+       "opcoes": [
+        {
+         "rotulo": "Diariamente",
+         "texto": ", DIARIAMENTE"
+        },
+        {
+         "rotulo": "Várias vezes por semana",
+         "texto": ", VÁRIAS VEZES POR SEMANA"
+        },
+        {
+         "rotulo": "Aos fins de semana",
+         "texto": ", AOS FINS DE SEMANA"
+        },
+        {
+         "rotulo": "Ocasionalmente",
+         "texto": ", OCASIONALMENTE"
+        },
+        {
+         "rotulo": "Outra frequência",
+         "texto": ", {d}",
          "detalhe": {
-          "rotulo": "Frequência (opcional)",
-          "obrigatorio": false,
+          "rotulo": "Qual a frequência",
+          "obrigatorio": true,
           "longo": false,
-          "ph": "Ex.: COM FREQUÊNCIA DIÁRIA"
+          "ph": "Ex.: UMA VEZ POR MÊS"
          }
         },
         {
-         "rotulo": "Não faz uso",
-         "texto": "QUE NÃO FAZ USO DE ÁLCOOL"
+         "rotulo": "Não sabe informar a frequência",
+         "texto": ", NÃO SABENDO INFORMAR A FREQUÊNCIA"
         }
        ],
        "obrigatoria": true
@@ -448,18 +1057,113 @@
        "rotulo": "O(A) investigado(a) faz uso de drogas?",
        "opcoes": [
         {
+         "rotulo": "Não faz uso",
+         "texto": "QUE NÃO FAZ USO DE DROGAS"
+        },
+        {
          "rotulo": "Faz uso",
-         "texto": "QUE FAZ USO DE DROGAS[, SENDO {d}]",
+         "texto": "QUE FAZ USO DE DROGAS"
+        },
+        {
+         "rotulo": "Não sabe informar",
+         "texto": "QUE NÃO SABE INFORMAR SE FAZ USO DE DROGAS"
+        }
+       ],
+       "obrigatoria": true
+      },
+      {
+       "id": "inv_drogas_freq",
+       "tipo": "escolha",
+       "rotulo": "Com que frequência?",
+       "aparece": {
+        "pergunta": "inv_drogas",
+        "opcao": "Faz uso"
+       },
+       "opcoes": [
+        {
+         "rotulo": "Diariamente",
+         "texto": ", DIARIAMENTE"
+        },
+        {
+         "rotulo": "Várias vezes por semana",
+         "texto": ", VÁRIAS VEZES POR SEMANA"
+        },
+        {
+         "rotulo": "Aos fins de semana",
+         "texto": ", AOS FINS DE SEMANA"
+        },
+        {
+         "rotulo": "Ocasionalmente",
+         "texto": ", OCASIONALMENTE"
+        },
+        {
+         "rotulo": "Outra frequência",
+         "texto": ", {d}",
          "detalhe": {
-          "rotulo": "Quais e a frequência",
+          "rotulo": "Qual a frequência",
           "obrigatorio": true,
           "longo": false,
-          "ph": "Ex.: COCAÍNA, VÁRIAS VEZES POR SEMANA"
+          "ph": "Ex.: UMA VEZ POR MÊS"
          }
         },
         {
-         "rotulo": "Não faz uso",
-         "texto": "QUE NÃO FAZ USO DE DROGAS"
+         "rotulo": "Não sabe informar a frequência",
+         "texto": ", NÃO SABENDO INFORMAR A FREQUÊNCIA"
+        }
+       ],
+       "obrigatoria": true
+      },
+      {
+       "id": "inv_drogas_tipo",
+       "tipo": "escolha",
+       "rotulo": "Sabe informar quais drogas?",
+       "aparece": {
+        "pergunta": "inv_drogas",
+        "opcao": "Faz uso"
+       },
+       "opcoes": [
+        {
+         "rotulo": "Sabe informar",
+         "texto": ""
+        },
+        {
+         "rotulo": "Não sabe informar quais",
+         "texto": ", NÃO SABENDO INFORMAR QUAIS"
+        }
+       ],
+       "obrigatoria": true
+      },
+      {
+       "id": "inv_drogas_quais",
+       "tipo": "caixas",
+       "rotulo": "Quais drogas?",
+       "aparece": {
+        "pergunta": "inv_drogas_tipo",
+        "opcao": "Sabe informar"
+       },
+       "texto": ", SENDO {lista}",
+       "itens": [
+        {
+         "rotulo": "Maconha",
+         "texto": "MACONHA"
+        },
+        {
+         "rotulo": "Cocaína",
+         "texto": "COCAÍNA"
+        },
+        {
+         "rotulo": "Crack",
+         "texto": "CRACK"
+        },
+        {
+         "rotulo": "Outra droga",
+         "texto": "{d}",
+         "detalhe": {
+          "rotulo": "Qual droga",
+          "obrigatorio": true,
+          "longo": false,
+          "ph": "Ex.: ECSTASY"
+         }
         }
        ],
        "obrigatoria": true
@@ -754,7 +1458,7 @@
       {
        "id": "provas_digitais",
        "tipo": "escolha",
-       "rotulo": "Apresenta provas digitais (prints, mensagens, etc.)?",
+       "rotulo": "Apresenta provas digitais (prints, fotos, áudios, vídeos, etc.)?",
        "opcoes": [
         {
          "rotulo": "Apresenta",
@@ -851,6 +1555,10 @@
         {
          "rotulo": "Não",
          "texto": "QUE NÃO DESEJA ATENDIMENTO PSICOSSOCIAL"
+        },
+        {
+         "rotulo": "Já faz",
+         "texto": "QUE JÁ REALIZA ACOMPANHAMENTO PSICOLÓGICO"
         }
        ]
       },
@@ -858,6 +1566,41 @@
        "id": "acao_privada",
        "tipo": "fixo",
        "texto": "QUE NESTE ATO FOI ORIENTADA DE QUE CRIMES DE AÇÃO PENAL PRIVADA (INJÚRIA, CALÚNIA, DIFAMAÇÃO, DANO, ENTRE OUTROS) DEPENDEM DE QUEIXA-CRIME NO PRAZO DE 12 MESES, DEVENDO PROCURAR ADVOGADO OU DEFENSORIA PÚBLICA"
+      },
+      {
+       "id": "fora_atribuicao",
+       "tipo": "caixas",
+       "rotulo": "É um caso fora da atribuição da DEAM? Marque o motivo",
+       "ajuda": "Deixe em branco se o caso é da DEAM. Marcando, entra no fim do texto a orientação de que o caso será encaminhado à delegacia responsável.",
+       "texto": "QUE, TENDO EM VISTA {lista}, FOI ESCLARECIDO À DECLARANTE QUE OS FATOS NARRADOS NÃO SE ENQUADRAM, EM REGRA, NA ATRIBUIÇÃO DESTA UNIDADE ESPECIALIZADA, ESTANDO CIENTE DE QUE A OCORRÊNCIA SERÁ POSTERIORMENTE ENCAMINHADA À DELEGACIA RESPONSÁVEL",
+       "itens": [
+        {
+         "rotulo": "Mulher idosa",
+         "texto": "TRATAR-SE DE MULHER IDOSA"
+        },
+        {
+         "rotulo": "Adolescente",
+         "texto": "TRATAR-SE DE ADOLESCENTE"
+        },
+        {
+         "rotulo": "Fatos em outro município",
+         "texto": "OS FATOS TEREM OCORRIDO EM OUTRO MUNICÍPIO"
+        },
+        {
+         "rotulo": "Fatos em outro estado",
+         "texto": "OS FATOS TEREM OCORRIDO EM OUTRO ESTADO"
+        },
+        {
+         "rotulo": "Outro motivo",
+         "texto": "{d}",
+         "detalhe": {
+          "rotulo": "Qual o motivo",
+          "obrigatorio": true,
+          "longo": false,
+          "ph": "Ex.: TRATAR-SE DE CRIME COMETIDO POR AUTORIDADE COM FORO ESPECIAL"
+         }
+        }
+       ]
       }
      ]
     }
@@ -895,7 +1638,8 @@
      {
       "id": "vinculo",
       "chips": true,
-      "rotulo": "Vínculo com a declarante (ex.: MÃE, IRMÃ, TIO, CUNHADA)",
+      "comOutro": true,
+      "rotulo": "Vínculo com a declarante",
       "obrigatorio": true,
       "sugestoes": {
        "M": [
@@ -946,6 +1690,42 @@
    },
    "blocos": [
     {
+     "titulo": "Acompanhamento da declarante",
+     "perguntas": [
+      {
+       "id": "advogado",
+       "tipo": "escolha",
+       "rotulo": "A declarante comparece acompanhada de advogado(a)?",
+       "opcoes": [
+        {
+         "rotulo": "Não",
+         "texto": ""
+        },
+        {
+         "rotulo": "Sim, de advogado",
+         "texto": "QUE ENCONTRA-SE ACOMPANHADA DE SEU ADVOGADO, DR. {d}",
+         "detalhe": {
+          "rotulo": "Nome completo e número da OAB",
+          "obrigatorio": true,
+          "longo": false,
+          "ph": "Ex.: JOÃO DA SILVA, OAB/ES Nº 12345"
+         }
+        },
+        {
+         "rotulo": "Sim, de advogada",
+         "texto": "QUE ENCONTRA-SE ACOMPANHADA DE SUA ADVOGADA, DRA. {d}",
+         "detalhe": {
+          "rotulo": "Nome completo e número da OAB",
+          "obrigatorio": true,
+          "longo": false,
+          "ph": "Ex.: MARIA DA SILVA, OAB/ES Nº 12345"
+         }
+        }
+       ]
+      }
+     ]
+    },
+    {
      "titulo": "Medidas protetivas e registros anteriores",
      "junto": true,
      "perguntas": [
@@ -960,16 +1740,65 @@
         },
         {
          "rotulo": "Sim",
-         "texto": "PERGUNTADA SE JÁ SOLICITOU MEDIDAS PROTETIVAS ANTERIORMENTE, RESPONDEU QUE SIM[, {d}]",
-         "detalhe": {
-          "rotulo": "Se retirou, informe o motivo (ex.: QUE SOLICITOU A REVOGAÇÃO PORQUE HAVIAM SE ENTENDIDO)",
-          "obrigatorio": false,
-          "longo": false
-         }
+         "texto": "PERGUNTADA SE JÁ SOLICITOU MEDIDAS PROTETIVAS ANTERIORMENTE, RESPONDEU QUE SIM"
         }
        ],
        "obrigatoria": true,
        "alerta": "Confira se a MPU está EM VIGOR. Se estiver, use o modelo de Descumprimento de MPU."
+      },
+      {
+       "id": "mpu_motivo",
+       "tipo": "caixas",
+       "rotulo": "O que aconteceu com as MPU’S anteriores?",
+       "aparece": {
+        "pergunta": "mpu_anterior",
+        "opcao": "Sim"
+       },
+       "texto": ", SENDO QUE {lista}",
+       "itens": [
+        {
+         "rotulo": "Reataram o relacionamento",
+         "texto": "AS PARTES REATARAM O RELACIONAMENTO"
+        },
+        {
+         "rotulo": "Juiz indeferiu o pedido",
+         "texto": "O PEDIDO DE MPU’S FOI INDEFERIDO PELO JUÍZO"
+        },
+        {
+         "rotulo": "Juiz revogou as MPU’S",
+         "texto": "AS MPU’S FORAM REVOGADAS PELO JUÍZO"
+        },
+        {
+         "rotulo": "Prazo terminou",
+         "texto": "AS MPU’S PERDERAM A VALIDADE POR DECURSO DO PRAZO"
+        },
+        {
+         "rotulo": "Ela pediu a revogação: porque se entenderam",
+         "texto": "A DECLARANTE SOLICITOU A REVOGAÇÃO DAS MPU’S PORQUE HAVIAM SE ENTENDIDO"
+        },
+        {
+         "rotulo": "Ela pediu a revogação: pressão ou ameaça do(a) investigado(a)",
+         "texto": "A DECLARANTE SOLICITOU A REVOGAÇÃO DAS MPU’S POR PRESSÃO OU AMEAÇA DO INVESTIGADO"
+        },
+        {
+         "rotulo": "Ela pediu a revogação: pressão de familiares",
+         "texto": "A DECLARANTE SOLICITOU A REVOGAÇÃO DAS MPU’S POR PRESSÃO DE FAMILIARES"
+        },
+        {
+         "rotulo": "Ela pediu a revogação: por terem filhos em comum",
+         "texto": "A DECLARANTE SOLICITOU A REVOGAÇÃO DAS MPU’S POR POSSUÍREM FILHOS EM COMUM"
+        },
+        {
+         "rotulo": "Outro motivo",
+         "texto": "{d}",
+         "detalhe": {
+          "rotulo": "Qual foi o motivo",
+          "obrigatorio": true,
+          "longo": false,
+          "ph": "Ex.: AS MPU’S FORAM CANCELADAS PORQUE O INVESTIGADO SE MUDOU DE CIDADE"
+         }
+        }
+       ]
       },
       {
        "id": "outros_registros",
@@ -1015,20 +1844,58 @@
      "inicio": "PERGUNTADA SOBRE O VÍNCULO ENTRE AS PARTES, RESPONDEU",
      "perguntas": [
       {
-       "id": "vinculo_historico",
-       "tipo": "texto",
-       "rotulo": "Como é a relação entre as partes? (histórico da relação familiar ou doméstica)",
-       "texto": "QUE {d}",
-       "campos": [
+       "id": "relacao_partes",
+       "tipo": "caixas",
+       "rotulo": "Como é a relação entre as partes?",
+       "ajuda": "Marque tudo o que se aplica. O vínculo (irmão, pai, tio…) já foi informado no início; aqui é como a relação funciona no dia a dia.",
+       "texto": "QUE {lista}",
+       "itens": [
         {
-         "id": "d",
-         "rotulo": "",
-         "longo": true,
-         "ph": "Ex.: A DECLARANTE É IRMÃ DO INVESTIGADO; MORAM EM CASAS DIFERENTES NO MESMO TERRENO; DESDE 2023 HÁ BRIGAS CONSTANTES POR CAUSA DE DINHEIRO…"
+         "rotulo": "Relação conflituosa",
+         "texto": "A RELAÇÃO ENTRE AS PARTES É CONFLITUOSA"
+        },
+        {
+         "rotulo": "Já houve episódios anteriores de violência",
+         "texto": "JÁ HOUVE EPISÓDIOS ANTERIORES DE VIOLÊNCIA ({d})",
+         "detalhe": {
+          "rotulo": "Descreva brevemente: quando, o que ocorreu e se houve registro",
+          "obrigatorio": true,
+          "longo": true,
+          "ph": "Ex.: EM 2024 FOI EMPURRADA; NÃO REGISTROU OCORRÊNCIA"
+         }
+        },
+        {
+         "rotulo": "Já houve ameaças anteriores",
+         "texto": "JÁ HOUVE AMEAÇAS ANTERIORES"
+        },
+        {
+         "rotulo": "Nunca houve violência ou ameaça anterior",
+         "texto": "NÃO HOUVE EPISÓDIOS ANTERIORES DE VIOLÊNCIA OU AMEAÇA"
+        },
+        {
+         "rotulo": "A declarante cuida do(a) investigado(a)",
+         "texto": "A DECLARANTE CUIDA DO INVESTIGADO"
+        },
+        {
+         "rotulo": "O(A) investigado(a) cuida da declarante",
+         "texto": "O INVESTIGADO CUIDA DA DECLARANTE"
+        },
+        {
+         "rotulo": "Pouco contato entre as partes",
+         "texto": "AS PARTES TÊM POUCO CONTATO"
+        },
+        {
+         "rotulo": "Outra característica da relação",
+         "texto": "{d}",
+         "detalhe": {
+          "rotulo": "Descreva a relação",
+          "obrigatorio": true,
+          "longo": false,
+          "ph": "Ex.: A DECLARANTE ADMINISTRA OS BENS DA FAMÍLIA JUNTO COM O INVESTIGADO"
+         }
         }
        ],
-       "obrigatoria": true,
-       "ajuda": "Descreva o histórico da relação: qual é o vínculo, há quanto tempo se conhecem ou convivem, como é o convívio no dia a dia, se há conflitos anteriores e como eles costumam acontecer. Use as palavras da declarante."
+       "obrigatoria": true
       },
       {
        "id": "residencia",
@@ -1061,27 +1928,6 @@
         }
        ],
        "obrigatoria": true
-      },
-      {
-       "id": "episodios_anteriores",
-       "tipo": "escolha",
-       "rotulo": "Já houve episódios anteriores de violência ou ameaça?",
-       "opcoes": [
-        {
-         "rotulo": "Sim",
-         "texto": "QUE JÁ HOUVE EPISÓDIOS ANTERIORES DE VIOLÊNCIA OU AMEAÇA, SENDO {d}",
-         "detalhe": {
-          "rotulo": "Descreva brevemente: quando, o que ocorreu e se houve registro",
-          "obrigatorio": true,
-          "longo": true,
-          "ph": "Ex.: EM 2024 FOI AMEAÇADA VERBALMENTE; NÃO REGISTROU OCORRÊNCIA"
-         }
-        },
-        {
-         "rotulo": "Não",
-         "texto": "QUE NÃO HOUVE EPISÓDIOS ANTERIORES DE VIOLÊNCIA OU AMEAÇA"
-        }
-       ]
       }
      ]
     },
@@ -1134,13 +1980,7 @@
        "opcoes": [
         {
          "rotulo": "Recebe",
-         "texto": "QUE RECEBE BENEFÍCIO SOCIAL[, SENDO {d}]",
-         "detalhe": {
-          "rotulo": "Qual benefício (ex.: BOLSA FAMÍLIA, BPC/LOAS, AUXÍLIO-DOENÇA)",
-          "obrigatorio": false,
-          "longo": false,
-          "ph": "Ex.: BOLSA FAMÍLIA"
-         }
+         "texto": "QUE RECEBE BENEFÍCIO SOCIAL"
         },
         {
          "rotulo": "Não recebe",
@@ -1149,6 +1989,44 @@
        ],
        "obrigatoria": true,
        "ajuda": "Pergunte se a declarante recebe algum benefício social (Bolsa Família, BPC/LOAS, auxílio, pensão…)."
+      },
+      {
+       "id": "vit_beneficio_qual",
+       "tipo": "caixas",
+       "rotulo": "Qual benefício?",
+       "aparece": {
+        "pergunta": "vit_beneficio",
+        "opcao": "Recebe"
+       },
+       "texto": ", SENDO {lista}",
+       "itens": [
+        {
+         "rotulo": "Bolsa Família",
+         "texto": "BOLSA FAMÍLIA"
+        },
+        {
+         "rotulo": "BPC/LOAS",
+         "texto": "BPC/LOAS"
+        },
+        {
+         "rotulo": "Auxílio-doença",
+         "texto": "AUXÍLIO-DOENÇA"
+        },
+        {
+         "rotulo": "Aluguel social",
+         "texto": "ALUGUEL SOCIAL"
+        },
+        {
+         "rotulo": "Outro benefício",
+         "texto": "{d}",
+         "detalhe": {
+          "rotulo": "Qual benefício",
+          "obrigatorio": true,
+          "longo": false,
+          "ph": "Ex.: PENSÃO POR MORTE"
+         }
+        }
+       ]
       },
       {
        "id": "vit_imovel",
@@ -1176,18 +2054,50 @@
        "rotulo": "Faz uso de álcool?",
        "opcoes": [
         {
-         "rotulo": "Faz uso",
-         "texto": "QUE FAZ USO DE ÁLCOOL[, {d}]",
-         "detalhe": {
-          "rotulo": "Frequência (opcional)",
-          "obrigatorio": false,
-          "longo": false,
-          "ph": "Ex.: COM FREQUÊNCIA DIÁRIA"
-         }
-        },
-        {
          "rotulo": "Não faz uso",
          "texto": "QUE NÃO FAZ USO DE ÁLCOOL"
+        },
+        {
+         "rotulo": "Faz uso",
+         "texto": "QUE FAZ USO DE ÁLCOOL"
+        }
+       ],
+       "obrigatoria": true
+      },
+      {
+       "id": "vit_alcool_freq",
+       "tipo": "escolha",
+       "rotulo": "Com que frequência?",
+       "aparece": {
+        "pergunta": "vit_alcool",
+        "opcao": "Faz uso"
+       },
+       "opcoes": [
+        {
+         "rotulo": "Diariamente",
+         "texto": ", DIARIAMENTE"
+        },
+        {
+         "rotulo": "Várias vezes por semana",
+         "texto": ", VÁRIAS VEZES POR SEMANA"
+        },
+        {
+         "rotulo": "Aos fins de semana",
+         "texto": ", AOS FINS DE SEMANA"
+        },
+        {
+         "rotulo": "Ocasionalmente",
+         "texto": ", OCASIONALMENTE"
+        },
+        {
+         "rotulo": "Outra frequência",
+         "texto": ", {d}",
+         "detalhe": {
+          "rotulo": "Qual a frequência",
+          "obrigatorio": true,
+          "longo": false,
+          "ph": "Ex.: UMA VEZ POR MÊS"
+         }
         }
        ],
        "obrigatoria": true
@@ -1198,18 +2108,85 @@
        "rotulo": "Faz uso de drogas?",
        "opcoes": [
         {
-         "rotulo": "Faz uso",
-         "texto": "QUE FAZ USO DE DROGAS[, SENDO {d}]",
-         "detalhe": {
-          "rotulo": "Quais e a frequência",
-          "obrigatorio": true,
-          "longo": false,
-          "ph": "Ex.: MACONHA, AOS FINS DE SEMANA"
-         }
-        },
-        {
          "rotulo": "Não faz uso",
          "texto": "QUE NÃO FAZ USO DE DROGAS"
+        },
+        {
+         "rotulo": "Faz uso",
+         "texto": "QUE FAZ USO DE DROGAS"
+        }
+       ],
+       "obrigatoria": true
+      },
+      {
+       "id": "vit_drogas_freq",
+       "tipo": "escolha",
+       "rotulo": "Com que frequência?",
+       "aparece": {
+        "pergunta": "vit_drogas",
+        "opcao": "Faz uso"
+       },
+       "opcoes": [
+        {
+         "rotulo": "Diariamente",
+         "texto": ", DIARIAMENTE"
+        },
+        {
+         "rotulo": "Várias vezes por semana",
+         "texto": ", VÁRIAS VEZES POR SEMANA"
+        },
+        {
+         "rotulo": "Aos fins de semana",
+         "texto": ", AOS FINS DE SEMANA"
+        },
+        {
+         "rotulo": "Ocasionalmente",
+         "texto": ", OCASIONALMENTE"
+        },
+        {
+         "rotulo": "Outra frequência",
+         "texto": ", {d}",
+         "detalhe": {
+          "rotulo": "Qual a frequência",
+          "obrigatorio": true,
+          "longo": false,
+          "ph": "Ex.: UMA VEZ POR MÊS"
+         }
+        }
+       ],
+       "obrigatoria": true
+      },
+      {
+       "id": "vit_drogas_quais",
+       "tipo": "caixas",
+       "rotulo": "Quais drogas?",
+       "aparece": {
+        "pergunta": "vit_drogas",
+        "opcao": "Faz uso"
+       },
+       "texto": ", SENDO {lista}",
+       "itens": [
+        {
+         "rotulo": "Maconha",
+         "texto": "MACONHA"
+        },
+        {
+         "rotulo": "Cocaína",
+         "texto": "COCAÍNA"
+        },
+        {
+         "rotulo": "Crack",
+         "texto": "CRACK"
+        },
+        {
+         "rotulo": "Outra droga",
+         "texto": "{d}",
+         "detalhe": {
+          "rotulo": "Qual droga",
+          "obrigatorio": true,
+          "longo": false,
+          "ph": "Ex.: ECSTASY"
+         }
         }
        ],
        "obrigatoria": true
@@ -1220,18 +2197,63 @@
        "rotulo": "Faz uso de medicamentos psiquiátricos?",
        "opcoes": [
         {
-         "rotulo": "Faz uso",
-         "texto": "QUE FAZ USO DE MEDICAMENTOS PSIQUIÁTRICOS[, SENDO {d}]",
-         "detalhe": {
-          "rotulo": "Quais",
-          "obrigatorio": true,
-          "longo": false,
-          "ph": "Ex.: FLUOXETINA"
-         }
-        },
-        {
          "rotulo": "Não faz uso",
          "texto": "QUE NÃO FAZ USO DE MEDICAMENTOS PSIQUIÁTRICOS"
+        },
+        {
+         "rotulo": "Faz uso",
+         "texto": "QUE FAZ USO DE MEDICAMENTOS PSIQUIÁTRICOS"
+        }
+       ],
+       "obrigatoria": true
+      },
+      {
+       "id": "vit_psiq_quais",
+       "tipo": "caixas",
+       "rotulo": "Quais medicamentos?",
+       "aparece": {
+        "pergunta": "vit_psiq",
+        "opcao": "Faz uso"
+       },
+       "texto": ", SENDO {lista}",
+       "itens": [
+        {
+         "rotulo": "Fluoxetina",
+         "texto": "FLUOXETINA"
+        },
+        {
+         "rotulo": "Sertralina",
+         "texto": "SERTRALINA"
+        },
+        {
+         "rotulo": "Escitalopram",
+         "texto": "ESCITALOPRAM"
+        },
+        {
+         "rotulo": "Amitriptilina",
+         "texto": "AMITRIPTILINA"
+        },
+        {
+         "rotulo": "Clonazepam",
+         "texto": "CLONAZEPAM"
+        },
+        {
+         "rotulo": "Diazepam",
+         "texto": "DIAZEPAM"
+        },
+        {
+         "rotulo": "Alprazolam",
+         "texto": "ALPRAZOLAM"
+        },
+        {
+         "rotulo": "Outro medicamento",
+         "texto": "{d}",
+         "detalhe": {
+          "rotulo": "Qual medicamento",
+          "obrigatorio": true,
+          "longo": false,
+          "ph": "Ex.: LÍTIO"
+         }
         }
        ],
        "obrigatoria": true
@@ -1271,18 +2293,58 @@
        "rotulo": "O(A) investigado(a) faz uso de álcool?",
        "opcoes": [
         {
+         "rotulo": "Não faz uso",
+         "texto": "QUE NÃO FAZ USO DE ÁLCOOL"
+        },
+        {
          "rotulo": "Faz uso",
-         "texto": "QUE FAZ USO DE ÁLCOOL[, {d}]",
+         "texto": "QUE FAZ USO DE ÁLCOOL"
+        },
+        {
+         "rotulo": "Não sabe informar",
+         "texto": "QUE NÃO SABE INFORMAR SE FAZ USO DE ÁLCOOL"
+        }
+       ],
+       "obrigatoria": true
+      },
+      {
+       "id": "inv_alcool_freq",
+       "tipo": "escolha",
+       "rotulo": "Com que frequência?",
+       "aparece": {
+        "pergunta": "inv_alcool",
+        "opcao": "Faz uso"
+       },
+       "opcoes": [
+        {
+         "rotulo": "Diariamente",
+         "texto": ", DIARIAMENTE"
+        },
+        {
+         "rotulo": "Várias vezes por semana",
+         "texto": ", VÁRIAS VEZES POR SEMANA"
+        },
+        {
+         "rotulo": "Aos fins de semana",
+         "texto": ", AOS FINS DE SEMANA"
+        },
+        {
+         "rotulo": "Ocasionalmente",
+         "texto": ", OCASIONALMENTE"
+        },
+        {
+         "rotulo": "Outra frequência",
+         "texto": ", {d}",
          "detalhe": {
-          "rotulo": "Frequência (opcional)",
-          "obrigatorio": false,
+          "rotulo": "Qual a frequência",
+          "obrigatorio": true,
           "longo": false,
-          "ph": "Ex.: COM FREQUÊNCIA DIÁRIA"
+          "ph": "Ex.: UMA VEZ POR MÊS"
          }
         },
         {
-         "rotulo": "Não faz uso",
-         "texto": "QUE NÃO FAZ USO DE ÁLCOOL"
+         "rotulo": "Não sabe informar a frequência",
+         "texto": ", NÃO SABENDO INFORMAR A FREQUÊNCIA"
         }
        ],
        "obrigatoria": true
@@ -1293,18 +2355,113 @@
        "rotulo": "O(A) investigado(a) faz uso de drogas?",
        "opcoes": [
         {
+         "rotulo": "Não faz uso",
+         "texto": "QUE NÃO FAZ USO DE DROGAS"
+        },
+        {
          "rotulo": "Faz uso",
-         "texto": "QUE FAZ USO DE DROGAS[, SENDO {d}]",
+         "texto": "QUE FAZ USO DE DROGAS"
+        },
+        {
+         "rotulo": "Não sabe informar",
+         "texto": "QUE NÃO SABE INFORMAR SE FAZ USO DE DROGAS"
+        }
+       ],
+       "obrigatoria": true
+      },
+      {
+       "id": "inv_drogas_freq",
+       "tipo": "escolha",
+       "rotulo": "Com que frequência?",
+       "aparece": {
+        "pergunta": "inv_drogas",
+        "opcao": "Faz uso"
+       },
+       "opcoes": [
+        {
+         "rotulo": "Diariamente",
+         "texto": ", DIARIAMENTE"
+        },
+        {
+         "rotulo": "Várias vezes por semana",
+         "texto": ", VÁRIAS VEZES POR SEMANA"
+        },
+        {
+         "rotulo": "Aos fins de semana",
+         "texto": ", AOS FINS DE SEMANA"
+        },
+        {
+         "rotulo": "Ocasionalmente",
+         "texto": ", OCASIONALMENTE"
+        },
+        {
+         "rotulo": "Outra frequência",
+         "texto": ", {d}",
          "detalhe": {
-          "rotulo": "Quais e a frequência",
+          "rotulo": "Qual a frequência",
           "obrigatorio": true,
           "longo": false,
-          "ph": "Ex.: COCAÍNA, VÁRIAS VEZES POR SEMANA"
+          "ph": "Ex.: UMA VEZ POR MÊS"
          }
         },
         {
-         "rotulo": "Não faz uso",
-         "texto": "QUE NÃO FAZ USO DE DROGAS"
+         "rotulo": "Não sabe informar a frequência",
+         "texto": ", NÃO SABENDO INFORMAR A FREQUÊNCIA"
+        }
+       ],
+       "obrigatoria": true
+      },
+      {
+       "id": "inv_drogas_tipo",
+       "tipo": "escolha",
+       "rotulo": "Sabe informar quais drogas?",
+       "aparece": {
+        "pergunta": "inv_drogas",
+        "opcao": "Faz uso"
+       },
+       "opcoes": [
+        {
+         "rotulo": "Sabe informar",
+         "texto": ""
+        },
+        {
+         "rotulo": "Não sabe informar quais",
+         "texto": ", NÃO SABENDO INFORMAR QUAIS"
+        }
+       ],
+       "obrigatoria": true
+      },
+      {
+       "id": "inv_drogas_quais",
+       "tipo": "caixas",
+       "rotulo": "Quais drogas?",
+       "aparece": {
+        "pergunta": "inv_drogas_tipo",
+        "opcao": "Sabe informar"
+       },
+       "texto": ", SENDO {lista}",
+       "itens": [
+        {
+         "rotulo": "Maconha",
+         "texto": "MACONHA"
+        },
+        {
+         "rotulo": "Cocaína",
+         "texto": "COCAÍNA"
+        },
+        {
+         "rotulo": "Crack",
+         "texto": "CRACK"
+        },
+        {
+         "rotulo": "Outra droga",
+         "texto": "{d}",
+         "detalhe": {
+          "rotulo": "Qual droga",
+          "obrigatorio": true,
+          "longo": false,
+          "ph": "Ex.: ECSTASY"
+         }
         }
        ],
        "obrigatoria": true
@@ -1599,7 +2756,7 @@
       {
        "id": "provas_digitais",
        "tipo": "escolha",
-       "rotulo": "Apresenta provas digitais (prints, mensagens, etc.)?",
+       "rotulo": "Apresenta provas digitais (prints, fotos, áudios, vídeos, etc.)?",
        "opcoes": [
         {
          "rotulo": "Apresenta",
@@ -1696,6 +2853,10 @@
         {
          "rotulo": "Não",
          "texto": "QUE NÃO DESEJA ATENDIMENTO PSICOSSOCIAL"
+        },
+        {
+         "rotulo": "Já faz",
+         "texto": "QUE JÁ REALIZA ACOMPANHAMENTO PSICOLÓGICO"
         }
        ]
       },
@@ -1703,6 +2864,41 @@
        "id": "acao_privada",
        "tipo": "fixo",
        "texto": "QUE NESTE ATO FOI ORIENTADA DE QUE CRIMES DE AÇÃO PENAL PRIVADA (INJÚRIA, CALÚNIA, DIFAMAÇÃO, DANO, ENTRE OUTROS) DEPENDEM DE QUEIXA-CRIME NO PRAZO DE 12 MESES, DEVENDO PROCURAR ADVOGADO OU DEFENSORIA PÚBLICA"
+      },
+      {
+       "id": "fora_atribuicao",
+       "tipo": "caixas",
+       "rotulo": "É um caso fora da atribuição da DEAM? Marque o motivo",
+       "ajuda": "Deixe em branco se o caso é da DEAM. Marcando, entra no fim do texto a orientação de que o caso será encaminhado à delegacia responsável.",
+       "texto": "QUE, TENDO EM VISTA {lista}, FOI ESCLARECIDO À DECLARANTE QUE OS FATOS NARRADOS NÃO SE ENQUADRAM, EM REGRA, NA ATRIBUIÇÃO DESTA UNIDADE ESPECIALIZADA, ESTANDO CIENTE DE QUE A OCORRÊNCIA SERÁ POSTERIORMENTE ENCAMINHADA À DELEGACIA RESPONSÁVEL",
+       "itens": [
+        {
+         "rotulo": "Mulher idosa",
+         "texto": "TRATAR-SE DE MULHER IDOSA"
+        },
+        {
+         "rotulo": "Adolescente",
+         "texto": "TRATAR-SE DE ADOLESCENTE"
+        },
+        {
+         "rotulo": "Fatos em outro município",
+         "texto": "OS FATOS TEREM OCORRIDO EM OUTRO MUNICÍPIO"
+        },
+        {
+         "rotulo": "Fatos em outro estado",
+         "texto": "OS FATOS TEREM OCORRIDO EM OUTRO ESTADO"
+        },
+        {
+         "rotulo": "Outro motivo",
+         "texto": "{d}",
+         "detalhe": {
+          "rotulo": "Qual o motivo",
+          "obrigatorio": true,
+          "longo": false,
+          "ph": "Ex.: TRATAR-SE DE CRIME COMETIDO POR AUTORIDADE COM FORO ESPECIAL"
+         }
+        }
+       ]
       }
      ]
     }
@@ -1753,7 +2949,8 @@
      {
       "id": "vinculo",
       "chips": true,
-      "rotulo": "Relacionamento (ex.: CÔNJUGE, NAMORADA, EX-COMPANHEIRO)",
+      "comOutro": true,
+      "rotulo": "Relacionamento",
       "obrigatorio": true,
       "sugestoes": {
        "M": [
@@ -1786,6 +2983,42 @@
     "texto": "QUE A DECLARANTE {vitima} COMPARECE A ESTA DEAM SERRA POR MEIOS PRÓPRIOS PARA COMUNICAR O DESCUMPRIMENTO DE MEDIDA PROTETIVA DE URGÊNCIA, REFERENTE AO PROCESSO Nº {processo}, TENDO COMO REQUERIDO O SR. {investigado}, SEU {vinculo}"
    },
    "blocos": [
+    {
+     "titulo": "Acompanhamento da declarante",
+     "perguntas": [
+      {
+       "id": "advogado",
+       "tipo": "escolha",
+       "rotulo": "A declarante comparece acompanhada de advogado(a)?",
+       "opcoes": [
+        {
+         "rotulo": "Não",
+         "texto": ""
+        },
+        {
+         "rotulo": "Sim, de advogado",
+         "texto": "QUE ENCONTRA-SE ACOMPANHADA DE SEU ADVOGADO, DR. {d}",
+         "detalhe": {
+          "rotulo": "Nome completo e número da OAB",
+          "obrigatorio": true,
+          "longo": false,
+          "ph": "Ex.: JOÃO DA SILVA, OAB/ES Nº 12345"
+         }
+        },
+        {
+         "rotulo": "Sim, de advogada",
+         "texto": "QUE ENCONTRA-SE ACOMPANHADA DE SUA ADVOGADA, DRA. {d}",
+         "detalhe": {
+          "rotulo": "Nome completo e número da OAB",
+          "obrigatorio": true,
+          "longo": false,
+          "ph": "Ex.: MARIA DA SILVA, OAB/ES Nº 12345"
+         }
+        }
+       ]
+      }
+     ]
+    },
     {
      "titulo": "Contato após a MPU",
      "junto": true,
@@ -1838,33 +3071,98 @@
        "opcoes": [
         {
          "rotulo": "Convivem",
-         "texto": "QUE CONVIVEM POR APROXIMADAMENTE {d}",
-         "detalhe": {
-          "rotulo": "Por quanto tempo",
-          "obrigatorio": true,
-          "longo": false,
-          "duracao": true
-         }
+         "texto": "QUE CONVIVEM"
         },
         {
          "rotulo": "Conviveram",
-         "texto": "QUE CONVIVERAM POR APROXIMADAMENTE {d}",
-         "detalhe": {
-          "rotulo": "Por quanto tempo",
-          "obrigatorio": true,
-          "longo": false,
-          "duracao": true
-         }
+         "texto": "QUE CONVIVERAM"
         },
         {
          "rotulo": "Nunca conviveram",
-         "texto": "QUE NUNCA CONVIVERAM, MAS SE RELACIONARAM POR APROXIMADAMENTE {d}",
-         "detalhe": {
-          "rotulo": "Por quanto tempo se relacionaram",
-          "obrigatorio": true,
-          "longo": false,
-          "duracao": true
-         }
+         "texto": "QUE NUNCA CONVIVERAM, MAS SE RELACIONARAM"
+        }
+       ],
+       "obrigatoria": true
+      },
+      {
+       "id": "tempo_convivem",
+       "tipo": "texto",
+       "rotulo": "Por quanto tempo convivem?",
+       "ajuda": "Obs.: se relaciona ao tempo em que moram juntos.",
+       "aparece": {
+        "pergunta": "convivencia",
+        "opcao": "Convivem"
+       },
+       "texto": ", POR APROXIMADAMENTE {anos} ANO(S)[ E {meses} MÊS(ES)]",
+       "textoDuracao": ", POR APROXIMADAMENTE {tempo}",
+       "campos": [
+        {
+         "id": "anos",
+         "rotulo": "Anos",
+         "obrigatorio": true,
+         "longo": false,
+         "ph": "Ex.: 5 (se menos de um ano, 0)"
+        },
+        {
+         "id": "meses",
+         "rotulo": "Meses (opcional)",
+         "longo": false,
+         "ph": "Ex.: 3"
+        }
+       ],
+       "obrigatoria": true
+      },
+      {
+       "id": "tempo_conviveram",
+       "tipo": "texto",
+       "rotulo": "Por quanto tempo conviveram?",
+       "ajuda": "Obs.: se relaciona ao tempo em que moraram juntos.",
+       "aparece": {
+        "pergunta": "convivencia",
+        "opcao": "Conviveram"
+       },
+       "texto": ", POR APROXIMADAMENTE {anos} ANO(S)[ E {meses} MÊS(ES)]",
+       "textoDuracao": ", POR APROXIMADAMENTE {tempo}",
+       "campos": [
+        {
+         "id": "anos",
+         "rotulo": "Anos",
+         "obrigatorio": true,
+         "longo": false,
+         "ph": "Ex.: 5 (se menos de um ano, 0)"
+        },
+        {
+         "id": "meses",
+         "rotulo": "Meses (opcional)",
+         "longo": false,
+         "ph": "Ex.: 3"
+        }
+       ],
+       "obrigatoria": true
+      },
+      {
+       "id": "tempo_relacao",
+       "tipo": "texto",
+       "rotulo": "Mas se relacionaram por quanto tempo?",
+       "aparece": {
+        "pergunta": "convivencia",
+        "opcao": "Nunca conviveram"
+       },
+       "texto": ", POR APROXIMADAMENTE {anos} ANO(S)[ E {meses} MÊS(ES)]",
+       "textoDuracao": ", POR APROXIMADAMENTE {tempo}",
+       "campos": [
+        {
+         "id": "anos",
+         "rotulo": "Anos",
+         "obrigatorio": true,
+         "longo": false,
+         "ph": "Ex.: 5 (se menos de um ano, 0)"
+        },
+        {
+         "id": "meses",
+         "rotulo": "Meses (opcional)",
+         "longo": false,
+         "ph": "Ex.: 3"
         }
        ],
        "obrigatoria": true
@@ -1877,13 +3175,21 @@
         "pergunta": "convivencia",
         "opcao": "Conviveram"
        },
-       "texto": ", ENCONTRANDO-SE SEPARADOS HÁ {d}",
+       "texto": ", ENCONTRANDO-SE SEPARADOS HÁ {anos} ANO(S)[ E {meses} MÊS(ES)]",
+       "textoDuracao": ", ENCONTRANDO-SE SEPARADOS HÁ {tempo}",
        "campos": [
         {
-         "id": "d",
-         "rotulo": "",
+         "id": "anos",
+         "rotulo": "Anos",
+         "obrigatorio": true,
          "longo": false,
-         "duracao": true
+         "ph": "Ex.: 1 (se menos de um ano, 0)"
+        },
+        {
+         "id": "meses",
+         "rotulo": "Meses (opcional)",
+         "longo": false,
+         "ph": "Ex.: 6"
         }
        ]
       },
@@ -1893,17 +3199,124 @@
        "rotulo": "Possui filhos em comum?",
        "opcoes": [
         {
+         "rotulo": "Não possui",
+         "texto": "QUE NÃO POSSUI FILHOS EM COMUM"
+        },
+        {
          "rotulo": "Possui",
-         "texto": "QUE POSSUI FILHOS EM COMUM[, SENDO {d}]",
+         "texto": ""
+        }
+       ],
+       "obrigatoria": true
+      },
+      {
+       "id": "filhos_comum_qtd",
+       "tipo": "escolha",
+       "rotulo": "Quantos filhos em comum?",
+       "aparece": {
+        "pergunta": "filhos_comum",
+        "opcao": "Possui"
+       },
+       "opcoes": [
+        {
+         "rotulo": "1 filho",
+         "texto": "QUE POSSUI 1 FILHO EM COMUM[, SENDO {d}]",
          "detalhe": {
-          "rotulo": "Quantidade, nome, idade e se possuem alguma deficiência",
+          "rotulo": "Nome(s), idade(s) e se possuem alguma deficiência",
           "obrigatorio": true,
-          "longo": false
+          "longo": false,
+          "filhos": 1
          }
         },
         {
-         "rotulo": "Não possui",
-         "texto": "QUE NÃO POSSUI FILHOS EM COMUM"
+         "rotulo": "2 filhos",
+         "texto": "QUE POSSUI 2 FILHOS EM COMUM[, SENDO {d}]",
+         "detalhe": {
+          "rotulo": "Nome(s), idade(s) e se possuem alguma deficiência",
+          "obrigatorio": true,
+          "longo": false,
+          "filhos": 2
+         }
+        },
+        {
+         "rotulo": "3 filhos",
+         "texto": "QUE POSSUI 3 FILHOS EM COMUM[, SENDO {d}]",
+         "detalhe": {
+          "rotulo": "Nome(s), idade(s) e se possuem alguma deficiência",
+          "obrigatorio": true,
+          "longo": false,
+          "filhos": 3
+         }
+        },
+        {
+         "rotulo": "4 filhos",
+         "texto": "QUE POSSUI 4 FILHOS EM COMUM[, SENDO {d}]",
+         "detalhe": {
+          "rotulo": "Nome(s), idade(s) e se possuem alguma deficiência",
+          "obrigatorio": true,
+          "longo": false,
+          "filhos": 4
+         }
+        },
+        {
+         "rotulo": "5 filhos",
+         "texto": "QUE POSSUI 5 FILHOS EM COMUM[, SENDO {d}]",
+         "detalhe": {
+          "rotulo": "Nome(s), idade(s) e se possuem alguma deficiência",
+          "obrigatorio": true,
+          "longo": false,
+          "filhos": 5
+         }
+        },
+        {
+         "rotulo": "6 filhos",
+         "texto": "QUE POSSUI 6 FILHOS EM COMUM[, SENDO {d}]",
+         "detalhe": {
+          "rotulo": "Nome(s), idade(s) e se possuem alguma deficiência",
+          "obrigatorio": true,
+          "longo": false,
+          "filhos": 6
+         }
+        },
+        {
+         "rotulo": "7 filhos",
+         "texto": "QUE POSSUI 7 FILHOS EM COMUM[, SENDO {d}]",
+         "detalhe": {
+          "rotulo": "Nome(s), idade(s) e se possuem alguma deficiência",
+          "obrigatorio": true,
+          "longo": false,
+          "filhos": 7
+         }
+        },
+        {
+         "rotulo": "8 filhos",
+         "texto": "QUE POSSUI 8 FILHOS EM COMUM[, SENDO {d}]",
+         "detalhe": {
+          "rotulo": "Nome(s), idade(s) e se possuem alguma deficiência",
+          "obrigatorio": true,
+          "longo": false,
+          "filhos": 8
+         }
+        },
+        {
+         "rotulo": "9 filhos",
+         "texto": "QUE POSSUI 9 FILHOS EM COMUM[, SENDO {d}]",
+         "detalhe": {
+          "rotulo": "Nome(s), idade(s) e se possuem alguma deficiência",
+          "obrigatorio": true,
+          "longo": false,
+          "filhos": 9
+         }
+        },
+        {
+         "rotulo": "10 filhos",
+         "texto": "QUE POSSUI 10 FILHOS EM COMUM[, SENDO {d}]",
+         "detalhe": {
+          "rotulo": "Nome(s), idade(s) e se possuem alguma deficiência",
+          "obrigatorio": true,
+          "longo": false,
+          "filhos": 10
+         }
         }
        ],
        "obrigatoria": true
@@ -1914,17 +3327,124 @@
        "rotulo": "Possui filhos de outro relacionamento?",
        "opcoes": [
         {
+         "rotulo": "Não possui",
+         "texto": "QUE NÃO POSSUI FILHOS DE OUTRO RELACIONAMENTO"
+        },
+        {
          "rotulo": "Possui",
-         "texto": "QUE POSSUI FILHOS DE OUTRO RELACIONAMENTO[, SENDO {d}]",
+         "texto": ""
+        }
+       ],
+       "obrigatoria": true
+      },
+      {
+       "id": "filhos_outro_qtd",
+       "tipo": "escolha",
+       "rotulo": "Quantos filhos de outro relacionamento?",
+       "aparece": {
+        "pergunta": "filhos_outro",
+        "opcao": "Possui"
+       },
+       "opcoes": [
+        {
+         "rotulo": "1 filho",
+         "texto": "QUE POSSUI 1 FILHO DE OUTRO RELACIONAMENTO[, SENDO {d}]",
          "detalhe": {
-          "rotulo": "Quantidade, nome, idade e se possuem alguma deficiência",
+          "rotulo": "Nome(s), idade(s) e se possuem alguma deficiência",
           "obrigatorio": true,
-          "longo": false
+          "longo": false,
+          "filhos": 1
          }
         },
         {
-         "rotulo": "Não possui",
-         "texto": "QUE NÃO POSSUI FILHOS DE OUTRO RELACIONAMENTO"
+         "rotulo": "2 filhos",
+         "texto": "QUE POSSUI 2 FILHOS DE OUTRO RELACIONAMENTO[, SENDO {d}]",
+         "detalhe": {
+          "rotulo": "Nome(s), idade(s) e se possuem alguma deficiência",
+          "obrigatorio": true,
+          "longo": false,
+          "filhos": 2
+         }
+        },
+        {
+         "rotulo": "3 filhos",
+         "texto": "QUE POSSUI 3 FILHOS DE OUTRO RELACIONAMENTO[, SENDO {d}]",
+         "detalhe": {
+          "rotulo": "Nome(s), idade(s) e se possuem alguma deficiência",
+          "obrigatorio": true,
+          "longo": false,
+          "filhos": 3
+         }
+        },
+        {
+         "rotulo": "4 filhos",
+         "texto": "QUE POSSUI 4 FILHOS DE OUTRO RELACIONAMENTO[, SENDO {d}]",
+         "detalhe": {
+          "rotulo": "Nome(s), idade(s) e se possuem alguma deficiência",
+          "obrigatorio": true,
+          "longo": false,
+          "filhos": 4
+         }
+        },
+        {
+         "rotulo": "5 filhos",
+         "texto": "QUE POSSUI 5 FILHOS DE OUTRO RELACIONAMENTO[, SENDO {d}]",
+         "detalhe": {
+          "rotulo": "Nome(s), idade(s) e se possuem alguma deficiência",
+          "obrigatorio": true,
+          "longo": false,
+          "filhos": 5
+         }
+        },
+        {
+         "rotulo": "6 filhos",
+         "texto": "QUE POSSUI 6 FILHOS DE OUTRO RELACIONAMENTO[, SENDO {d}]",
+         "detalhe": {
+          "rotulo": "Nome(s), idade(s) e se possuem alguma deficiência",
+          "obrigatorio": true,
+          "longo": false,
+          "filhos": 6
+         }
+        },
+        {
+         "rotulo": "7 filhos",
+         "texto": "QUE POSSUI 7 FILHOS DE OUTRO RELACIONAMENTO[, SENDO {d}]",
+         "detalhe": {
+          "rotulo": "Nome(s), idade(s) e se possuem alguma deficiência",
+          "obrigatorio": true,
+          "longo": false,
+          "filhos": 7
+         }
+        },
+        {
+         "rotulo": "8 filhos",
+         "texto": "QUE POSSUI 8 FILHOS DE OUTRO RELACIONAMENTO[, SENDO {d}]",
+         "detalhe": {
+          "rotulo": "Nome(s), idade(s) e se possuem alguma deficiência",
+          "obrigatorio": true,
+          "longo": false,
+          "filhos": 8
+         }
+        },
+        {
+         "rotulo": "9 filhos",
+         "texto": "QUE POSSUI 9 FILHOS DE OUTRO RELACIONAMENTO[, SENDO {d}]",
+         "detalhe": {
+          "rotulo": "Nome(s), idade(s) e se possuem alguma deficiência",
+          "obrigatorio": true,
+          "longo": false,
+          "filhos": 9
+         }
+        },
+        {
+         "rotulo": "10 filhos",
+         "texto": "QUE POSSUI 10 FILHOS DE OUTRO RELACIONAMENTO[, SENDO {d}]",
+         "detalhe": {
+          "rotulo": "Nome(s), idade(s) e se possuem alguma deficiência",
+          "obrigatorio": true,
+          "longo": false,
+          "filhos": 10
+         }
         }
        ],
        "obrigatoria": true
@@ -1935,6 +3455,26 @@
      "titulo": "Situação da declarante",
      "inicio": "PERGUNTADA SOBRE SUA SITUAÇÃO, RESPONDEU",
      "perguntas": [
+      {
+       "id": "gestante_atual",
+       "tipo": "escolha",
+       "rotulo": "Está gestante?",
+       "opcoes": [
+        {
+         "rotulo": "Não",
+         "texto": "QUE NÃO ESTÁ GESTANTE"
+        },
+        {
+         "rotulo": "Sim, do(a) investigado(a)",
+         "texto": "QUE ESTÁ GESTANTE DO INVESTIGADO"
+        },
+        {
+         "rotulo": "Sim, de outro relacionamento",
+         "texto": "QUE ESTÁ GESTANTE DE OUTRO RELACIONAMENTO"
+        }
+       ],
+       "obrigatoria": true
+      },
       {
        "id": "vit_trabalho",
        "tipo": "escolha",
@@ -1980,13 +3520,7 @@
        "opcoes": [
         {
          "rotulo": "Recebe",
-         "texto": "QUE RECEBE BENEFÍCIO SOCIAL[, SENDO {d}]",
-         "detalhe": {
-          "rotulo": "Qual benefício (ex.: BOLSA FAMÍLIA, BPC/LOAS, AUXÍLIO-DOENÇA)",
-          "obrigatorio": false,
-          "longo": false,
-          "ph": "Ex.: BOLSA FAMÍLIA"
-         }
+         "texto": "QUE RECEBE BENEFÍCIO SOCIAL"
         },
         {
          "rotulo": "Não recebe",
@@ -1995,6 +3529,44 @@
        ],
        "obrigatoria": true,
        "ajuda": "Pergunte se a declarante recebe algum benefício social (Bolsa Família, BPC/LOAS, auxílio, pensão…)."
+      },
+      {
+       "id": "vit_beneficio_qual",
+       "tipo": "caixas",
+       "rotulo": "Qual benefício?",
+       "aparece": {
+        "pergunta": "vit_beneficio",
+        "opcao": "Recebe"
+       },
+       "texto": ", SENDO {lista}",
+       "itens": [
+        {
+         "rotulo": "Bolsa Família",
+         "texto": "BOLSA FAMÍLIA"
+        },
+        {
+         "rotulo": "BPC/LOAS",
+         "texto": "BPC/LOAS"
+        },
+        {
+         "rotulo": "Auxílio-doença",
+         "texto": "AUXÍLIO-DOENÇA"
+        },
+        {
+         "rotulo": "Aluguel social",
+         "texto": "ALUGUEL SOCIAL"
+        },
+        {
+         "rotulo": "Outro benefício",
+         "texto": "{d}",
+         "detalhe": {
+          "rotulo": "Qual benefício",
+          "obrigatorio": true,
+          "longo": false,
+          "ph": "Ex.: PENSÃO POR MORTE"
+         }
+        }
+       ]
       },
       {
        "id": "vit_imovel",
@@ -2022,18 +3594,50 @@
        "rotulo": "Faz uso de álcool?",
        "opcoes": [
         {
-         "rotulo": "Faz uso",
-         "texto": "QUE FAZ USO DE ÁLCOOL[, {d}]",
-         "detalhe": {
-          "rotulo": "Frequência (opcional)",
-          "obrigatorio": false,
-          "longo": false,
-          "ph": "Ex.: COM FREQUÊNCIA DIÁRIA"
-         }
-        },
-        {
          "rotulo": "Não faz uso",
          "texto": "QUE NÃO FAZ USO DE ÁLCOOL"
+        },
+        {
+         "rotulo": "Faz uso",
+         "texto": "QUE FAZ USO DE ÁLCOOL"
+        }
+       ],
+       "obrigatoria": true
+      },
+      {
+       "id": "vit_alcool_freq",
+       "tipo": "escolha",
+       "rotulo": "Com que frequência?",
+       "aparece": {
+        "pergunta": "vit_alcool",
+        "opcao": "Faz uso"
+       },
+       "opcoes": [
+        {
+         "rotulo": "Diariamente",
+         "texto": ", DIARIAMENTE"
+        },
+        {
+         "rotulo": "Várias vezes por semana",
+         "texto": ", VÁRIAS VEZES POR SEMANA"
+        },
+        {
+         "rotulo": "Aos fins de semana",
+         "texto": ", AOS FINS DE SEMANA"
+        },
+        {
+         "rotulo": "Ocasionalmente",
+         "texto": ", OCASIONALMENTE"
+        },
+        {
+         "rotulo": "Outra frequência",
+         "texto": ", {d}",
+         "detalhe": {
+          "rotulo": "Qual a frequência",
+          "obrigatorio": true,
+          "longo": false,
+          "ph": "Ex.: UMA VEZ POR MÊS"
+         }
         }
        ],
        "obrigatoria": true
@@ -2044,18 +3648,85 @@
        "rotulo": "Faz uso de drogas?",
        "opcoes": [
         {
-         "rotulo": "Faz uso",
-         "texto": "QUE FAZ USO DE DROGAS[, SENDO {d}]",
-         "detalhe": {
-          "rotulo": "Quais e a frequência",
-          "obrigatorio": true,
-          "longo": false,
-          "ph": "Ex.: MACONHA, AOS FINS DE SEMANA"
-         }
-        },
-        {
          "rotulo": "Não faz uso",
          "texto": "QUE NÃO FAZ USO DE DROGAS"
+        },
+        {
+         "rotulo": "Faz uso",
+         "texto": "QUE FAZ USO DE DROGAS"
+        }
+       ],
+       "obrigatoria": true
+      },
+      {
+       "id": "vit_drogas_freq",
+       "tipo": "escolha",
+       "rotulo": "Com que frequência?",
+       "aparece": {
+        "pergunta": "vit_drogas",
+        "opcao": "Faz uso"
+       },
+       "opcoes": [
+        {
+         "rotulo": "Diariamente",
+         "texto": ", DIARIAMENTE"
+        },
+        {
+         "rotulo": "Várias vezes por semana",
+         "texto": ", VÁRIAS VEZES POR SEMANA"
+        },
+        {
+         "rotulo": "Aos fins de semana",
+         "texto": ", AOS FINS DE SEMANA"
+        },
+        {
+         "rotulo": "Ocasionalmente",
+         "texto": ", OCASIONALMENTE"
+        },
+        {
+         "rotulo": "Outra frequência",
+         "texto": ", {d}",
+         "detalhe": {
+          "rotulo": "Qual a frequência",
+          "obrigatorio": true,
+          "longo": false,
+          "ph": "Ex.: UMA VEZ POR MÊS"
+         }
+        }
+       ],
+       "obrigatoria": true
+      },
+      {
+       "id": "vit_drogas_quais",
+       "tipo": "caixas",
+       "rotulo": "Quais drogas?",
+       "aparece": {
+        "pergunta": "vit_drogas",
+        "opcao": "Faz uso"
+       },
+       "texto": ", SENDO {lista}",
+       "itens": [
+        {
+         "rotulo": "Maconha",
+         "texto": "MACONHA"
+        },
+        {
+         "rotulo": "Cocaína",
+         "texto": "COCAÍNA"
+        },
+        {
+         "rotulo": "Crack",
+         "texto": "CRACK"
+        },
+        {
+         "rotulo": "Outra droga",
+         "texto": "{d}",
+         "detalhe": {
+          "rotulo": "Qual droga",
+          "obrigatorio": true,
+          "longo": false,
+          "ph": "Ex.: ECSTASY"
+         }
         }
        ],
        "obrigatoria": true
@@ -2066,18 +3737,63 @@
        "rotulo": "Faz uso de medicamentos psiquiátricos?",
        "opcoes": [
         {
-         "rotulo": "Faz uso",
-         "texto": "QUE FAZ USO DE MEDICAMENTOS PSIQUIÁTRICOS[, SENDO {d}]",
-         "detalhe": {
-          "rotulo": "Quais",
-          "obrigatorio": true,
-          "longo": false,
-          "ph": "Ex.: FLUOXETINA"
-         }
-        },
-        {
          "rotulo": "Não faz uso",
          "texto": "QUE NÃO FAZ USO DE MEDICAMENTOS PSIQUIÁTRICOS"
+        },
+        {
+         "rotulo": "Faz uso",
+         "texto": "QUE FAZ USO DE MEDICAMENTOS PSIQUIÁTRICOS"
+        }
+       ],
+       "obrigatoria": true
+      },
+      {
+       "id": "vit_psiq_quais",
+       "tipo": "caixas",
+       "rotulo": "Quais medicamentos?",
+       "aparece": {
+        "pergunta": "vit_psiq",
+        "opcao": "Faz uso"
+       },
+       "texto": ", SENDO {lista}",
+       "itens": [
+        {
+         "rotulo": "Fluoxetina",
+         "texto": "FLUOXETINA"
+        },
+        {
+         "rotulo": "Sertralina",
+         "texto": "SERTRALINA"
+        },
+        {
+         "rotulo": "Escitalopram",
+         "texto": "ESCITALOPRAM"
+        },
+        {
+         "rotulo": "Amitriptilina",
+         "texto": "AMITRIPTILINA"
+        },
+        {
+         "rotulo": "Clonazepam",
+         "texto": "CLONAZEPAM"
+        },
+        {
+         "rotulo": "Diazepam",
+         "texto": "DIAZEPAM"
+        },
+        {
+         "rotulo": "Alprazolam",
+         "texto": "ALPRAZOLAM"
+        },
+        {
+         "rotulo": "Outro medicamento",
+         "texto": "{d}",
+         "detalhe": {
+          "rotulo": "Qual medicamento",
+          "obrigatorio": true,
+          "longo": false,
+          "ph": "Ex.: LÍTIO"
+         }
         }
        ],
        "obrigatoria": true
@@ -2117,18 +3833,58 @@
        "rotulo": "O(A) investigado(a) faz uso de álcool?",
        "opcoes": [
         {
+         "rotulo": "Não faz uso",
+         "texto": "QUE NÃO FAZ USO DE ÁLCOOL"
+        },
+        {
          "rotulo": "Faz uso",
-         "texto": "QUE FAZ USO DE ÁLCOOL[, {d}]",
+         "texto": "QUE FAZ USO DE ÁLCOOL"
+        },
+        {
+         "rotulo": "Não sabe informar",
+         "texto": "QUE NÃO SABE INFORMAR SE FAZ USO DE ÁLCOOL"
+        }
+       ],
+       "obrigatoria": true
+      },
+      {
+       "id": "inv_alcool_freq",
+       "tipo": "escolha",
+       "rotulo": "Com que frequência?",
+       "aparece": {
+        "pergunta": "inv_alcool",
+        "opcao": "Faz uso"
+       },
+       "opcoes": [
+        {
+         "rotulo": "Diariamente",
+         "texto": ", DIARIAMENTE"
+        },
+        {
+         "rotulo": "Várias vezes por semana",
+         "texto": ", VÁRIAS VEZES POR SEMANA"
+        },
+        {
+         "rotulo": "Aos fins de semana",
+         "texto": ", AOS FINS DE SEMANA"
+        },
+        {
+         "rotulo": "Ocasionalmente",
+         "texto": ", OCASIONALMENTE"
+        },
+        {
+         "rotulo": "Outra frequência",
+         "texto": ", {d}",
          "detalhe": {
-          "rotulo": "Frequência (opcional)",
-          "obrigatorio": false,
+          "rotulo": "Qual a frequência",
+          "obrigatorio": true,
           "longo": false,
-          "ph": "Ex.: COM FREQUÊNCIA DIÁRIA"
+          "ph": "Ex.: UMA VEZ POR MÊS"
          }
         },
         {
-         "rotulo": "Não faz uso",
-         "texto": "QUE NÃO FAZ USO DE ÁLCOOL"
+         "rotulo": "Não sabe informar a frequência",
+         "texto": ", NÃO SABENDO INFORMAR A FREQUÊNCIA"
         }
        ],
        "obrigatoria": true
@@ -2139,18 +3895,113 @@
        "rotulo": "O(A) investigado(a) faz uso de drogas?",
        "opcoes": [
         {
+         "rotulo": "Não faz uso",
+         "texto": "QUE NÃO FAZ USO DE DROGAS"
+        },
+        {
          "rotulo": "Faz uso",
-         "texto": "QUE FAZ USO DE DROGAS[, SENDO {d}]",
+         "texto": "QUE FAZ USO DE DROGAS"
+        },
+        {
+         "rotulo": "Não sabe informar",
+         "texto": "QUE NÃO SABE INFORMAR SE FAZ USO DE DROGAS"
+        }
+       ],
+       "obrigatoria": true
+      },
+      {
+       "id": "inv_drogas_freq",
+       "tipo": "escolha",
+       "rotulo": "Com que frequência?",
+       "aparece": {
+        "pergunta": "inv_drogas",
+        "opcao": "Faz uso"
+       },
+       "opcoes": [
+        {
+         "rotulo": "Diariamente",
+         "texto": ", DIARIAMENTE"
+        },
+        {
+         "rotulo": "Várias vezes por semana",
+         "texto": ", VÁRIAS VEZES POR SEMANA"
+        },
+        {
+         "rotulo": "Aos fins de semana",
+         "texto": ", AOS FINS DE SEMANA"
+        },
+        {
+         "rotulo": "Ocasionalmente",
+         "texto": ", OCASIONALMENTE"
+        },
+        {
+         "rotulo": "Outra frequência",
+         "texto": ", {d}",
          "detalhe": {
-          "rotulo": "Quais e a frequência",
+          "rotulo": "Qual a frequência",
           "obrigatorio": true,
           "longo": false,
-          "ph": "Ex.: COCAÍNA, VÁRIAS VEZES POR SEMANA"
+          "ph": "Ex.: UMA VEZ POR MÊS"
          }
         },
         {
-         "rotulo": "Não faz uso",
-         "texto": "QUE NÃO FAZ USO DE DROGAS"
+         "rotulo": "Não sabe informar a frequência",
+         "texto": ", NÃO SABENDO INFORMAR A FREQUÊNCIA"
+        }
+       ],
+       "obrigatoria": true
+      },
+      {
+       "id": "inv_drogas_tipo",
+       "tipo": "escolha",
+       "rotulo": "Sabe informar quais drogas?",
+       "aparece": {
+        "pergunta": "inv_drogas",
+        "opcao": "Faz uso"
+       },
+       "opcoes": [
+        {
+         "rotulo": "Sabe informar",
+         "texto": ""
+        },
+        {
+         "rotulo": "Não sabe informar quais",
+         "texto": ", NÃO SABENDO INFORMAR QUAIS"
+        }
+       ],
+       "obrigatoria": true
+      },
+      {
+       "id": "inv_drogas_quais",
+       "tipo": "caixas",
+       "rotulo": "Quais drogas?",
+       "aparece": {
+        "pergunta": "inv_drogas_tipo",
+        "opcao": "Sabe informar"
+       },
+       "texto": ", SENDO {lista}",
+       "itens": [
+        {
+         "rotulo": "Maconha",
+         "texto": "MACONHA"
+        },
+        {
+         "rotulo": "Cocaína",
+         "texto": "COCAÍNA"
+        },
+        {
+         "rotulo": "Crack",
+         "texto": "CRACK"
+        },
+        {
+         "rotulo": "Outra droga",
+         "texto": "{d}",
+         "detalhe": {
+          "rotulo": "Qual droga",
+          "obrigatorio": true,
+          "longo": false,
+          "ph": "Ex.: ECSTASY"
+         }
         }
        ],
        "obrigatoria": true
@@ -2445,7 +4296,7 @@
       {
        "id": "provas_digitais",
        "tipo": "escolha",
-       "rotulo": "Apresenta provas digitais (prints, mensagens, etc.)?",
+       "rotulo": "Apresenta provas digitais (prints, fotos, áudios, vídeos, etc.)?",
        "opcoes": [
         {
          "rotulo": "Apresenta",
@@ -2502,21 +4353,37 @@
       {
        "id": "visita_pm",
        "tipo": "escolha",
-       "rotulo": "Visita tranquilizadora da Polícia Militar",
+       "rotulo": "Já está inserida na visita tranquilizadora da Polícia Militar?",
        "opcoes": [
         {
-         "rotulo": "Já está inserida",
+         "rotulo": "Sim",
          "texto": "QUE ESTÁ INSERIDA NA VISITA TRANQUILIZADORA DA POLÍCIA MILITAR"
         },
         {
-         "rotulo": "Não está inserida e deseja receber",
+         "rotulo": "Não",
+         "texto": ""
+        }
+       ]
+      },
+      {
+       "id": "visita_pm_deseja",
+       "tipo": "escolha",
+       "rotulo": "Deseja receber a visita tranquilizadora?",
+       "aparece": {
+        "pergunta": "visita_pm",
+        "opcao": "Não"
+       },
+       "opcoes": [
+        {
+         "rotulo": "Sim",
          "texto": "QUE NÃO ESTÁ INSERIDA E DESEJA RECEBER VISITA TRANQUILIZADORA DA POLÍCIA MILITAR"
         },
         {
-         "rotulo": "Não está inserida e não deseja",
+         "rotulo": "Não",
          "texto": "QUE NÃO ESTÁ INSERIDA E NÃO DESEJA VISITA TRANQUILIZADORA DA POLÍCIA MILITAR"
         }
-       ]
+       ],
+       "obrigatoria": true
       },
       {
        "id": "psicossocial",
@@ -2530,6 +4397,10 @@
         {
          "rotulo": "Não",
          "texto": "QUE NÃO DESEJA ATENDIMENTO PSICOSSOCIAL"
+        },
+        {
+         "rotulo": "Já faz",
+         "texto": "QUE JÁ REALIZA ACOMPANHAMENTO PSICOLÓGICO"
         }
        ]
       },
@@ -2537,6 +4408,41 @@
        "id": "acao_privada",
        "tipo": "fixo",
        "texto": "QUE NESTE ATO FOI ORIENTADA DE QUE CRIMES DE AÇÃO PENAL PRIVADA (INJÚRIA, CALÚNIA, DIFAMAÇÃO, DANO, ENTRE OUTROS) DEPENDEM DE QUEIXA-CRIME NO PRAZO DE 12 MESES, DEVENDO PROCURAR ADVOGADO OU DEFENSORIA PÚBLICA"
+      },
+      {
+       "id": "fora_atribuicao",
+       "tipo": "caixas",
+       "rotulo": "É um caso fora da atribuição da DEAM? Marque o motivo",
+       "ajuda": "Deixe em branco se o caso é da DEAM. Marcando, entra no fim do texto a orientação de que o caso será encaminhado à delegacia responsável.",
+       "texto": "QUE, TENDO EM VISTA {lista}, FOI ESCLARECIDO À DECLARANTE QUE OS FATOS NARRADOS NÃO SE ENQUADRAM, EM REGRA, NA ATRIBUIÇÃO DESTA UNIDADE ESPECIALIZADA, ESTANDO CIENTE DE QUE A OCORRÊNCIA SERÁ POSTERIORMENTE ENCAMINHADA À DELEGACIA RESPONSÁVEL",
+       "itens": [
+        {
+         "rotulo": "Mulher idosa",
+         "texto": "TRATAR-SE DE MULHER IDOSA"
+        },
+        {
+         "rotulo": "Adolescente",
+         "texto": "TRATAR-SE DE ADOLESCENTE"
+        },
+        {
+         "rotulo": "Fatos em outro município",
+         "texto": "OS FATOS TEREM OCORRIDO EM OUTRO MUNICÍPIO"
+        },
+        {
+         "rotulo": "Fatos em outro estado",
+         "texto": "OS FATOS TEREM OCORRIDO EM OUTRO ESTADO"
+        },
+        {
+         "rotulo": "Outro motivo",
+         "texto": "{d}",
+         "detalhe": {
+          "rotulo": "Qual o motivo",
+          "obrigatorio": true,
+          "longo": false,
+          "ph": "Ex.: TRATAR-SE DE CRIME COMETIDO POR AUTORIDADE COM FORO ESPECIAL"
+         }
+        }
+       ]
       }
      ]
     }
@@ -2587,7 +4493,8 @@
      {
       "id": "vinculo",
       "chips": true,
-      "rotulo": "Vínculo com a declarante (ex.: MÃE, IRMÃ, TIO, CUNHADA)",
+      "comOutro": true,
+      "rotulo": "Vínculo com a declarante",
       "obrigatorio": true,
       "sugestoes": {
        "M": [
@@ -2632,6 +4539,42 @@
     "texto": "QUE A DECLARANTE {vitima} COMPARECE A ESTA DEAM SERRA POR MEIOS PRÓPRIOS PARA COMUNICAR O DESCUMPRIMENTO DE MEDIDA PROTETIVA DE URGÊNCIA, REFERENTE AO PROCESSO Nº {processo}, TENDO COMO REQUERIDO O SR. {investigado}, SEU {vinculo}"
    },
    "blocos": [
+    {
+     "titulo": "Acompanhamento da declarante",
+     "perguntas": [
+      {
+       "id": "advogado",
+       "tipo": "escolha",
+       "rotulo": "A declarante comparece acompanhada de advogado(a)?",
+       "opcoes": [
+        {
+         "rotulo": "Não",
+         "texto": ""
+        },
+        {
+         "rotulo": "Sim, de advogado",
+         "texto": "QUE ENCONTRA-SE ACOMPANHADA DE SEU ADVOGADO, DR. {d}",
+         "detalhe": {
+          "rotulo": "Nome completo e número da OAB",
+          "obrigatorio": true,
+          "longo": false,
+          "ph": "Ex.: JOÃO DA SILVA, OAB/ES Nº 12345"
+         }
+        },
+        {
+         "rotulo": "Sim, de advogada",
+         "texto": "QUE ENCONTRA-SE ACOMPANHADA DE SUA ADVOGADA, DRA. {d}",
+         "detalhe": {
+          "rotulo": "Nome completo e número da OAB",
+          "obrigatorio": true,
+          "longo": false,
+          "ph": "Ex.: MARIA DA SILVA, OAB/ES Nº 12345"
+         }
+        }
+       ]
+      }
+     ]
+    },
     {
      "titulo": "Contato após a MPU",
      "junto": true,
@@ -2678,20 +4621,58 @@
      "inicio": "PERGUNTADA SOBRE O VÍNCULO ENTRE AS PARTES, RESPONDEU",
      "perguntas": [
       {
-       "id": "vinculo_historico",
-       "tipo": "texto",
-       "rotulo": "Como é a relação entre as partes? (histórico da relação familiar ou doméstica)",
-       "texto": "QUE {d}",
-       "campos": [
+       "id": "relacao_partes",
+       "tipo": "caixas",
+       "rotulo": "Como é a relação entre as partes?",
+       "ajuda": "Marque tudo o que se aplica. O vínculo (irmão, pai, tio…) já foi informado no início; aqui é como a relação funciona no dia a dia.",
+       "texto": "QUE {lista}",
+       "itens": [
         {
-         "id": "d",
-         "rotulo": "",
-         "longo": true,
-         "ph": "Ex.: A DECLARANTE É IRMÃ DO INVESTIGADO; MORAM EM CASAS DIFERENTES NO MESMO TERRENO; DESDE 2023 HÁ BRIGAS CONSTANTES POR CAUSA DE DINHEIRO…"
+         "rotulo": "Relação conflituosa",
+         "texto": "A RELAÇÃO ENTRE AS PARTES É CONFLITUOSA"
+        },
+        {
+         "rotulo": "Já houve episódios anteriores de violência",
+         "texto": "JÁ HOUVE EPISÓDIOS ANTERIORES DE VIOLÊNCIA ({d})",
+         "detalhe": {
+          "rotulo": "Descreva brevemente: quando, o que ocorreu e se houve registro",
+          "obrigatorio": true,
+          "longo": true,
+          "ph": "Ex.: EM 2024 FOI EMPURRADA; NÃO REGISTROU OCORRÊNCIA"
+         }
+        },
+        {
+         "rotulo": "Já houve ameaças anteriores",
+         "texto": "JÁ HOUVE AMEAÇAS ANTERIORES"
+        },
+        {
+         "rotulo": "Nunca houve violência ou ameaça anterior",
+         "texto": "NÃO HOUVE EPISÓDIOS ANTERIORES DE VIOLÊNCIA OU AMEAÇA"
+        },
+        {
+         "rotulo": "A declarante cuida do(a) investigado(a)",
+         "texto": "A DECLARANTE CUIDA DO INVESTIGADO"
+        },
+        {
+         "rotulo": "O(A) investigado(a) cuida da declarante",
+         "texto": "O INVESTIGADO CUIDA DA DECLARANTE"
+        },
+        {
+         "rotulo": "Pouco contato entre as partes",
+         "texto": "AS PARTES TÊM POUCO CONTATO"
+        },
+        {
+         "rotulo": "Outra característica da relação",
+         "texto": "{d}",
+         "detalhe": {
+          "rotulo": "Descreva a relação",
+          "obrigatorio": true,
+          "longo": false,
+          "ph": "Ex.: A DECLARANTE ADMINISTRA OS BENS DA FAMÍLIA JUNTO COM O INVESTIGADO"
+         }
         }
        ],
-       "obrigatoria": true,
-       "ajuda": "Descreva o histórico da relação: qual é o vínculo, há quanto tempo se conhecem ou convivem, como é o convívio no dia a dia, se há conflitos anteriores e como eles costumam acontecer. Use as palavras da declarante."
+       "obrigatoria": true
       },
       {
        "id": "residencia",
@@ -2724,27 +4705,6 @@
         }
        ],
        "obrigatoria": true
-      },
-      {
-       "id": "episodios_anteriores",
-       "tipo": "escolha",
-       "rotulo": "Já houve episódios anteriores de violência ou ameaça?",
-       "opcoes": [
-        {
-         "rotulo": "Sim",
-         "texto": "QUE JÁ HOUVE EPISÓDIOS ANTERIORES DE VIOLÊNCIA OU AMEAÇA, SENDO {d}",
-         "detalhe": {
-          "rotulo": "Descreva brevemente: quando, o que ocorreu e se houve registro",
-          "obrigatorio": true,
-          "longo": true,
-          "ph": "Ex.: EM 2024 FOI AMEAÇADA VERBALMENTE; NÃO REGISTROU OCORRÊNCIA"
-         }
-        },
-        {
-         "rotulo": "Não",
-         "texto": "QUE NÃO HOUVE EPISÓDIOS ANTERIORES DE VIOLÊNCIA OU AMEAÇA"
-        }
-       ]
       }
      ]
     },
@@ -2797,13 +4757,7 @@
        "opcoes": [
         {
          "rotulo": "Recebe",
-         "texto": "QUE RECEBE BENEFÍCIO SOCIAL[, SENDO {d}]",
-         "detalhe": {
-          "rotulo": "Qual benefício (ex.: BOLSA FAMÍLIA, BPC/LOAS, AUXÍLIO-DOENÇA)",
-          "obrigatorio": false,
-          "longo": false,
-          "ph": "Ex.: BOLSA FAMÍLIA"
-         }
+         "texto": "QUE RECEBE BENEFÍCIO SOCIAL"
         },
         {
          "rotulo": "Não recebe",
@@ -2812,6 +4766,44 @@
        ],
        "obrigatoria": true,
        "ajuda": "Pergunte se a declarante recebe algum benefício social (Bolsa Família, BPC/LOAS, auxílio, pensão…)."
+      },
+      {
+       "id": "vit_beneficio_qual",
+       "tipo": "caixas",
+       "rotulo": "Qual benefício?",
+       "aparece": {
+        "pergunta": "vit_beneficio",
+        "opcao": "Recebe"
+       },
+       "texto": ", SENDO {lista}",
+       "itens": [
+        {
+         "rotulo": "Bolsa Família",
+         "texto": "BOLSA FAMÍLIA"
+        },
+        {
+         "rotulo": "BPC/LOAS",
+         "texto": "BPC/LOAS"
+        },
+        {
+         "rotulo": "Auxílio-doença",
+         "texto": "AUXÍLIO-DOENÇA"
+        },
+        {
+         "rotulo": "Aluguel social",
+         "texto": "ALUGUEL SOCIAL"
+        },
+        {
+         "rotulo": "Outro benefício",
+         "texto": "{d}",
+         "detalhe": {
+          "rotulo": "Qual benefício",
+          "obrigatorio": true,
+          "longo": false,
+          "ph": "Ex.: PENSÃO POR MORTE"
+         }
+        }
+       ]
       },
       {
        "id": "vit_imovel",
@@ -2839,18 +4831,50 @@
        "rotulo": "Faz uso de álcool?",
        "opcoes": [
         {
-         "rotulo": "Faz uso",
-         "texto": "QUE FAZ USO DE ÁLCOOL[, {d}]",
-         "detalhe": {
-          "rotulo": "Frequência (opcional)",
-          "obrigatorio": false,
-          "longo": false,
-          "ph": "Ex.: COM FREQUÊNCIA DIÁRIA"
-         }
-        },
-        {
          "rotulo": "Não faz uso",
          "texto": "QUE NÃO FAZ USO DE ÁLCOOL"
+        },
+        {
+         "rotulo": "Faz uso",
+         "texto": "QUE FAZ USO DE ÁLCOOL"
+        }
+       ],
+       "obrigatoria": true
+      },
+      {
+       "id": "vit_alcool_freq",
+       "tipo": "escolha",
+       "rotulo": "Com que frequência?",
+       "aparece": {
+        "pergunta": "vit_alcool",
+        "opcao": "Faz uso"
+       },
+       "opcoes": [
+        {
+         "rotulo": "Diariamente",
+         "texto": ", DIARIAMENTE"
+        },
+        {
+         "rotulo": "Várias vezes por semana",
+         "texto": ", VÁRIAS VEZES POR SEMANA"
+        },
+        {
+         "rotulo": "Aos fins de semana",
+         "texto": ", AOS FINS DE SEMANA"
+        },
+        {
+         "rotulo": "Ocasionalmente",
+         "texto": ", OCASIONALMENTE"
+        },
+        {
+         "rotulo": "Outra frequência",
+         "texto": ", {d}",
+         "detalhe": {
+          "rotulo": "Qual a frequência",
+          "obrigatorio": true,
+          "longo": false,
+          "ph": "Ex.: UMA VEZ POR MÊS"
+         }
         }
        ],
        "obrigatoria": true
@@ -2861,18 +4885,85 @@
        "rotulo": "Faz uso de drogas?",
        "opcoes": [
         {
-         "rotulo": "Faz uso",
-         "texto": "QUE FAZ USO DE DROGAS[, SENDO {d}]",
-         "detalhe": {
-          "rotulo": "Quais e a frequência",
-          "obrigatorio": true,
-          "longo": false,
-          "ph": "Ex.: MACONHA, AOS FINS DE SEMANA"
-         }
-        },
-        {
          "rotulo": "Não faz uso",
          "texto": "QUE NÃO FAZ USO DE DROGAS"
+        },
+        {
+         "rotulo": "Faz uso",
+         "texto": "QUE FAZ USO DE DROGAS"
+        }
+       ],
+       "obrigatoria": true
+      },
+      {
+       "id": "vit_drogas_freq",
+       "tipo": "escolha",
+       "rotulo": "Com que frequência?",
+       "aparece": {
+        "pergunta": "vit_drogas",
+        "opcao": "Faz uso"
+       },
+       "opcoes": [
+        {
+         "rotulo": "Diariamente",
+         "texto": ", DIARIAMENTE"
+        },
+        {
+         "rotulo": "Várias vezes por semana",
+         "texto": ", VÁRIAS VEZES POR SEMANA"
+        },
+        {
+         "rotulo": "Aos fins de semana",
+         "texto": ", AOS FINS DE SEMANA"
+        },
+        {
+         "rotulo": "Ocasionalmente",
+         "texto": ", OCASIONALMENTE"
+        },
+        {
+         "rotulo": "Outra frequência",
+         "texto": ", {d}",
+         "detalhe": {
+          "rotulo": "Qual a frequência",
+          "obrigatorio": true,
+          "longo": false,
+          "ph": "Ex.: UMA VEZ POR MÊS"
+         }
+        }
+       ],
+       "obrigatoria": true
+      },
+      {
+       "id": "vit_drogas_quais",
+       "tipo": "caixas",
+       "rotulo": "Quais drogas?",
+       "aparece": {
+        "pergunta": "vit_drogas",
+        "opcao": "Faz uso"
+       },
+       "texto": ", SENDO {lista}",
+       "itens": [
+        {
+         "rotulo": "Maconha",
+         "texto": "MACONHA"
+        },
+        {
+         "rotulo": "Cocaína",
+         "texto": "COCAÍNA"
+        },
+        {
+         "rotulo": "Crack",
+         "texto": "CRACK"
+        },
+        {
+         "rotulo": "Outra droga",
+         "texto": "{d}",
+         "detalhe": {
+          "rotulo": "Qual droga",
+          "obrigatorio": true,
+          "longo": false,
+          "ph": "Ex.: ECSTASY"
+         }
         }
        ],
        "obrigatoria": true
@@ -2883,18 +4974,63 @@
        "rotulo": "Faz uso de medicamentos psiquiátricos?",
        "opcoes": [
         {
-         "rotulo": "Faz uso",
-         "texto": "QUE FAZ USO DE MEDICAMENTOS PSIQUIÁTRICOS[, SENDO {d}]",
-         "detalhe": {
-          "rotulo": "Quais",
-          "obrigatorio": true,
-          "longo": false,
-          "ph": "Ex.: FLUOXETINA"
-         }
-        },
-        {
          "rotulo": "Não faz uso",
          "texto": "QUE NÃO FAZ USO DE MEDICAMENTOS PSIQUIÁTRICOS"
+        },
+        {
+         "rotulo": "Faz uso",
+         "texto": "QUE FAZ USO DE MEDICAMENTOS PSIQUIÁTRICOS"
+        }
+       ],
+       "obrigatoria": true
+      },
+      {
+       "id": "vit_psiq_quais",
+       "tipo": "caixas",
+       "rotulo": "Quais medicamentos?",
+       "aparece": {
+        "pergunta": "vit_psiq",
+        "opcao": "Faz uso"
+       },
+       "texto": ", SENDO {lista}",
+       "itens": [
+        {
+         "rotulo": "Fluoxetina",
+         "texto": "FLUOXETINA"
+        },
+        {
+         "rotulo": "Sertralina",
+         "texto": "SERTRALINA"
+        },
+        {
+         "rotulo": "Escitalopram",
+         "texto": "ESCITALOPRAM"
+        },
+        {
+         "rotulo": "Amitriptilina",
+         "texto": "AMITRIPTILINA"
+        },
+        {
+         "rotulo": "Clonazepam",
+         "texto": "CLONAZEPAM"
+        },
+        {
+         "rotulo": "Diazepam",
+         "texto": "DIAZEPAM"
+        },
+        {
+         "rotulo": "Alprazolam",
+         "texto": "ALPRAZOLAM"
+        },
+        {
+         "rotulo": "Outro medicamento",
+         "texto": "{d}",
+         "detalhe": {
+          "rotulo": "Qual medicamento",
+          "obrigatorio": true,
+          "longo": false,
+          "ph": "Ex.: LÍTIO"
+         }
         }
        ],
        "obrigatoria": true
@@ -2934,18 +5070,58 @@
        "rotulo": "O(A) investigado(a) faz uso de álcool?",
        "opcoes": [
         {
+         "rotulo": "Não faz uso",
+         "texto": "QUE NÃO FAZ USO DE ÁLCOOL"
+        },
+        {
          "rotulo": "Faz uso",
-         "texto": "QUE FAZ USO DE ÁLCOOL[, {d}]",
+         "texto": "QUE FAZ USO DE ÁLCOOL"
+        },
+        {
+         "rotulo": "Não sabe informar",
+         "texto": "QUE NÃO SABE INFORMAR SE FAZ USO DE ÁLCOOL"
+        }
+       ],
+       "obrigatoria": true
+      },
+      {
+       "id": "inv_alcool_freq",
+       "tipo": "escolha",
+       "rotulo": "Com que frequência?",
+       "aparece": {
+        "pergunta": "inv_alcool",
+        "opcao": "Faz uso"
+       },
+       "opcoes": [
+        {
+         "rotulo": "Diariamente",
+         "texto": ", DIARIAMENTE"
+        },
+        {
+         "rotulo": "Várias vezes por semana",
+         "texto": ", VÁRIAS VEZES POR SEMANA"
+        },
+        {
+         "rotulo": "Aos fins de semana",
+         "texto": ", AOS FINS DE SEMANA"
+        },
+        {
+         "rotulo": "Ocasionalmente",
+         "texto": ", OCASIONALMENTE"
+        },
+        {
+         "rotulo": "Outra frequência",
+         "texto": ", {d}",
          "detalhe": {
-          "rotulo": "Frequência (opcional)",
-          "obrigatorio": false,
+          "rotulo": "Qual a frequência",
+          "obrigatorio": true,
           "longo": false,
-          "ph": "Ex.: COM FREQUÊNCIA DIÁRIA"
+          "ph": "Ex.: UMA VEZ POR MÊS"
          }
         },
         {
-         "rotulo": "Não faz uso",
-         "texto": "QUE NÃO FAZ USO DE ÁLCOOL"
+         "rotulo": "Não sabe informar a frequência",
+         "texto": ", NÃO SABENDO INFORMAR A FREQUÊNCIA"
         }
        ],
        "obrigatoria": true
@@ -2956,18 +5132,113 @@
        "rotulo": "O(A) investigado(a) faz uso de drogas?",
        "opcoes": [
         {
+         "rotulo": "Não faz uso",
+         "texto": "QUE NÃO FAZ USO DE DROGAS"
+        },
+        {
          "rotulo": "Faz uso",
-         "texto": "QUE FAZ USO DE DROGAS[, SENDO {d}]",
+         "texto": "QUE FAZ USO DE DROGAS"
+        },
+        {
+         "rotulo": "Não sabe informar",
+         "texto": "QUE NÃO SABE INFORMAR SE FAZ USO DE DROGAS"
+        }
+       ],
+       "obrigatoria": true
+      },
+      {
+       "id": "inv_drogas_freq",
+       "tipo": "escolha",
+       "rotulo": "Com que frequência?",
+       "aparece": {
+        "pergunta": "inv_drogas",
+        "opcao": "Faz uso"
+       },
+       "opcoes": [
+        {
+         "rotulo": "Diariamente",
+         "texto": ", DIARIAMENTE"
+        },
+        {
+         "rotulo": "Várias vezes por semana",
+         "texto": ", VÁRIAS VEZES POR SEMANA"
+        },
+        {
+         "rotulo": "Aos fins de semana",
+         "texto": ", AOS FINS DE SEMANA"
+        },
+        {
+         "rotulo": "Ocasionalmente",
+         "texto": ", OCASIONALMENTE"
+        },
+        {
+         "rotulo": "Outra frequência",
+         "texto": ", {d}",
          "detalhe": {
-          "rotulo": "Quais e a frequência",
+          "rotulo": "Qual a frequência",
           "obrigatorio": true,
           "longo": false,
-          "ph": "Ex.: COCAÍNA, VÁRIAS VEZES POR SEMANA"
+          "ph": "Ex.: UMA VEZ POR MÊS"
          }
         },
         {
-         "rotulo": "Não faz uso",
-         "texto": "QUE NÃO FAZ USO DE DROGAS"
+         "rotulo": "Não sabe informar a frequência",
+         "texto": ", NÃO SABENDO INFORMAR A FREQUÊNCIA"
+        }
+       ],
+       "obrigatoria": true
+      },
+      {
+       "id": "inv_drogas_tipo",
+       "tipo": "escolha",
+       "rotulo": "Sabe informar quais drogas?",
+       "aparece": {
+        "pergunta": "inv_drogas",
+        "opcao": "Faz uso"
+       },
+       "opcoes": [
+        {
+         "rotulo": "Sabe informar",
+         "texto": ""
+        },
+        {
+         "rotulo": "Não sabe informar quais",
+         "texto": ", NÃO SABENDO INFORMAR QUAIS"
+        }
+       ],
+       "obrigatoria": true
+      },
+      {
+       "id": "inv_drogas_quais",
+       "tipo": "caixas",
+       "rotulo": "Quais drogas?",
+       "aparece": {
+        "pergunta": "inv_drogas_tipo",
+        "opcao": "Sabe informar"
+       },
+       "texto": ", SENDO {lista}",
+       "itens": [
+        {
+         "rotulo": "Maconha",
+         "texto": "MACONHA"
+        },
+        {
+         "rotulo": "Cocaína",
+         "texto": "COCAÍNA"
+        },
+        {
+         "rotulo": "Crack",
+         "texto": "CRACK"
+        },
+        {
+         "rotulo": "Outra droga",
+         "texto": "{d}",
+         "detalhe": {
+          "rotulo": "Qual droga",
+          "obrigatorio": true,
+          "longo": false,
+          "ph": "Ex.: ECSTASY"
+         }
         }
        ],
        "obrigatoria": true
@@ -3262,7 +5533,7 @@
       {
        "id": "provas_digitais",
        "tipo": "escolha",
-       "rotulo": "Apresenta provas digitais (prints, mensagens, etc.)?",
+       "rotulo": "Apresenta provas digitais (prints, fotos, áudios, vídeos, etc.)?",
        "opcoes": [
         {
          "rotulo": "Apresenta",
@@ -3319,21 +5590,37 @@
       {
        "id": "visita_pm",
        "tipo": "escolha",
-       "rotulo": "Visita tranquilizadora da Polícia Militar",
+       "rotulo": "Já está inserida na visita tranquilizadora da Polícia Militar?",
        "opcoes": [
         {
-         "rotulo": "Já está inserida",
+         "rotulo": "Sim",
          "texto": "QUE ESTÁ INSERIDA NA VISITA TRANQUILIZADORA DA POLÍCIA MILITAR"
         },
         {
-         "rotulo": "Não está inserida e deseja receber",
+         "rotulo": "Não",
+         "texto": ""
+        }
+       ]
+      },
+      {
+       "id": "visita_pm_deseja",
+       "tipo": "escolha",
+       "rotulo": "Deseja receber a visita tranquilizadora?",
+       "aparece": {
+        "pergunta": "visita_pm",
+        "opcao": "Não"
+       },
+       "opcoes": [
+        {
+         "rotulo": "Sim",
          "texto": "QUE NÃO ESTÁ INSERIDA E DESEJA RECEBER VISITA TRANQUILIZADORA DA POLÍCIA MILITAR"
         },
         {
-         "rotulo": "Não está inserida e não deseja",
+         "rotulo": "Não",
          "texto": "QUE NÃO ESTÁ INSERIDA E NÃO DESEJA VISITA TRANQUILIZADORA DA POLÍCIA MILITAR"
         }
-       ]
+       ],
+       "obrigatoria": true
       },
       {
        "id": "psicossocial",
@@ -3347,6 +5634,10 @@
         {
          "rotulo": "Não",
          "texto": "QUE NÃO DESEJA ATENDIMENTO PSICOSSOCIAL"
+        },
+        {
+         "rotulo": "Já faz",
+         "texto": "QUE JÁ REALIZA ACOMPANHAMENTO PSICOLÓGICO"
         }
        ]
       },
@@ -3354,6 +5645,41 @@
        "id": "acao_privada",
        "tipo": "fixo",
        "texto": "QUE NESTE ATO FOI ORIENTADA DE QUE CRIMES DE AÇÃO PENAL PRIVADA (INJÚRIA, CALÚNIA, DIFAMAÇÃO, DANO, ENTRE OUTROS) DEPENDEM DE QUEIXA-CRIME NO PRAZO DE 12 MESES, DEVENDO PROCURAR ADVOGADO OU DEFENSORIA PÚBLICA"
+      },
+      {
+       "id": "fora_atribuicao",
+       "tipo": "caixas",
+       "rotulo": "É um caso fora da atribuição da DEAM? Marque o motivo",
+       "ajuda": "Deixe em branco se o caso é da DEAM. Marcando, entra no fim do texto a orientação de que o caso será encaminhado à delegacia responsável.",
+       "texto": "QUE, TENDO EM VISTA {lista}, FOI ESCLARECIDO À DECLARANTE QUE OS FATOS NARRADOS NÃO SE ENQUADRAM, EM REGRA, NA ATRIBUIÇÃO DESTA UNIDADE ESPECIALIZADA, ESTANDO CIENTE DE QUE A OCORRÊNCIA SERÁ POSTERIORMENTE ENCAMINHADA À DELEGACIA RESPONSÁVEL",
+       "itens": [
+        {
+         "rotulo": "Mulher idosa",
+         "texto": "TRATAR-SE DE MULHER IDOSA"
+        },
+        {
+         "rotulo": "Adolescente",
+         "texto": "TRATAR-SE DE ADOLESCENTE"
+        },
+        {
+         "rotulo": "Fatos em outro município",
+         "texto": "OS FATOS TEREM OCORRIDO EM OUTRO MUNICÍPIO"
+        },
+        {
+         "rotulo": "Fatos em outro estado",
+         "texto": "OS FATOS TEREM OCORRIDO EM OUTRO ESTADO"
+        },
+        {
+         "rotulo": "Outro motivo",
+         "texto": "{d}",
+         "detalhe": {
+          "rotulo": "Qual o motivo",
+          "obrigatorio": true,
+          "longo": false,
+          "ph": "Ex.: TRATAR-SE DE CRIME COMETIDO POR AUTORIDADE COM FORO ESPECIAL"
+         }
+        }
+       ]
       }
      ]
     }
@@ -3391,7 +5717,8 @@
      {
       "id": "vinculo",
       "chips": true,
-      "rotulo": "Relacionamento (ex.: CÔNJUGE, NAMORADA, EX-COMPANHEIRO)",
+      "comOutro": true,
+      "rotulo": "Relacionamento",
       "obrigatorio": true,
       "sugestoes": {
        "M": [
@@ -3430,6 +5757,42 @@
    },
    "blocos": [
     {
+     "titulo": "Acompanhamento da declarante",
+     "perguntas": [
+      {
+       "id": "advogado",
+       "tipo": "escolha",
+       "rotulo": "A declarante comparece acompanhada de advogado(a)?",
+       "opcoes": [
+        {
+         "rotulo": "Não",
+         "texto": ""
+        },
+        {
+         "rotulo": "Sim, de advogado",
+         "texto": "QUE ENCONTRA-SE ACOMPANHADA DE SEU ADVOGADO, DR. {d}",
+         "detalhe": {
+          "rotulo": "Nome completo e número da OAB",
+          "obrigatorio": true,
+          "longo": false,
+          "ph": "Ex.: JOÃO DA SILVA, OAB/ES Nº 12345"
+         }
+        },
+        {
+         "rotulo": "Sim, de advogada",
+         "texto": "QUE ENCONTRA-SE ACOMPANHADA DE SUA ADVOGADA, DRA. {d}",
+         "detalhe": {
+          "rotulo": "Nome completo e número da OAB",
+          "obrigatorio": true,
+          "longo": false,
+          "ph": "Ex.: MARIA DA SILVA, OAB/ES Nº 12345"
+         }
+        }
+       ]
+      }
+     ]
+    },
+    {
      "titulo": "Medidas protetivas e registros anteriores",
      "junto": true,
      "perguntas": [
@@ -3444,16 +5807,65 @@
         },
         {
          "rotulo": "Sim",
-         "texto": "PERGUNTADA SE JÁ SOLICITOU MEDIDAS PROTETIVAS ANTERIORMENTE, RESPONDEU QUE SIM[, {d}]",
-         "detalhe": {
-          "rotulo": "Se retirou, informe o motivo (ex.: QUE REATARAM O RELACIONAMENTO)",
-          "obrigatorio": false,
-          "longo": false
-         }
+         "texto": "PERGUNTADA SE JÁ SOLICITOU MEDIDAS PROTETIVAS ANTERIORMENTE, RESPONDEU QUE SIM"
         }
        ],
        "obrigatoria": true,
        "alerta": "Confira se a MPU está EM VIGOR. Se estiver, use o modelo de Descumprimento de MPU."
+      },
+      {
+       "id": "mpu_motivo",
+       "tipo": "caixas",
+       "rotulo": "O que aconteceu com as MPU’S anteriores?",
+       "aparece": {
+        "pergunta": "mpu_anterior",
+        "opcao": "Sim"
+       },
+       "texto": ", SENDO QUE {lista}",
+       "itens": [
+        {
+         "rotulo": "Reataram o relacionamento",
+         "texto": "AS PARTES REATARAM O RELACIONAMENTO"
+        },
+        {
+         "rotulo": "Juiz indeferiu o pedido",
+         "texto": "O PEDIDO DE MPU’S FOI INDEFERIDO PELO JUÍZO"
+        },
+        {
+         "rotulo": "Juiz revogou as MPU’S",
+         "texto": "AS MPU’S FORAM REVOGADAS PELO JUÍZO"
+        },
+        {
+         "rotulo": "Prazo terminou",
+         "texto": "AS MPU’S PERDERAM A VALIDADE POR DECURSO DO PRAZO"
+        },
+        {
+         "rotulo": "Ela pediu a revogação: porque se entenderam",
+         "texto": "A DECLARANTE SOLICITOU A REVOGAÇÃO DAS MPU’S PORQUE HAVIAM SE ENTENDIDO"
+        },
+        {
+         "rotulo": "Ela pediu a revogação: pressão ou ameaça do(a) investigado(a)",
+         "texto": "A DECLARANTE SOLICITOU A REVOGAÇÃO DAS MPU’S POR PRESSÃO OU AMEAÇA DO INVESTIGADO"
+        },
+        {
+         "rotulo": "Ela pediu a revogação: pressão de familiares",
+         "texto": "A DECLARANTE SOLICITOU A REVOGAÇÃO DAS MPU’S POR PRESSÃO DE FAMILIARES"
+        },
+        {
+         "rotulo": "Ela pediu a revogação: por terem filhos em comum",
+         "texto": "A DECLARANTE SOLICITOU A REVOGAÇÃO DAS MPU’S POR POSSUÍREM FILHOS EM COMUM"
+        },
+        {
+         "rotulo": "Outro motivo",
+         "texto": "{d}",
+         "detalhe": {
+          "rotulo": "Qual foi o motivo",
+          "obrigatorio": true,
+          "longo": false,
+          "ph": "Ex.: AS MPU’S FORAM CANCELADAS PORQUE O INVESTIGADO SE MUDOU DE CIDADE"
+         }
+        }
+       ]
       },
       {
        "id": "outros_registros",
@@ -3505,33 +5917,98 @@
        "opcoes": [
         {
          "rotulo": "Convivem",
-         "texto": "QUE CONVIVEM POR APROXIMADAMENTE {d}",
-         "detalhe": {
-          "rotulo": "Por quanto tempo",
-          "obrigatorio": true,
-          "longo": false,
-          "duracao": true
-         }
+         "texto": "QUE CONVIVEM"
         },
         {
          "rotulo": "Conviveram",
-         "texto": "QUE CONVIVERAM POR APROXIMADAMENTE {d}",
-         "detalhe": {
-          "rotulo": "Por quanto tempo",
-          "obrigatorio": true,
-          "longo": false,
-          "duracao": true
-         }
+         "texto": "QUE CONVIVERAM"
         },
         {
          "rotulo": "Nunca conviveram",
-         "texto": "QUE NUNCA CONVIVERAM, MAS SE RELACIONARAM POR APROXIMADAMENTE {d}",
-         "detalhe": {
-          "rotulo": "Por quanto tempo se relacionaram",
-          "obrigatorio": true,
-          "longo": false,
-          "duracao": true
-         }
+         "texto": "QUE NUNCA CONVIVERAM, MAS SE RELACIONARAM"
+        }
+       ],
+       "obrigatoria": true
+      },
+      {
+       "id": "tempo_convivem",
+       "tipo": "texto",
+       "rotulo": "Por quanto tempo convivem?",
+       "ajuda": "Obs.: se relaciona ao tempo em que moram juntos.",
+       "aparece": {
+        "pergunta": "convivencia",
+        "opcao": "Convivem"
+       },
+       "texto": ", POR APROXIMADAMENTE {anos} ANO(S)[ E {meses} MÊS(ES)]",
+       "textoDuracao": ", POR APROXIMADAMENTE {tempo}",
+       "campos": [
+        {
+         "id": "anos",
+         "rotulo": "Anos",
+         "obrigatorio": true,
+         "longo": false,
+         "ph": "Ex.: 5 (se menos de um ano, 0)"
+        },
+        {
+         "id": "meses",
+         "rotulo": "Meses (opcional)",
+         "longo": false,
+         "ph": "Ex.: 3"
+        }
+       ],
+       "obrigatoria": true
+      },
+      {
+       "id": "tempo_conviveram",
+       "tipo": "texto",
+       "rotulo": "Por quanto tempo conviveram?",
+       "ajuda": "Obs.: se relaciona ao tempo em que moraram juntos.",
+       "aparece": {
+        "pergunta": "convivencia",
+        "opcao": "Conviveram"
+       },
+       "texto": ", POR APROXIMADAMENTE {anos} ANO(S)[ E {meses} MÊS(ES)]",
+       "textoDuracao": ", POR APROXIMADAMENTE {tempo}",
+       "campos": [
+        {
+         "id": "anos",
+         "rotulo": "Anos",
+         "obrigatorio": true,
+         "longo": false,
+         "ph": "Ex.: 5 (se menos de um ano, 0)"
+        },
+        {
+         "id": "meses",
+         "rotulo": "Meses (opcional)",
+         "longo": false,
+         "ph": "Ex.: 3"
+        }
+       ],
+       "obrigatoria": true
+      },
+      {
+       "id": "tempo_relacao",
+       "tipo": "texto",
+       "rotulo": "Mas se relacionaram por quanto tempo?",
+       "aparece": {
+        "pergunta": "convivencia",
+        "opcao": "Nunca conviveram"
+       },
+       "texto": ", POR APROXIMADAMENTE {anos} ANO(S)[ E {meses} MÊS(ES)]",
+       "textoDuracao": ", POR APROXIMADAMENTE {tempo}",
+       "campos": [
+        {
+         "id": "anos",
+         "rotulo": "Anos",
+         "obrigatorio": true,
+         "longo": false,
+         "ph": "Ex.: 5 (se menos de um ano, 0)"
+        },
+        {
+         "id": "meses",
+         "rotulo": "Meses (opcional)",
+         "longo": false,
+         "ph": "Ex.: 3"
         }
        ],
        "obrigatoria": true
@@ -3544,13 +6021,21 @@
         "pergunta": "convivencia",
         "opcao": "Conviveram"
        },
-       "texto": ", ENCONTRANDO-SE SEPARADOS HÁ {d}",
+       "texto": ", ENCONTRANDO-SE SEPARADOS HÁ {anos} ANO(S)[ E {meses} MÊS(ES)]",
+       "textoDuracao": ", ENCONTRANDO-SE SEPARADOS HÁ {tempo}",
        "campos": [
         {
-         "id": "d",
-         "rotulo": "",
+         "id": "anos",
+         "rotulo": "Anos",
+         "obrigatorio": true,
          "longo": false,
-         "duracao": true
+         "ph": "Ex.: 1 (se menos de um ano, 0)"
+        },
+        {
+         "id": "meses",
+         "rotulo": "Meses (opcional)",
+         "longo": false,
+         "ph": "Ex.: 6"
         }
        ]
       },
@@ -3560,17 +6045,124 @@
        "rotulo": "Possui filhos em comum?",
        "opcoes": [
         {
+         "rotulo": "Não possui",
+         "texto": "QUE NÃO POSSUI FILHOS EM COMUM"
+        },
+        {
          "rotulo": "Possui",
-         "texto": "QUE POSSUI FILHOS EM COMUM[, SENDO {d}]",
+         "texto": ""
+        }
+       ],
+       "obrigatoria": true
+      },
+      {
+       "id": "filhos_comum_qtd",
+       "tipo": "escolha",
+       "rotulo": "Quantos filhos em comum?",
+       "aparece": {
+        "pergunta": "filhos_comum",
+        "opcao": "Possui"
+       },
+       "opcoes": [
+        {
+         "rotulo": "1 filho",
+         "texto": "QUE POSSUI 1 FILHO EM COMUM[, SENDO {d}]",
          "detalhe": {
-          "rotulo": "Quantidade, nome, idade e se possuem alguma deficiência",
+          "rotulo": "Nome(s), idade(s) e se possuem alguma deficiência",
           "obrigatorio": true,
-          "longo": false
+          "longo": false,
+          "filhos": 1
          }
         },
         {
-         "rotulo": "Não possui",
-         "texto": "QUE NÃO POSSUI FILHOS EM COMUM"
+         "rotulo": "2 filhos",
+         "texto": "QUE POSSUI 2 FILHOS EM COMUM[, SENDO {d}]",
+         "detalhe": {
+          "rotulo": "Nome(s), idade(s) e se possuem alguma deficiência",
+          "obrigatorio": true,
+          "longo": false,
+          "filhos": 2
+         }
+        },
+        {
+         "rotulo": "3 filhos",
+         "texto": "QUE POSSUI 3 FILHOS EM COMUM[, SENDO {d}]",
+         "detalhe": {
+          "rotulo": "Nome(s), idade(s) e se possuem alguma deficiência",
+          "obrigatorio": true,
+          "longo": false,
+          "filhos": 3
+         }
+        },
+        {
+         "rotulo": "4 filhos",
+         "texto": "QUE POSSUI 4 FILHOS EM COMUM[, SENDO {d}]",
+         "detalhe": {
+          "rotulo": "Nome(s), idade(s) e se possuem alguma deficiência",
+          "obrigatorio": true,
+          "longo": false,
+          "filhos": 4
+         }
+        },
+        {
+         "rotulo": "5 filhos",
+         "texto": "QUE POSSUI 5 FILHOS EM COMUM[, SENDO {d}]",
+         "detalhe": {
+          "rotulo": "Nome(s), idade(s) e se possuem alguma deficiência",
+          "obrigatorio": true,
+          "longo": false,
+          "filhos": 5
+         }
+        },
+        {
+         "rotulo": "6 filhos",
+         "texto": "QUE POSSUI 6 FILHOS EM COMUM[, SENDO {d}]",
+         "detalhe": {
+          "rotulo": "Nome(s), idade(s) e se possuem alguma deficiência",
+          "obrigatorio": true,
+          "longo": false,
+          "filhos": 6
+         }
+        },
+        {
+         "rotulo": "7 filhos",
+         "texto": "QUE POSSUI 7 FILHOS EM COMUM[, SENDO {d}]",
+         "detalhe": {
+          "rotulo": "Nome(s), idade(s) e se possuem alguma deficiência",
+          "obrigatorio": true,
+          "longo": false,
+          "filhos": 7
+         }
+        },
+        {
+         "rotulo": "8 filhos",
+         "texto": "QUE POSSUI 8 FILHOS EM COMUM[, SENDO {d}]",
+         "detalhe": {
+          "rotulo": "Nome(s), idade(s) e se possuem alguma deficiência",
+          "obrigatorio": true,
+          "longo": false,
+          "filhos": 8
+         }
+        },
+        {
+         "rotulo": "9 filhos",
+         "texto": "QUE POSSUI 9 FILHOS EM COMUM[, SENDO {d}]",
+         "detalhe": {
+          "rotulo": "Nome(s), idade(s) e se possuem alguma deficiência",
+          "obrigatorio": true,
+          "longo": false,
+          "filhos": 9
+         }
+        },
+        {
+         "rotulo": "10 filhos",
+         "texto": "QUE POSSUI 10 FILHOS EM COMUM[, SENDO {d}]",
+         "detalhe": {
+          "rotulo": "Nome(s), idade(s) e se possuem alguma deficiência",
+          "obrigatorio": true,
+          "longo": false,
+          "filhos": 10
+         }
         }
        ],
        "obrigatoria": true
@@ -3581,17 +6173,124 @@
        "rotulo": "Possui filhos de outro relacionamento?",
        "opcoes": [
         {
+         "rotulo": "Não possui",
+         "texto": "QUE NÃO POSSUI FILHOS DE OUTRO RELACIONAMENTO"
+        },
+        {
          "rotulo": "Possui",
-         "texto": "QUE POSSUI FILHOS DE OUTRO RELACIONAMENTO[, SENDO {d}]",
+         "texto": ""
+        }
+       ],
+       "obrigatoria": true
+      },
+      {
+       "id": "filhos_outro_qtd",
+       "tipo": "escolha",
+       "rotulo": "Quantos filhos de outro relacionamento?",
+       "aparece": {
+        "pergunta": "filhos_outro",
+        "opcao": "Possui"
+       },
+       "opcoes": [
+        {
+         "rotulo": "1 filho",
+         "texto": "QUE POSSUI 1 FILHO DE OUTRO RELACIONAMENTO[, SENDO {d}]",
          "detalhe": {
-          "rotulo": "Quantidade, nome, idade e se possuem alguma deficiência",
+          "rotulo": "Nome(s), idade(s) e se possuem alguma deficiência",
           "obrigatorio": true,
-          "longo": false
+          "longo": false,
+          "filhos": 1
          }
         },
         {
-         "rotulo": "Não possui",
-         "texto": "QUE NÃO POSSUI FILHOS DE OUTRO RELACIONAMENTO"
+         "rotulo": "2 filhos",
+         "texto": "QUE POSSUI 2 FILHOS DE OUTRO RELACIONAMENTO[, SENDO {d}]",
+         "detalhe": {
+          "rotulo": "Nome(s), idade(s) e se possuem alguma deficiência",
+          "obrigatorio": true,
+          "longo": false,
+          "filhos": 2
+         }
+        },
+        {
+         "rotulo": "3 filhos",
+         "texto": "QUE POSSUI 3 FILHOS DE OUTRO RELACIONAMENTO[, SENDO {d}]",
+         "detalhe": {
+          "rotulo": "Nome(s), idade(s) e se possuem alguma deficiência",
+          "obrigatorio": true,
+          "longo": false,
+          "filhos": 3
+         }
+        },
+        {
+         "rotulo": "4 filhos",
+         "texto": "QUE POSSUI 4 FILHOS DE OUTRO RELACIONAMENTO[, SENDO {d}]",
+         "detalhe": {
+          "rotulo": "Nome(s), idade(s) e se possuem alguma deficiência",
+          "obrigatorio": true,
+          "longo": false,
+          "filhos": 4
+         }
+        },
+        {
+         "rotulo": "5 filhos",
+         "texto": "QUE POSSUI 5 FILHOS DE OUTRO RELACIONAMENTO[, SENDO {d}]",
+         "detalhe": {
+          "rotulo": "Nome(s), idade(s) e se possuem alguma deficiência",
+          "obrigatorio": true,
+          "longo": false,
+          "filhos": 5
+         }
+        },
+        {
+         "rotulo": "6 filhos",
+         "texto": "QUE POSSUI 6 FILHOS DE OUTRO RELACIONAMENTO[, SENDO {d}]",
+         "detalhe": {
+          "rotulo": "Nome(s), idade(s) e se possuem alguma deficiência",
+          "obrigatorio": true,
+          "longo": false,
+          "filhos": 6
+         }
+        },
+        {
+         "rotulo": "7 filhos",
+         "texto": "QUE POSSUI 7 FILHOS DE OUTRO RELACIONAMENTO[, SENDO {d}]",
+         "detalhe": {
+          "rotulo": "Nome(s), idade(s) e se possuem alguma deficiência",
+          "obrigatorio": true,
+          "longo": false,
+          "filhos": 7
+         }
+        },
+        {
+         "rotulo": "8 filhos",
+         "texto": "QUE POSSUI 8 FILHOS DE OUTRO RELACIONAMENTO[, SENDO {d}]",
+         "detalhe": {
+          "rotulo": "Nome(s), idade(s) e se possuem alguma deficiência",
+          "obrigatorio": true,
+          "longo": false,
+          "filhos": 8
+         }
+        },
+        {
+         "rotulo": "9 filhos",
+         "texto": "QUE POSSUI 9 FILHOS DE OUTRO RELACIONAMENTO[, SENDO {d}]",
+         "detalhe": {
+          "rotulo": "Nome(s), idade(s) e se possuem alguma deficiência",
+          "obrigatorio": true,
+          "longo": false,
+          "filhos": 9
+         }
+        },
+        {
+         "rotulo": "10 filhos",
+         "texto": "QUE POSSUI 10 FILHOS DE OUTRO RELACIONAMENTO[, SENDO {d}]",
+         "detalhe": {
+          "rotulo": "Nome(s), idade(s) e se possuem alguma deficiência",
+          "obrigatorio": true,
+          "longo": false,
+          "filhos": 10
+         }
         }
        ],
        "obrigatoria": true
@@ -3602,6 +6301,26 @@
      "titulo": "Situação da declarante",
      "inicio": "PERGUNTADA SOBRE SUA SITUAÇÃO, RESPONDEU",
      "perguntas": [
+      {
+       "id": "gestante_atual",
+       "tipo": "escolha",
+       "rotulo": "Está gestante?",
+       "opcoes": [
+        {
+         "rotulo": "Não",
+         "texto": "QUE NÃO ESTÁ GESTANTE"
+        },
+        {
+         "rotulo": "Sim, do(a) investigado(a)",
+         "texto": "QUE ESTÁ GESTANTE DO INVESTIGADO"
+        },
+        {
+         "rotulo": "Sim, de outro relacionamento",
+         "texto": "QUE ESTÁ GESTANTE DE OUTRO RELACIONAMENTO"
+        }
+       ],
+       "obrigatoria": true
+      },
       {
        "id": "vit_trabalho",
        "tipo": "escolha",
@@ -3647,13 +6366,7 @@
        "opcoes": [
         {
          "rotulo": "Recebe",
-         "texto": "QUE RECEBE BENEFÍCIO SOCIAL[, SENDO {d}]",
-         "detalhe": {
-          "rotulo": "Qual benefício (ex.: BOLSA FAMÍLIA, BPC/LOAS, AUXÍLIO-DOENÇA)",
-          "obrigatorio": false,
-          "longo": false,
-          "ph": "Ex.: BOLSA FAMÍLIA"
-         }
+         "texto": "QUE RECEBE BENEFÍCIO SOCIAL"
         },
         {
          "rotulo": "Não recebe",
@@ -3662,6 +6375,44 @@
        ],
        "obrigatoria": true,
        "ajuda": "Pergunte se a declarante recebe algum benefício social (Bolsa Família, BPC/LOAS, auxílio, pensão…)."
+      },
+      {
+       "id": "vit_beneficio_qual",
+       "tipo": "caixas",
+       "rotulo": "Qual benefício?",
+       "aparece": {
+        "pergunta": "vit_beneficio",
+        "opcao": "Recebe"
+       },
+       "texto": ", SENDO {lista}",
+       "itens": [
+        {
+         "rotulo": "Bolsa Família",
+         "texto": "BOLSA FAMÍLIA"
+        },
+        {
+         "rotulo": "BPC/LOAS",
+         "texto": "BPC/LOAS"
+        },
+        {
+         "rotulo": "Auxílio-doença",
+         "texto": "AUXÍLIO-DOENÇA"
+        },
+        {
+         "rotulo": "Aluguel social",
+         "texto": "ALUGUEL SOCIAL"
+        },
+        {
+         "rotulo": "Outro benefício",
+         "texto": "{d}",
+         "detalhe": {
+          "rotulo": "Qual benefício",
+          "obrigatorio": true,
+          "longo": false,
+          "ph": "Ex.: PENSÃO POR MORTE"
+         }
+        }
+       ]
       },
       {
        "id": "vit_imovel",
@@ -3689,18 +6440,50 @@
        "rotulo": "Faz uso de álcool?",
        "opcoes": [
         {
-         "rotulo": "Faz uso",
-         "texto": "QUE FAZ USO DE ÁLCOOL[, {d}]",
-         "detalhe": {
-          "rotulo": "Frequência (opcional)",
-          "obrigatorio": false,
-          "longo": false,
-          "ph": "Ex.: COM FREQUÊNCIA DIÁRIA"
-         }
-        },
-        {
          "rotulo": "Não faz uso",
          "texto": "QUE NÃO FAZ USO DE ÁLCOOL"
+        },
+        {
+         "rotulo": "Faz uso",
+         "texto": "QUE FAZ USO DE ÁLCOOL"
+        }
+       ],
+       "obrigatoria": true
+      },
+      {
+       "id": "vit_alcool_freq",
+       "tipo": "escolha",
+       "rotulo": "Com que frequência?",
+       "aparece": {
+        "pergunta": "vit_alcool",
+        "opcao": "Faz uso"
+       },
+       "opcoes": [
+        {
+         "rotulo": "Diariamente",
+         "texto": ", DIARIAMENTE"
+        },
+        {
+         "rotulo": "Várias vezes por semana",
+         "texto": ", VÁRIAS VEZES POR SEMANA"
+        },
+        {
+         "rotulo": "Aos fins de semana",
+         "texto": ", AOS FINS DE SEMANA"
+        },
+        {
+         "rotulo": "Ocasionalmente",
+         "texto": ", OCASIONALMENTE"
+        },
+        {
+         "rotulo": "Outra frequência",
+         "texto": ", {d}",
+         "detalhe": {
+          "rotulo": "Qual a frequência",
+          "obrigatorio": true,
+          "longo": false,
+          "ph": "Ex.: UMA VEZ POR MÊS"
+         }
         }
        ],
        "obrigatoria": true
@@ -3711,18 +6494,85 @@
        "rotulo": "Faz uso de drogas?",
        "opcoes": [
         {
-         "rotulo": "Faz uso",
-         "texto": "QUE FAZ USO DE DROGAS[, SENDO {d}]",
-         "detalhe": {
-          "rotulo": "Quais e a frequência",
-          "obrigatorio": true,
-          "longo": false,
-          "ph": "Ex.: MACONHA, AOS FINS DE SEMANA"
-         }
-        },
-        {
          "rotulo": "Não faz uso",
          "texto": "QUE NÃO FAZ USO DE DROGAS"
+        },
+        {
+         "rotulo": "Faz uso",
+         "texto": "QUE FAZ USO DE DROGAS"
+        }
+       ],
+       "obrigatoria": true
+      },
+      {
+       "id": "vit_drogas_freq",
+       "tipo": "escolha",
+       "rotulo": "Com que frequência?",
+       "aparece": {
+        "pergunta": "vit_drogas",
+        "opcao": "Faz uso"
+       },
+       "opcoes": [
+        {
+         "rotulo": "Diariamente",
+         "texto": ", DIARIAMENTE"
+        },
+        {
+         "rotulo": "Várias vezes por semana",
+         "texto": ", VÁRIAS VEZES POR SEMANA"
+        },
+        {
+         "rotulo": "Aos fins de semana",
+         "texto": ", AOS FINS DE SEMANA"
+        },
+        {
+         "rotulo": "Ocasionalmente",
+         "texto": ", OCASIONALMENTE"
+        },
+        {
+         "rotulo": "Outra frequência",
+         "texto": ", {d}",
+         "detalhe": {
+          "rotulo": "Qual a frequência",
+          "obrigatorio": true,
+          "longo": false,
+          "ph": "Ex.: UMA VEZ POR MÊS"
+         }
+        }
+       ],
+       "obrigatoria": true
+      },
+      {
+       "id": "vit_drogas_quais",
+       "tipo": "caixas",
+       "rotulo": "Quais drogas?",
+       "aparece": {
+        "pergunta": "vit_drogas",
+        "opcao": "Faz uso"
+       },
+       "texto": ", SENDO {lista}",
+       "itens": [
+        {
+         "rotulo": "Maconha",
+         "texto": "MACONHA"
+        },
+        {
+         "rotulo": "Cocaína",
+         "texto": "COCAÍNA"
+        },
+        {
+         "rotulo": "Crack",
+         "texto": "CRACK"
+        },
+        {
+         "rotulo": "Outra droga",
+         "texto": "{d}",
+         "detalhe": {
+          "rotulo": "Qual droga",
+          "obrigatorio": true,
+          "longo": false,
+          "ph": "Ex.: ECSTASY"
+         }
         }
        ],
        "obrigatoria": true
@@ -3733,18 +6583,63 @@
        "rotulo": "Faz uso de medicamentos psiquiátricos?",
        "opcoes": [
         {
-         "rotulo": "Faz uso",
-         "texto": "QUE FAZ USO DE MEDICAMENTOS PSIQUIÁTRICOS[, SENDO {d}]",
-         "detalhe": {
-          "rotulo": "Quais",
-          "obrigatorio": true,
-          "longo": false,
-          "ph": "Ex.: FLUOXETINA"
-         }
-        },
-        {
          "rotulo": "Não faz uso",
          "texto": "QUE NÃO FAZ USO DE MEDICAMENTOS PSIQUIÁTRICOS"
+        },
+        {
+         "rotulo": "Faz uso",
+         "texto": "QUE FAZ USO DE MEDICAMENTOS PSIQUIÁTRICOS"
+        }
+       ],
+       "obrigatoria": true
+      },
+      {
+       "id": "vit_psiq_quais",
+       "tipo": "caixas",
+       "rotulo": "Quais medicamentos?",
+       "aparece": {
+        "pergunta": "vit_psiq",
+        "opcao": "Faz uso"
+       },
+       "texto": ", SENDO {lista}",
+       "itens": [
+        {
+         "rotulo": "Fluoxetina",
+         "texto": "FLUOXETINA"
+        },
+        {
+         "rotulo": "Sertralina",
+         "texto": "SERTRALINA"
+        },
+        {
+         "rotulo": "Escitalopram",
+         "texto": "ESCITALOPRAM"
+        },
+        {
+         "rotulo": "Amitriptilina",
+         "texto": "AMITRIPTILINA"
+        },
+        {
+         "rotulo": "Clonazepam",
+         "texto": "CLONAZEPAM"
+        },
+        {
+         "rotulo": "Diazepam",
+         "texto": "DIAZEPAM"
+        },
+        {
+         "rotulo": "Alprazolam",
+         "texto": "ALPRAZOLAM"
+        },
+        {
+         "rotulo": "Outro medicamento",
+         "texto": "{d}",
+         "detalhe": {
+          "rotulo": "Qual medicamento",
+          "obrigatorio": true,
+          "longo": false,
+          "ph": "Ex.: LÍTIO"
+         }
         }
        ],
        "obrigatoria": true
@@ -3784,18 +6679,58 @@
        "rotulo": "O(A) investigado(a) faz uso de álcool?",
        "opcoes": [
         {
+         "rotulo": "Não faz uso",
+         "texto": "QUE NÃO FAZ USO DE ÁLCOOL"
+        },
+        {
          "rotulo": "Faz uso",
-         "texto": "QUE FAZ USO DE ÁLCOOL[, {d}]",
+         "texto": "QUE FAZ USO DE ÁLCOOL"
+        },
+        {
+         "rotulo": "Não sabe informar",
+         "texto": "QUE NÃO SABE INFORMAR SE FAZ USO DE ÁLCOOL"
+        }
+       ],
+       "obrigatoria": true
+      },
+      {
+       "id": "inv_alcool_freq",
+       "tipo": "escolha",
+       "rotulo": "Com que frequência?",
+       "aparece": {
+        "pergunta": "inv_alcool",
+        "opcao": "Faz uso"
+       },
+       "opcoes": [
+        {
+         "rotulo": "Diariamente",
+         "texto": ", DIARIAMENTE"
+        },
+        {
+         "rotulo": "Várias vezes por semana",
+         "texto": ", VÁRIAS VEZES POR SEMANA"
+        },
+        {
+         "rotulo": "Aos fins de semana",
+         "texto": ", AOS FINS DE SEMANA"
+        },
+        {
+         "rotulo": "Ocasionalmente",
+         "texto": ", OCASIONALMENTE"
+        },
+        {
+         "rotulo": "Outra frequência",
+         "texto": ", {d}",
          "detalhe": {
-          "rotulo": "Frequência (opcional)",
-          "obrigatorio": false,
+          "rotulo": "Qual a frequência",
+          "obrigatorio": true,
           "longo": false,
-          "ph": "Ex.: COM FREQUÊNCIA DIÁRIA"
+          "ph": "Ex.: UMA VEZ POR MÊS"
          }
         },
         {
-         "rotulo": "Não faz uso",
-         "texto": "QUE NÃO FAZ USO DE ÁLCOOL"
+         "rotulo": "Não sabe informar a frequência",
+         "texto": ", NÃO SABENDO INFORMAR A FREQUÊNCIA"
         }
        ],
        "obrigatoria": true
@@ -3806,18 +6741,113 @@
        "rotulo": "O(A) investigado(a) faz uso de drogas?",
        "opcoes": [
         {
+         "rotulo": "Não faz uso",
+         "texto": "QUE NÃO FAZ USO DE DROGAS"
+        },
+        {
          "rotulo": "Faz uso",
-         "texto": "QUE FAZ USO DE DROGAS[, SENDO {d}]",
+         "texto": "QUE FAZ USO DE DROGAS"
+        },
+        {
+         "rotulo": "Não sabe informar",
+         "texto": "QUE NÃO SABE INFORMAR SE FAZ USO DE DROGAS"
+        }
+       ],
+       "obrigatoria": true
+      },
+      {
+       "id": "inv_drogas_freq",
+       "tipo": "escolha",
+       "rotulo": "Com que frequência?",
+       "aparece": {
+        "pergunta": "inv_drogas",
+        "opcao": "Faz uso"
+       },
+       "opcoes": [
+        {
+         "rotulo": "Diariamente",
+         "texto": ", DIARIAMENTE"
+        },
+        {
+         "rotulo": "Várias vezes por semana",
+         "texto": ", VÁRIAS VEZES POR SEMANA"
+        },
+        {
+         "rotulo": "Aos fins de semana",
+         "texto": ", AOS FINS DE SEMANA"
+        },
+        {
+         "rotulo": "Ocasionalmente",
+         "texto": ", OCASIONALMENTE"
+        },
+        {
+         "rotulo": "Outra frequência",
+         "texto": ", {d}",
          "detalhe": {
-          "rotulo": "Quais e a frequência",
+          "rotulo": "Qual a frequência",
           "obrigatorio": true,
           "longo": false,
-          "ph": "Ex.: COCAÍNA, VÁRIAS VEZES POR SEMANA"
+          "ph": "Ex.: UMA VEZ POR MÊS"
          }
         },
         {
-         "rotulo": "Não faz uso",
-         "texto": "QUE NÃO FAZ USO DE DROGAS"
+         "rotulo": "Não sabe informar a frequência",
+         "texto": ", NÃO SABENDO INFORMAR A FREQUÊNCIA"
+        }
+       ],
+       "obrigatoria": true
+      },
+      {
+       "id": "inv_drogas_tipo",
+       "tipo": "escolha",
+       "rotulo": "Sabe informar quais drogas?",
+       "aparece": {
+        "pergunta": "inv_drogas",
+        "opcao": "Faz uso"
+       },
+       "opcoes": [
+        {
+         "rotulo": "Sabe informar",
+         "texto": ""
+        },
+        {
+         "rotulo": "Não sabe informar quais",
+         "texto": ", NÃO SABENDO INFORMAR QUAIS"
+        }
+       ],
+       "obrigatoria": true
+      },
+      {
+       "id": "inv_drogas_quais",
+       "tipo": "caixas",
+       "rotulo": "Quais drogas?",
+       "aparece": {
+        "pergunta": "inv_drogas_tipo",
+        "opcao": "Sabe informar"
+       },
+       "texto": ", SENDO {lista}",
+       "itens": [
+        {
+         "rotulo": "Maconha",
+         "texto": "MACONHA"
+        },
+        {
+         "rotulo": "Cocaína",
+         "texto": "COCAÍNA"
+        },
+        {
+         "rotulo": "Crack",
+         "texto": "CRACK"
+        },
+        {
+         "rotulo": "Outra droga",
+         "texto": "{d}",
+         "detalhe": {
+          "rotulo": "Qual droga",
+          "obrigatorio": true,
+          "longo": false,
+          "ph": "Ex.: ECSTASY"
+         }
         }
        ],
        "obrigatoria": true
@@ -4039,22 +7069,29 @@
          "texto": "PERGUNTADA SE ESTAVA SOB EFEITO DE ÁLCOOL OU OUTRA SUBSTÂNCIA, RESPONDEU QUE NÃO"
         },
         {
+         "rotulo": "Sim",
+         "texto": "PERGUNTADA SE ESTAVA SOB EFEITO DE ÁLCOOL OU OUTRA SUBSTÂNCIA, RESPONDEU QUE SIM"
+        }
+       ],
+       "obrigatoria": true
+      },
+      {
+       "id": "efeito_subst_qual",
+       "tipo": "caixas",
+       "rotulo": "Qual substância?",
+       "aparece": {
+        "pergunta": "efeito_subst",
+        "opcao": "Sim"
+       },
+       "texto": ", SENDO {lista}",
+       "itens": [
+        {
          "rotulo": "Álcool",
-         "texto": "PERGUNTADA SE ESTAVA SOB EFEITO DE ÁLCOOL OU OUTRA SUBSTÂNCIA, RESPONDEU QUE SIM, SENDO ÁLCOOL"
+         "texto": "ÁLCOOL"
         },
         {
          "rotulo": "Outra substância",
-         "texto": "PERGUNTADA SE ESTAVA SOB EFEITO DE ÁLCOOL OU OUTRA SUBSTÂNCIA, RESPONDEU QUE SIM, SENDO {d}",
-         "detalhe": {
-          "rotulo": "Qual substância",
-          "obrigatorio": true,
-          "longo": false,
-          "ph": "Ex.: ECSTASY, COCAÍNA, ANFETAMINAS"
-         }
-        },
-        {
-         "rotulo": "Álcool e outra substância",
-         "texto": "PERGUNTADA SE ESTAVA SOB EFEITO DE ÁLCOOL OU OUTRA SUBSTÂNCIA, RESPONDEU QUE SIM, SENDO ÁLCOOL E {d}",
+         "texto": "{d}",
          "detalhe": {
           "rotulo": "Qual substância",
           "obrigatorio": true,
@@ -4284,7 +7321,7 @@
       {
        "id": "provas_digitais",
        "tipo": "escolha",
-       "rotulo": "Apresenta provas digitais (prints, mensagens, etc.)?",
+       "rotulo": "Apresenta provas digitais (prints, fotos, áudios, vídeos, etc.)?",
        "opcoes": [
         {
          "rotulo": "Apresenta",
@@ -4424,6 +7461,10 @@
         {
          "rotulo": "Não",
          "texto": "QUE NÃO DESEJA ATENDIMENTO PSICOSSOCIAL"
+        },
+        {
+         "rotulo": "Já faz",
+         "texto": "QUE JÁ REALIZA ACOMPANHAMENTO PSICOLÓGICO"
         }
        ]
       },
@@ -4447,6 +7488,41 @@
        "id": "acao_privada",
        "tipo": "fixo",
        "texto": "QUE NESTE ATO FOI ORIENTADA DE QUE CRIMES DE AÇÃO PENAL PRIVADA (INJÚRIA, CALÚNIA, DIFAMAÇÃO, DANO, ENTRE OUTROS) DEPENDEM DE QUEIXA-CRIME NO PRAZO DE 12 MESES, DEVENDO PROCURAR ADVOGADO OU DEFENSORIA PÚBLICA"
+      },
+      {
+       "id": "fora_atribuicao",
+       "tipo": "caixas",
+       "rotulo": "É um caso fora da atribuição da DEAM? Marque o motivo",
+       "ajuda": "Deixe em branco se o caso é da DEAM. Marcando, entra no fim do texto a orientação de que o caso será encaminhado à delegacia responsável.",
+       "texto": "QUE, TENDO EM VISTA {lista}, FOI ESCLARECIDO À DECLARANTE QUE OS FATOS NARRADOS NÃO SE ENQUADRAM, EM REGRA, NA ATRIBUIÇÃO DESTA UNIDADE ESPECIALIZADA, ESTANDO CIENTE DE QUE A OCORRÊNCIA SERÁ POSTERIORMENTE ENCAMINHADA À DELEGACIA RESPONSÁVEL",
+       "itens": [
+        {
+         "rotulo": "Mulher idosa",
+         "texto": "TRATAR-SE DE MULHER IDOSA"
+        },
+        {
+         "rotulo": "Adolescente",
+         "texto": "TRATAR-SE DE ADOLESCENTE"
+        },
+        {
+         "rotulo": "Fatos em outro município",
+         "texto": "OS FATOS TEREM OCORRIDO EM OUTRO MUNICÍPIO"
+        },
+        {
+         "rotulo": "Fatos em outro estado",
+         "texto": "OS FATOS TEREM OCORRIDO EM OUTRO ESTADO"
+        },
+        {
+         "rotulo": "Outro motivo",
+         "texto": "{d}",
+         "detalhe": {
+          "rotulo": "Qual o motivo",
+          "obrigatorio": true,
+          "longo": false,
+          "ph": "Ex.: TRATAR-SE DE CRIME COMETIDO POR AUTORIDADE COM FORO ESPECIAL"
+         }
+        }
+       ]
       }
      ]
     }
@@ -4486,21 +7562,50 @@
      },
      {
       "id": "investigado",
-      "rotulo": "Nome completo do(a) investigado(a) (ou HOMEM/MULHER DESCONHECIDO/A)",
-      "obrigatorio": true,
-      "sugestoes": {
-       "M": [
-        "HOMEM DESCONHECIDO"
-       ],
-       "F": [
-        "MULHER DESCONHECIDA"
-       ]
-      }
+      "rotulo": "Investigado(a)",
+      "obrigatorio": false,
+      "daPergunta": "autor"
      }
     ],
     "texto": "QUE A DECLARANTE {vitima} COMPARECE A ESTA DEAM SERRA POR MEIOS PRÓPRIOS PARA REGISTRAR OCORRÊNCIA EM DESFAVOR DE {investigado}"
    },
    "blocos": [
+    {
+     "titulo": "Acompanhamento da declarante",
+     "perguntas": [
+      {
+       "id": "advogado",
+       "tipo": "escolha",
+       "rotulo": "A declarante comparece acompanhada de advogado(a)?",
+       "opcoes": [
+        {
+         "rotulo": "Não",
+         "texto": ""
+        },
+        {
+         "rotulo": "Sim, de advogado",
+         "texto": "QUE ENCONTRA-SE ACOMPANHADA DE SEU ADVOGADO, DR. {d}",
+         "detalhe": {
+          "rotulo": "Nome completo e número da OAB",
+          "obrigatorio": true,
+          "longo": false,
+          "ph": "Ex.: JOÃO DA SILVA, OAB/ES Nº 12345"
+         }
+        },
+        {
+         "rotulo": "Sim, de advogada",
+         "texto": "QUE ENCONTRA-SE ACOMPANHADA DE SUA ADVOGADA, DRA. {d}",
+         "detalhe": {
+          "rotulo": "Nome completo e número da OAB",
+          "obrigatorio": true,
+          "longo": false,
+          "ph": "Ex.: MARIA DA SILVA, OAB/ES Nº 12345"
+         }
+        }
+       ]
+      }
+     ]
+    },
     {
      "titulo": "O(A) investigado(a)",
      "inicio": "PERGUNTADA SOBRE O INVESTIGADO, RESPONDEU",
@@ -4512,26 +7617,101 @@
        "opcoes": [
         {
          "rotulo": "Investigado(a) desconhecido(a)",
-         "texto": "QUE NÃO CONHECE O INVESTIGADO[, RECORDANDO-SE DAS SEGUINTES CARACTERÍSTICAS: {d}]",
-         "detalhe": {
-          "rotulo": "Características de que a vítima se recorda (opcional)",
-          "obrigatorio": false,
-          "longo": false,
-          "ph": "Ex.: HOMEM PARDO, APARENTANDO 30 ANOS, CERCA DE 1,80 M, CABELO RASPADO, TATUAGEM NO BRAÇO DIREITO"
-         }
+         "texto": "UM HOMEM DESCONHECIDO"
         },
         {
          "rotulo": "Conhece o(a) investigado(a)",
-         "texto": "QUE {d}",
+         "texto": "{d}",
          "detalhe": {
-          "rotulo": "De onde e há quanto tempo o(a) conhece",
+          "rotulo": "Nome completo do(a) investigado(a)",
           "obrigatorio": true,
           "longo": false,
-          "ph": "Ex.: O INVESTIGADO É AMIGO DE UMA AMIGA DE SEU TRABALHO, E O CONHECEU RECENTEMENTE"
+          "ph": "Ex.: JOÃO DA SILVA"
          }
         }
        ],
-       "obrigatoria": true
+       "obrigatoria": true,
+       "soNaAbertura": true
+      },
+      {
+       "id": "inv_conhece",
+       "tipo": "texto",
+       "rotulo": "De onde e há quanto tempo o(a) conhece",
+       "texto": "QUE {d}",
+       "campos": [
+        {
+         "id": "d",
+         "rotulo": "",
+         "longo": false,
+         "ph": "Ex.: O INVESTIGADO É AMIGO DE UMA AMIGA DE SEU TRABALHO, E O CONHECEU RECENTEMENTE"
+        }
+       ],
+       "obrigatoria": true,
+       "aparece": {
+        "pergunta": "autor",
+        "opcao": "Conhece o(a) investigado(a)"
+       }
+      },
+      {
+       "id": "inv_nome",
+       "tipo": "texto",
+       "rotulo": "Sabe afirmar o nome? (opcional)",
+       "texto": "QUE APENAS SABE AFIRMAR QUE SE CHAMA {d}",
+       "campos": [
+        {
+         "id": "d",
+         "rotulo": "",
+         "obrigatorio": false,
+         "longo": false,
+         "ph": "Ex.: JOÃO, OU O APELIDO QUE ELE USAVA"
+        }
+       ],
+       "obrigatoria": false,
+       "aparece": {
+        "pergunta": "autor",
+        "opcao": "Investigado(a) desconhecido(a)"
+       }
+      },
+      {
+       "id": "inv_caract",
+       "tipo": "texto",
+       "rotulo": "Características de que a vítima se recorda (opcional)",
+       "texto": "QUE POSSUI COMO CARACTERÍSTICAS: {d}",
+       "campos": [
+        {
+         "id": "d",
+         "rotulo": "",
+         "obrigatorio": false,
+         "longo": false,
+         "ph": "Ex.: HOMEM PARDO, APARENTANDO 30 ANOS, CERCA DE 1,80 M, CABELO RASPADO, TATUAGEM NO BRAÇO DIREITO"
+        }
+       ],
+       "obrigatoria": false,
+       "aparece": {
+        "pergunta": "autor",
+        "opcao": "Investigado(a) desconhecido(a)"
+       }
+      },
+      {
+       "id": "retrato",
+       "tipo": "escolha",
+       "rotulo": "Consegue realizar retrato falado?",
+       "opcoes": [
+        {
+         "rotulo": "Sim",
+         "texto": "QUE CONSEGUE REALIZAR RETRATO FALADO, SENDO ENCAMINHADA PARA ATENDIMENTO PERICIAL PARA REALIZAÇÃO DE RETRATO FALADO"
+        },
+        {
+         "rotulo": "Não",
+         "texto": "QUE NÃO CONSEGUE REALIZAR RETRATO FALADO"
+        }
+       ],
+       "obrigatoria": true,
+       "alerta": "Se a vítima responder que sim, é necessário realizar o encaminhamento para o setor de retrato falado da perícia",
+       "aparece": {
+        "pergunta": "autor",
+        "opcao": "Investigado(a) desconhecido(a)"
+       }
       }
      ]
     },
@@ -4582,18 +7762,63 @@
        "rotulo": "Faz uso de medicamentos psiquiátricos?",
        "opcoes": [
         {
-         "rotulo": "Faz uso",
-         "texto": "QUE FAZ USO DE MEDICAMENTOS PSIQUIÁTRICOS[, SENDO {d}]",
-         "detalhe": {
-          "rotulo": "Quais",
-          "obrigatorio": true,
-          "longo": false,
-          "ph": "Ex.: FLUOXETINA"
-         }
-        },
-        {
          "rotulo": "Não faz uso",
          "texto": "QUE NÃO FAZ USO DE MEDICAMENTOS PSIQUIÁTRICOS"
+        },
+        {
+         "rotulo": "Faz uso",
+         "texto": "QUE FAZ USO DE MEDICAMENTOS PSIQUIÁTRICOS"
+        }
+       ],
+       "obrigatoria": true
+      },
+      {
+       "id": "vit_psiq_quais",
+       "tipo": "caixas",
+       "rotulo": "Quais medicamentos?",
+       "aparece": {
+        "pergunta": "vit_psiq",
+        "opcao": "Faz uso"
+       },
+       "texto": ", SENDO {lista}",
+       "itens": [
+        {
+         "rotulo": "Fluoxetina",
+         "texto": "FLUOXETINA"
+        },
+        {
+         "rotulo": "Sertralina",
+         "texto": "SERTRALINA"
+        },
+        {
+         "rotulo": "Escitalopram",
+         "texto": "ESCITALOPRAM"
+        },
+        {
+         "rotulo": "Amitriptilina",
+         "texto": "AMITRIPTILINA"
+        },
+        {
+         "rotulo": "Clonazepam",
+         "texto": "CLONAZEPAM"
+        },
+        {
+         "rotulo": "Diazepam",
+         "texto": "DIAZEPAM"
+        },
+        {
+         "rotulo": "Alprazolam",
+         "texto": "ALPRAZOLAM"
+        },
+        {
+         "rotulo": "Outro medicamento",
+         "texto": "{d}",
+         "detalhe": {
+          "rotulo": "Qual medicamento",
+          "obrigatorio": true,
+          "longo": false,
+          "ph": "Ex.: LÍTIO"
+         }
         }
        ],
        "obrigatoria": true
@@ -4735,22 +7960,29 @@
          "texto": "PERGUNTADA SE ESTAVA SOB EFEITO DE ÁLCOOL OU OUTRA SUBSTÂNCIA, RESPONDEU QUE NÃO"
         },
         {
+         "rotulo": "Sim",
+         "texto": "PERGUNTADA SE ESTAVA SOB EFEITO DE ÁLCOOL OU OUTRA SUBSTÂNCIA, RESPONDEU QUE SIM"
+        }
+       ],
+       "obrigatoria": true
+      },
+      {
+       "id": "efeito_subst_qual",
+       "tipo": "caixas",
+       "rotulo": "Qual substância?",
+       "aparece": {
+        "pergunta": "efeito_subst",
+        "opcao": "Sim"
+       },
+       "texto": ", SENDO {lista}",
+       "itens": [
+        {
          "rotulo": "Álcool",
-         "texto": "PERGUNTADA SE ESTAVA SOB EFEITO DE ÁLCOOL OU OUTRA SUBSTÂNCIA, RESPONDEU QUE SIM, SENDO ÁLCOOL"
+         "texto": "ÁLCOOL"
         },
         {
          "rotulo": "Outra substância",
-         "texto": "PERGUNTADA SE ESTAVA SOB EFEITO DE ÁLCOOL OU OUTRA SUBSTÂNCIA, RESPONDEU QUE SIM, SENDO {d}",
-         "detalhe": {
-          "rotulo": "Qual substância",
-          "obrigatorio": true,
-          "longo": false,
-          "ph": "Ex.: ECSTASY, COCAÍNA, ANFETAMINAS"
-         }
-        },
-        {
-         "rotulo": "Álcool e outra substância",
-         "texto": "PERGUNTADA SE ESTAVA SOB EFEITO DE ÁLCOOL OU OUTRA SUBSTÂNCIA, RESPONDEU QUE SIM, SENDO ÁLCOOL E {d}",
+         "texto": "{d}",
          "detalhe": {
           "rotulo": "Qual substância",
           "obrigatorio": true,
@@ -4980,7 +8212,7 @@
       {
        "id": "provas_digitais",
        "tipo": "escolha",
-       "rotulo": "Apresenta provas digitais (prints, mensagens, etc.)?",
+       "rotulo": "Apresenta provas digitais (prints, fotos, áudios, vídeos, etc.)?",
        "opcoes": [
         {
          "rotulo": "Apresenta",
@@ -5064,28 +8296,6 @@
        "obrigatoria": true
       },
       {
-       "id": "retrato",
-       "tipo": "escolha",
-       "rotulo": "Consegue realizar retrato falado?",
-       "opcoes": [
-        {
-         "rotulo": "Sim",
-         "texto": "QUE ESTÁ SENDO ENCAMINHADA PARA ATENDIMENTO PERICIAL PARA REALIZAÇÃO DE RETRATO FALADO"
-        },
-        {
-         "rotulo": "Não",
-         "texto": "PERGUNTADA SE CONSEGUE REALIZAR RETRATO FALADO, INFORMOU QUE NÃO"
-        }
-       ],
-       "obrigatoria": true,
-       "alerta": "Se a vítima responder que sim, é necessário realizar o encaminhamento para o setor de retrato falado da perícia",
-       "aparece": {
-        "pergunta": "autor",
-        "opcao": "Investigado(a) desconhecido(a)"
-       },
-       "naTelaDepoisDe": "autor"
-      },
-      {
        "id": "psicossocial",
        "tipo": "escolha",
        "rotulo": "Deseja atendimento psicossocial?",
@@ -5097,6 +8307,10 @@
         {
          "rotulo": "Não",
          "texto": "QUE NÃO DESEJA ATENDIMENTO PSICOSSOCIAL"
+        },
+        {
+         "rotulo": "Já faz",
+         "texto": "QUE JÁ REALIZA ACOMPANHAMENTO PSICOLÓGICO"
         }
        ]
       },
@@ -5166,6 +8380,42 @@
     "texto": "QUE A DECLARANTE {vitima} COMPARECE A ESTA DEAM SERRA POR MEIOS PRÓPRIOS PARA REGISTRAR OCORRÊNCIA CONTRA O SR. {investigado}"
    },
    "blocos": [
+    {
+     "titulo": "Acompanhamento da declarante",
+     "perguntas": [
+      {
+       "id": "advogado",
+       "tipo": "escolha",
+       "rotulo": "A declarante comparece acompanhada de advogado(a)?",
+       "opcoes": [
+        {
+         "rotulo": "Não",
+         "texto": ""
+        },
+        {
+         "rotulo": "Sim, de advogado",
+         "texto": "QUE ENCONTRA-SE ACOMPANHADA DE SEU ADVOGADO, DR. {d}",
+         "detalhe": {
+          "rotulo": "Nome completo e número da OAB",
+          "obrigatorio": true,
+          "longo": false,
+          "ph": "Ex.: JOÃO DA SILVA, OAB/ES Nº 12345"
+         }
+        },
+        {
+         "rotulo": "Sim, de advogada",
+         "texto": "QUE ENCONTRA-SE ACOMPANHADA DE SUA ADVOGADA, DRA. {d}",
+         "detalhe": {
+          "rotulo": "Nome completo e número da OAB",
+          "obrigatorio": true,
+          "longo": false,
+          "ph": "Ex.: MARIA DA SILVA, OAB/ES Nº 12345"
+         }
+        }
+       ]
+      }
+     ]
+    },
     {
      "titulo": "O(A) investigado(a)",
      "inicio": "PERGUNTADA SOBRE O INVESTIGADO, RESPONDEU",
@@ -5247,18 +8497,63 @@
        "rotulo": "Faz uso de medicamentos psiquiátricos?",
        "opcoes": [
         {
-         "rotulo": "Faz uso",
-         "texto": "QUE FAZ USO DE MEDICAMENTOS PSIQUIÁTRICOS[, SENDO {d}]",
-         "detalhe": {
-          "rotulo": "Quais",
-          "obrigatorio": true,
-          "longo": false,
-          "ph": "Ex.: FLUOXETINA"
-         }
-        },
-        {
          "rotulo": "Não faz uso",
          "texto": "QUE NÃO FAZ USO DE MEDICAMENTOS PSIQUIÁTRICOS"
+        },
+        {
+         "rotulo": "Faz uso",
+         "texto": "QUE FAZ USO DE MEDICAMENTOS PSIQUIÁTRICOS"
+        }
+       ],
+       "obrigatoria": true
+      },
+      {
+       "id": "vit_psiq_quais",
+       "tipo": "caixas",
+       "rotulo": "Quais medicamentos?",
+       "aparece": {
+        "pergunta": "vit_psiq",
+        "opcao": "Faz uso"
+       },
+       "texto": ", SENDO {lista}",
+       "itens": [
+        {
+         "rotulo": "Fluoxetina",
+         "texto": "FLUOXETINA"
+        },
+        {
+         "rotulo": "Sertralina",
+         "texto": "SERTRALINA"
+        },
+        {
+         "rotulo": "Escitalopram",
+         "texto": "ESCITALOPRAM"
+        },
+        {
+         "rotulo": "Amitriptilina",
+         "texto": "AMITRIPTILINA"
+        },
+        {
+         "rotulo": "Clonazepam",
+         "texto": "CLONAZEPAM"
+        },
+        {
+         "rotulo": "Diazepam",
+         "texto": "DIAZEPAM"
+        },
+        {
+         "rotulo": "Alprazolam",
+         "texto": "ALPRAZOLAM"
+        },
+        {
+         "rotulo": "Outro medicamento",
+         "texto": "{d}",
+         "detalhe": {
+          "rotulo": "Qual medicamento",
+          "obrigatorio": true,
+          "longo": false,
+          "ph": "Ex.: LÍTIO"
+         }
         }
        ],
        "obrigatoria": true
@@ -5298,20 +8593,17 @@
       },
       {
        "id": "sentimento",
-       "tipo": "escolha",
+       "tipo": "caixas",
        "rotulo": "A declarante sentiu-se…",
-       "opcoes": [
+       "texto": "QUE A DECLARANTE SENTIU-SE {lista} COM A CONDUTA",
+       "itens": [
         {
          "rotulo": "Constrangida",
-         "texto": "QUE A DECLARANTE SENTIU-SE CONSTRANGIDA COM A CONDUTA"
+         "texto": "CONSTRANGIDA"
         },
         {
          "rotulo": "Intimidada",
-         "texto": "QUE A DECLARANTE SENTIU-SE INTIMIDADA COM A CONDUTA"
-        },
-        {
-         "rotulo": "Constrangida e intimidada",
-         "texto": "QUE A DECLARANTE SENTIU-SE CONSTRANGIDA E INTIMIDADA COM A CONDUTA"
+         "texto": "INTIMIDADA"
         }
        ],
        "obrigatoria": true
@@ -5462,7 +8754,7 @@
       {
        "id": "provas_digitais",
        "tipo": "escolha",
-       "rotulo": "Apresenta provas digitais (prints, mensagens, etc.)?",
+       "rotulo": "Apresenta provas digitais (prints, fotos, áudios, vídeos, etc.)?",
        "opcoes": [
         {
          "rotulo": "Apresenta",
@@ -5530,6 +8822,10 @@
         {
          "rotulo": "Não",
          "texto": "QUE NÃO DESEJA ATENDIMENTO PSICOSSOCIAL"
+        },
+        {
+         "rotulo": "Já faz",
+         "texto": "QUE JÁ REALIZA ACOMPANHAMENTO PSICOLÓGICO"
         }
        ]
       },
@@ -5576,13 +8872,50 @@
      },
      {
       "id": "investigado",
-      "rotulo": "Nome completo do(a) investigado(a) (se tiver)",
-      "obrigatorio": false
+      "rotulo": "Investigado(a)",
+      "obrigatorio": false,
+      "daPergunta": "autor"
      }
     ],
-    "texto": "QUE A DECLARANTE {vitima} COMPARECE A ESTA DEAM SERRA POR MEIOS PRÓPRIOS PARA REGISTRAR OCORRÊNCIA[ CONTRA O SR. {investigado}]"
+    "texto": "QUE A DECLARANTE {vitima} COMPARECE A ESTA DEAM SERRA POR MEIOS PRÓPRIOS PARA REGISTRAR OCORRÊNCIA EM DESFAVOR DE {investigado}"
    },
    "blocos": [
+    {
+     "titulo": "Acompanhamento da declarante",
+     "perguntas": [
+      {
+       "id": "advogado",
+       "tipo": "escolha",
+       "rotulo": "A declarante comparece acompanhada de advogado(a)?",
+       "opcoes": [
+        {
+         "rotulo": "Não",
+         "texto": ""
+        },
+        {
+         "rotulo": "Sim, de advogado",
+         "texto": "QUE ENCONTRA-SE ACOMPANHADA DE SEU ADVOGADO, DR. {d}",
+         "detalhe": {
+          "rotulo": "Nome completo e número da OAB",
+          "obrigatorio": true,
+          "longo": false,
+          "ph": "Ex.: JOÃO DA SILVA, OAB/ES Nº 12345"
+         }
+        },
+        {
+         "rotulo": "Sim, de advogada",
+         "texto": "QUE ENCONTRA-SE ACOMPANHADA DE SUA ADVOGADA, DRA. {d}",
+         "detalhe": {
+          "rotulo": "Nome completo e número da OAB",
+          "obrigatorio": true,
+          "longo": false,
+          "ph": "Ex.: MARIA DA SILVA, OAB/ES Nº 12345"
+         }
+        }
+       ]
+      }
+     ]
+    },
     {
      "titulo": "O(A) investigado(a)",
      "inicio": "PERGUNTADA SOBRE O INVESTIGADO, RESPONDEU",
@@ -5594,26 +8927,101 @@
        "opcoes": [
         {
          "rotulo": "Investigado(a) desconhecido(a)",
-         "texto": "QUE NÃO CONHECE O INVESTIGADO[, RECORDANDO-SE DAS SEGUINTES CARACTERÍSTICAS: {d}]",
-         "detalhe": {
-          "rotulo": "Características de que a vítima se recorda (opcional)",
-          "obrigatorio": false,
-          "longo": false,
-          "ph": "Ex.: HOMEM PARDO, APARENTANDO 30 ANOS, CERCA DE 1,80 M, CABELO RASPADO, TATUAGEM NO BRAÇO DIREITO"
-         }
+         "texto": "UM HOMEM DESCONHECIDO"
         },
         {
          "rotulo": "Conhece o(a) investigado(a)",
-         "texto": "QUE {d}",
+         "texto": "{d}",
          "detalhe": {
-          "rotulo": "De onde e há quanto tempo o(a) conhece",
+          "rotulo": "Nome completo do(a) investigado(a)",
           "obrigatorio": true,
           "longo": false,
-          "ph": "Ex.: O INVESTIGADO É AMIGO DE UMA AMIGA DE SEU TRABALHO, E O CONHECEU RECENTEMENTE"
+          "ph": "Ex.: JOÃO DA SILVA"
          }
         }
        ],
-       "obrigatoria": true
+       "obrigatoria": true,
+       "soNaAbertura": true
+      },
+      {
+       "id": "inv_conhece",
+       "tipo": "texto",
+       "rotulo": "De onde e há quanto tempo o(a) conhece",
+       "texto": "QUE {d}",
+       "campos": [
+        {
+         "id": "d",
+         "rotulo": "",
+         "longo": false,
+         "ph": "Ex.: O INVESTIGADO É AMIGO DE UMA AMIGA DE SEU TRABALHO, E O CONHECEU RECENTEMENTE"
+        }
+       ],
+       "obrigatoria": true,
+       "aparece": {
+        "pergunta": "autor",
+        "opcao": "Conhece o(a) investigado(a)"
+       }
+      },
+      {
+       "id": "inv_nome",
+       "tipo": "texto",
+       "rotulo": "Sabe afirmar o nome? (opcional)",
+       "texto": "QUE APENAS SABE AFIRMAR QUE SE CHAMA {d}",
+       "campos": [
+        {
+         "id": "d",
+         "rotulo": "",
+         "obrigatorio": false,
+         "longo": false,
+         "ph": "Ex.: JOÃO, OU O APELIDO QUE ELE USAVA"
+        }
+       ],
+       "obrigatoria": false,
+       "aparece": {
+        "pergunta": "autor",
+        "opcao": "Investigado(a) desconhecido(a)"
+       }
+      },
+      {
+       "id": "inv_caract",
+       "tipo": "texto",
+       "rotulo": "Características de que a vítima se recorda (opcional)",
+       "texto": "QUE POSSUI COMO CARACTERÍSTICAS: {d}",
+       "campos": [
+        {
+         "id": "d",
+         "rotulo": "",
+         "obrigatorio": false,
+         "longo": false,
+         "ph": "Ex.: HOMEM PARDO, APARENTANDO 30 ANOS, CERCA DE 1,80 M, CABELO RASPADO, TATUAGEM NO BRAÇO DIREITO"
+        }
+       ],
+       "obrigatoria": false,
+       "aparece": {
+        "pergunta": "autor",
+        "opcao": "Investigado(a) desconhecido(a)"
+       }
+      },
+      {
+       "id": "retrato",
+       "tipo": "escolha",
+       "rotulo": "Consegue realizar retrato falado?",
+       "opcoes": [
+        {
+         "rotulo": "Sim",
+         "texto": "QUE CONSEGUE REALIZAR RETRATO FALADO, SENDO ENCAMINHADA PARA ATENDIMENTO PERICIAL PARA REALIZAÇÃO DE RETRATO FALADO"
+        },
+        {
+         "rotulo": "Não",
+         "texto": "QUE NÃO CONSEGUE REALIZAR RETRATO FALADO"
+        }
+       ],
+       "obrigatoria": true,
+       "alerta": "Se a vítima responder que sim, é necessário realizar o encaminhamento para o setor de retrato falado da perícia",
+       "aparece": {
+        "pergunta": "autor",
+        "opcao": "Investigado(a) desconhecido(a)"
+       }
       }
      ]
     },
@@ -5664,18 +9072,63 @@
        "rotulo": "Faz uso de medicamentos psiquiátricos?",
        "opcoes": [
         {
-         "rotulo": "Faz uso",
-         "texto": "QUE FAZ USO DE MEDICAMENTOS PSIQUIÁTRICOS[, SENDO {d}]",
-         "detalhe": {
-          "rotulo": "Quais",
-          "obrigatorio": true,
-          "longo": false,
-          "ph": "Ex.: FLUOXETINA"
-         }
-        },
-        {
          "rotulo": "Não faz uso",
          "texto": "QUE NÃO FAZ USO DE MEDICAMENTOS PSIQUIÁTRICOS"
+        },
+        {
+         "rotulo": "Faz uso",
+         "texto": "QUE FAZ USO DE MEDICAMENTOS PSIQUIÁTRICOS"
+        }
+       ],
+       "obrigatoria": true
+      },
+      {
+       "id": "vit_psiq_quais",
+       "tipo": "caixas",
+       "rotulo": "Quais medicamentos?",
+       "aparece": {
+        "pergunta": "vit_psiq",
+        "opcao": "Faz uso"
+       },
+       "texto": ", SENDO {lista}",
+       "itens": [
+        {
+         "rotulo": "Fluoxetina",
+         "texto": "FLUOXETINA"
+        },
+        {
+         "rotulo": "Sertralina",
+         "texto": "SERTRALINA"
+        },
+        {
+         "rotulo": "Escitalopram",
+         "texto": "ESCITALOPRAM"
+        },
+        {
+         "rotulo": "Amitriptilina",
+         "texto": "AMITRIPTILINA"
+        },
+        {
+         "rotulo": "Clonazepam",
+         "texto": "CLONAZEPAM"
+        },
+        {
+         "rotulo": "Diazepam",
+         "texto": "DIAZEPAM"
+        },
+        {
+         "rotulo": "Alprazolam",
+         "texto": "ALPRAZOLAM"
+        },
+        {
+         "rotulo": "Outro medicamento",
+         "texto": "{d}",
+         "detalhe": {
+          "rotulo": "Qual medicamento",
+          "obrigatorio": true,
+          "longo": false,
+          "ph": "Ex.: LÍTIO"
+         }
         }
        ],
        "obrigatoria": true
@@ -5761,20 +9214,17 @@
       },
       {
        "id": "ato",
-       "tipo": "escolha",
+       "tipo": "caixas",
        "rotulo": "Natureza do ato",
-       "opcoes": [
+       "texto": "QUE AFIRMA QUE O INVESTIGADO PRATICOU O ATO {lista} DIRECIONADO À DECLARANTE, SEM SEU CONSENTIMENTO",
+       "itens": [
         {
          "rotulo": "Libidinoso",
-         "texto": "QUE AFIRMA QUE O INVESTIGADO PRATICOU O ATO LIBIDINOSO DIRECIONADO À DECLARANTE, SEM SEU CONSENTIMENTO"
+         "texto": "LIBIDINOSO"
         },
         {
          "rotulo": "Obsceno",
-         "texto": "QUE AFIRMA QUE O INVESTIGADO PRATICOU O ATO OBSCENO DIRECIONADO À DECLARANTE, SEM SEU CONSENTIMENTO"
-        },
-        {
-         "rotulo": "Libidinoso e obsceno",
-         "texto": "QUE AFIRMA QUE O INVESTIGADO PRATICOU O ATO LIBIDINOSO E OBSCENO DIRECIONADO À DECLARANTE, SEM SEU CONSENTIMENTO"
+         "texto": "OBSCENO"
         }
        ],
        "obrigatoria": true
@@ -5918,7 +9368,7 @@
       {
        "id": "provas_digitais",
        "tipo": "escolha",
-       "rotulo": "Apresenta provas digitais (prints, mensagens, etc.)?",
+       "rotulo": "Apresenta provas digitais (prints, fotos, áudios, vídeos, etc.)?",
        "opcoes": [
         {
          "rotulo": "Apresenta",
@@ -5965,30 +9415,12 @@
         {
          "rotulo": "Não",
          "texto": "QUE NÃO DESEJA ATENDIMENTO PSICOSSOCIAL"
-        }
-       ]
-      },
-      {
-       "id": "retrato",
-       "tipo": "escolha",
-       "rotulo": "Consegue realizar retrato falado?",
-       "opcoes": [
-        {
-         "rotulo": "Sim",
-         "texto": "QUE ESTÁ SENDO ENCAMINHADA PARA ATENDIMENTO PERICIAL PARA REALIZAÇÃO DE RETRATO FALADO"
         },
         {
-         "rotulo": "Não",
-         "texto": "PERGUNTADA SE CONSEGUE REALIZAR RETRATO FALADO, INFORMOU QUE NÃO"
+         "rotulo": "Já faz",
+         "texto": "QUE JÁ REALIZA ACOMPANHAMENTO PSICOLÓGICO"
         }
-       ],
-       "obrigatoria": true,
-       "alerta": "Se a vítima responder que sim, é necessário realizar o encaminhamento para o setor de retrato falado da perícia",
-       "aparece": {
-        "pergunta": "autor",
-        "opcao": "Investigado(a) desconhecido(a)"
-       },
-       "naTelaDepoisDe": "autor"
+       ]
       },
       {
        "id": "orientada",
@@ -6014,13 +9446,13 @@
      },
      {
       "id": "investigado",
-      "rotulo": "Nome do(a) investigado(a)",
-      "obrigatorio": true
+      "rotulo": "Nome completo do(a) investigado(a) (se souber)",
+      "obrigatorio": false
      },
      {
       "id": "vinculo",
       "chips": true,
-      "rotulo": "Vínculo / relação existente (com SEU ou SUA)",
+      "rotulo": "Vínculo com o(a) investigado(a) — escreva com SEU/SUA, ou informe a falta de vínculo",
       "obrigatorio": true,
       "sugestoes": [
        "SEU VIZINHO",
@@ -6028,13 +9460,51 @@
        "SEU COLEGA DE TRABALHO",
        "SUA COLEGA DE TRABALHO",
        "SEU CONHECIDO",
-       "SUA CONHECIDA"
-      ]
+       "SUA CONHECIDA",
+       "PESSOA DESCONHECIDA QUE NÃO MANTÉM NENHUM VÍNCULO"
+      ],
+      "comOutro": true
      }
     ],
-    "texto": "QUE, EM DECORRÊNCIA DA RECENTE DECISÃO DO SUPREMO TRIBUNAL FEDERAL, PROFERIDA NO JULGAMENTO DO TEMA 1.412 DE REPERCUSSÃO GERAL, QUE RECONHECE A POSSIBILIDADE DE APLICAÇÃO DAS MEDIDAS PROTETIVAS DE URGÊNCIA PREVISTAS NA LEI Nº 11.340/2006 ÀS FORMAS DE VIOLÊNCIA CONTRA A MULHER BASEADAS NO GÊNERO, INDEPENDENTEMENTE DE SUA OCORRÊNCIA NO ÂMBITO DOMÉSTICO, FAMILIAR OU EM RELAÇÃO ÍNTIMA DE AFETO, A DECLARANTE {vitima} COMPARECE A ESTA DEAM SERRA PARA REGISTRAR OCORRÊNCIA E SOLICITAR MEDIDAS PROTETIVAS DE URGÊNCIA EM DESFAVOR DE {investigado}, {vinculo}"
+    "texto": "QUE, EM DECORRÊNCIA DA RECENTE DECISÃO DO SUPREMO TRIBUNAL FEDERAL, PROFERIDA NO JULGAMENTO DO TEMA 1.412 DE REPERCUSSÃO GERAL, QUE RECONHECE A POSSIBILIDADE DE APLICAÇÃO DAS MEDIDAS PROTETIVAS DE URGÊNCIA PREVISTAS NA LEI Nº 11.340/2006 ÀS FORMAS DE VIOLÊNCIA CONTRA A MULHER BASEADAS NO GÊNERO, INDEPENDENTEMENTE DE SUA OCORRÊNCIA NO ÂMBITO DOMÉSTICO, FAMILIAR OU EM RELAÇÃO ÍNTIMA DE AFETO, A DECLARANTE {vitima} COMPARECE A ESTA DEAM SERRA PARA REGISTRAR OCORRÊNCIA E SOLICITAR MEDIDAS PROTETIVAS DE URGÊNCIA EM DESFAVOR DE[ {investigado},] {vinculo}"
    },
    "blocos": [
+    {
+     "titulo": "Acompanhamento da declarante",
+     "perguntas": [
+      {
+       "id": "advogado",
+       "tipo": "escolha",
+       "rotulo": "A declarante comparece acompanhada de advogado(a)?",
+       "opcoes": [
+        {
+         "rotulo": "Não",
+         "texto": ""
+        },
+        {
+         "rotulo": "Sim, de advogado",
+         "texto": "QUE ENCONTRA-SE ACOMPANHADA DE SEU ADVOGADO, DR. {d}",
+         "detalhe": {
+          "rotulo": "Nome completo e número da OAB",
+          "obrigatorio": true,
+          "longo": false,
+          "ph": "Ex.: JOÃO DA SILVA, OAB/ES Nº 12345"
+         }
+        },
+        {
+         "rotulo": "Sim, de advogada",
+         "texto": "QUE ENCONTRA-SE ACOMPANHADA DE SUA ADVOGADA, DRA. {d}",
+         "detalhe": {
+          "rotulo": "Nome completo e número da OAB",
+          "obrigatorio": true,
+          "longo": false,
+          "ph": "Ex.: MARIA DA SILVA, OAB/ES Nº 12345"
+         }
+        }
+       ]
+      }
+     ]
+    },
     {
      "titulo": "Motivação do conflito",
      "perguntas": [
@@ -6190,7 +9660,7 @@
       {
        "id": "provas_digitais",
        "tipo": "escolha",
-       "rotulo": "Apresenta provas digitais (prints, mensagens, etc.)?",
+       "rotulo": "Apresenta provas digitais (prints, fotos, áudios, vídeos, etc.)?",
        "opcoes": [
         {
          "rotulo": "Apresenta",
@@ -6238,14 +9708,14 @@
      },
      {
       "id": "investigado",
-      "rotulo": "Nome completo do(a) investigado(a)",
-      "obrigatorio": true
+      "rotulo": "Nome completo do(a) investigado(a) (se souber)",
+      "obrigatorio": false
      },
      {
       "id": "vinculo",
       "chips": true,
       "rotulo": "Vínculo com o(a) investigado(a) — escreva com SEU/SUA, ou informe a falta de vínculo",
-      "obrigatorio": false,
+      "obrigatorio": true,
       "sugestoes": [
        "SEU VIZINHO",
        "SUA VIZINHA",
@@ -6255,12 +9725,49 @@
        "SUA AMIGA",
        "SUA EX-ESPOSA DO ATUAL COMPANHEIRO",
        "PESSOA DESCONHECIDA QUE NÃO MANTÉM NENHUM VÍNCULO"
-      ]
+      ],
+      "comOutro": true
      }
     ],
-    "texto": "QUE A DECLARANTE {vitima} COMPARECE A ESTA DEAM SERRA POR MEIOS PRÓPRIOS PARA REGISTRAR OCORRÊNCIA EM DESFAVOR DE {investigado}[, {vinculo}]"
+    "texto": "QUE A DECLARANTE {vitima} COMPARECE A ESTA DEAM SERRA POR MEIOS PRÓPRIOS PARA REGISTRAR OCORRÊNCIA EM DESFAVOR DE[ {investigado},] {vinculo}"
    },
    "blocos": [
+    {
+     "titulo": "Acompanhamento da declarante",
+     "perguntas": [
+      {
+       "id": "advogado",
+       "tipo": "escolha",
+       "rotulo": "A declarante comparece acompanhada de advogado(a)?",
+       "opcoes": [
+        {
+         "rotulo": "Não",
+         "texto": ""
+        },
+        {
+         "rotulo": "Sim, de advogado",
+         "texto": "QUE ENCONTRA-SE ACOMPANHADA DE SEU ADVOGADO, DR. {d}",
+         "detalhe": {
+          "rotulo": "Nome completo e número da OAB",
+          "obrigatorio": true,
+          "longo": false,
+          "ph": "Ex.: JOÃO DA SILVA, OAB/ES Nº 12345"
+         }
+        },
+        {
+         "rotulo": "Sim, de advogada",
+         "texto": "QUE ENCONTRA-SE ACOMPANHADA DE SUA ADVOGADA, DRA. {d}",
+         "detalhe": {
+          "rotulo": "Nome completo e número da OAB",
+          "obrigatorio": true,
+          "longo": false,
+          "ph": "Ex.: MARIA DA SILVA, OAB/ES Nº 12345"
+         }
+        }
+       ]
+      }
+     ]
+    },
     {
      "titulo": "Os fatos",
      "inicio": "PERGUNTADA SOBRE OS FATOS, RESPONDEU",
