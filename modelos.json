@@ -1,5 +1,5 @@
 {
- "versao": "2026.11.51",
+ "versao": "2026.11.62",
  "atualizadoEm": "2026-11-14",
  "modelos": [
   {
@@ -144,32 +144,16 @@
          "texto": "AS PARTES REATARAM O RELACIONAMENTO"
         },
         {
-         "rotulo": "Juiz indeferiu o pedido",
-         "texto": "O PEDIDO DE MPU’S FOI INDEFERIDO PELO JUÍZO"
+         "rotulo": "Ela pediu a revogação",
+         "texto": "A DECLARANTE SOLICITOU A REVOGAÇÃO DAS MPU’S"
+        },
+        {
+         "rotulo": "Mantiveram contato durante a vigência das MPU’S",
+         "texto": "AS PARTES MANTIVERAM CONTATO DURANTE A VIGÊNCIA DAS MPU’S"
         },
         {
          "rotulo": "Juiz revogou as MPU’S",
          "texto": "AS MPU’S FORAM REVOGADAS PELO JUÍZO"
-        },
-        {
-         "rotulo": "Prazo terminou",
-         "texto": "AS MPU’S PERDERAM A VALIDADE POR DECURSO DO PRAZO"
-        },
-        {
-         "rotulo": "Ela pediu a revogação: porque se entenderam",
-         "texto": "A DECLARANTE SOLICITOU A REVOGAÇÃO DAS MPU’S PORQUE HAVIAM SE ENTENDIDO"
-        },
-        {
-         "rotulo": "Ela pediu a revogação: pressão ou ameaça do(a) investigado(a)",
-         "texto": "A DECLARANTE SOLICITOU A REVOGAÇÃO DAS MPU’S POR PRESSÃO OU AMEAÇA DO INVESTIGADO"
-        },
-        {
-         "rotulo": "Ela pediu a revogação: pressão de familiares",
-         "texto": "A DECLARANTE SOLICITOU A REVOGAÇÃO DAS MPU’S POR PRESSÃO DE FAMILIARES"
-        },
-        {
-         "rotulo": "Ela pediu a revogação: por terem filhos em comum",
-         "texto": "A DECLARANTE SOLICITOU A REVOGAÇÃO DAS MPU’S POR POSSUÍREM FILHOS EM COMUM"
         },
         {
          "rotulo": "Outro motivo",
@@ -997,6 +981,10 @@
          "texto": "ALPRAZOLAM"
         },
         {
+         "rotulo": "Lítio",
+         "texto": "LÍTIO"
+        },
+        {
          "rotulo": "Outro medicamento",
          "texto": "{d}",
          "detalhe": {
@@ -1353,26 +1341,26 @@
        "id": "arma_sem_ver",
        "tipo": "caixas",
        "rotulo": "Mesmo sem nunca ter visto, tem informação de que o(a) investigado(a) possui arma de fogo?",
-       "texto": ", MAS {lista}",
+       "texto": ", MAS QUE O INVESTIGADO JÁ LHE ENVIOU {lista}",
        "itens": [
         {
-         "rotulo": "O(A) investigado(a) enviou foto ou vídeo da arma",
-         "texto": "QUE O INVESTIGADO JÁ LHE ENVIOU {d}",
+         "rotulo": "Foto da arma",
+         "texto": "UMA FOTO DA ARMA[ {d}]",
          "detalhe": {
-          "rotulo": "O que foi enviado e por qual meio",
-          "obrigatorio": true,
+          "rotulo": "Por qual meio e quando (opcional)",
+          "obrigatorio": false,
           "longo": false,
-          "ph": "Ex.: UMA FOTO DA ARMA POR WHATSAPP"
+          "ph": "Ex.: POR WHATSAPP, EM OUTUBRO DE 2026"
          }
         },
         {
-         "rotulo": "Outra pessoa viu o(a) investigado(a) com a arma",
-         "texto": "QUE {d} JÁ VIU O INVESTIGADO COM ARMA DE FOGO",
+         "rotulo": "Vídeo da arma",
+         "texto": "UM VÍDEO DA ARMA[ {d}]",
          "detalhe": {
-          "rotulo": "Quem viu (nome e, entre parênteses, o vínculo)",
-          "obrigatorio": true,
+          "rotulo": "Por qual meio e quando (opcional)",
+          "obrigatorio": false,
           "longo": false,
-          "ph": "Ex.: MARIA SILVA (VIZINHA)"
+          "ph": "Ex.: POR WHATSAPP, EM OUTUBRO DE 2026"
          }
         }
        ],
@@ -1495,7 +1483,7 @@
       {
        "id": "registro_lesoes",
        "tipo": "caixas",
-       "rotulo": "Se mesmo não possuindo lesões no momento, houve lesão corporal anterior, no momento das agressões, houve alguma forma de registro das lesões?",
+       "rotulo": "Se desapareceram os vestígios do fato comunicado neste BU, houve alguma forma de registro das lesões? (Testemunhas, fotos, atendimento médico)",
        "texto": ", E QUE NA ÉPOCA {lista}",
        "itens": [
         {
@@ -1514,12 +1502,31 @@
           "obrigatorio": true,
           "longo": false
          }
+        },
+        {
+         "rotulo": "Atendimento médico",
+         "texto": "TEVE ATENDIMENTO MÉDICO EM {d}",
+         "detalhe": {
+          "rotulo": "Onde foi atendida?",
+          "obrigatorio": true,
+          "longo": false,
+          "ph": "Ex.: UPA, HOSPITAL OU POSTO DE SAÚDE (NOME E BAIRRO)"
+         }
         }
        ],
        "aparece": {
         "pergunta": "lesoes",
         "opcao": "Não possui"
-       }
+       },
+       "juntaItens": [
+        {
+         "itens": [
+          "Fotografou as lesões",
+          "Filmou as lesões"
+         ],
+         "texto": "FOTOGRAFOU E FILMOU AS LESÕES"
+        }
+       ]
       },
       {
        "id": "dor_agressao",
@@ -1532,7 +1539,7 @@
         },
         {
          "rotulo": "Sim",
-         "texto": ", MAS QUE NO MOMENTO RELATA DORES {d}, MOTIVO PELO QUAL ESTÁ SENDO ENCAMINHADA AO IML PARA EXAME DE CORPO DE DELITO",
+         "texto": ", MAS RELATA DORES {d} RELACIONADAS A AGRESSÃO, MOTIVO PELO QUAL ESTÁ SENDO ENCAMINHADA AO IML PARA EXAME DE CORPO DE DELITO",
          "detalhe": {
           "rotulo": "Onde?",
           "obrigatorio": true,
@@ -1586,7 +1593,11 @@
          "rotulo": "Não possui",
          "texto": "QUE NÃO POSSUI TESTEMUNHAS"
         }
-       ]
+       ],
+       "someSeMarcada": {
+        "pergunta": "registro_lesoes",
+        "item": "Teve testemunha das agressões e das lesões"
+       }
       },
       {
        "id": "provas_digitais",
@@ -1609,6 +1620,173 @@
         }
        ],
        "alerta": "Responda essa pergunta apenas se couberem provas digitais nos fatos (ex.: houve menção a prints ou mensagens). Se houver provas digitais, lembre-se de seguir as orientações sobre a coleta e de inserir os arquivos no Deon, além de imprimir os arquivos quando aplicável."
+      }
+     ]
+    },
+    {
+     "titulo": "Fatos passados",
+     "inicio": "PERGUNTADA SOBRE FATOS ANTERIORES, RESPONDEU",
+     "perguntas": [
+      {
+       "id": "fp_ha",
+       "tipo": "escolha",
+       "rotulo": "A declarante mencionou agressões anteriores (fatos passados)?",
+       "opcoes": [
+        {
+         "rotulo": "Não",
+         "texto": ""
+        },
+        {
+         "rotulo": "Sim",
+         "texto": ""
+        }
+       ],
+       "alerta": "Utilize este campo apenas caso a mulher mencione agressões anteriores e se houver testemunha, foto ou atendimento médico da lesão."
+      },
+      {
+       "id": "fp_relato",
+       "tipo": "texto",
+       "rotulo": "Relato dos fatos passados",
+       "texto": ": {d}",
+       "aparece": {
+        "pergunta": "fp_ha",
+        "opcao": "Sim"
+       },
+       "campos": [
+        {
+         "id": "d",
+         "rotulo": "",
+         "longo": true,
+         "ph": "Ex.: EM JUNHO DE 2025, NA RESIDÊNCIA DO CASAL, APÓS DISCUSSÃO POR CIÚMES, O INVESTIGADO A EMPURROU E A CHAMOU DE “…”"
+        }
+       ],
+       "obrigatoria": true,
+       "ajuda": "Descreva quando e onde ocorreu, a dinâmica e a motivação, usando as palavras da vítima sempre que possível."
+      },
+      {
+       "id": "fp_registro",
+       "tipo": "caixas",
+       "rotulo": "Houve alguma forma de registro das lesões da época? (Testemunhas, fotos, atendimento médico)",
+       "aparece": {
+        "pergunta": "fp_ha",
+        "opcao": "Sim"
+       },
+       "texto": "QUE NA ÉPOCA {lista}",
+       "itens": [
+        {
+         "rotulo": "Fotografou as lesões",
+         "texto": "FOTOGRAFOU AS LESÕES"
+        },
+        {
+         "rotulo": "Filmou as lesões",
+         "texto": "FILMOU AS LESÕES"
+        },
+        {
+         "rotulo": "Teve testemunha das agressões e das lesões",
+         "texto": "TEVE COMO TESTEMUNHA {d}",
+         "detalhe": {
+          "rotulo": "Quem (nome e contato)",
+          "obrigatorio": true,
+          "longo": false
+         }
+        },
+        {
+         "rotulo": "Atendimento médico",
+         "texto": "TEVE ATENDIMENTO MÉDICO EM {d}",
+         "detalhe": {
+          "rotulo": "Onde foi atendida?",
+          "obrigatorio": true,
+          "longo": false,
+          "ph": "Ex.: UPA, HOSPITAL OU POSTO DE SAÚDE (NOME E BAIRRO)"
+         }
+        }
+       ],
+       "juntaItens": [
+        {
+         "itens": [
+          "Fotografou as lesões",
+          "Filmou as lesões"
+         ],
+         "texto": "FOTOGRAFOU E FILMOU AS LESÕES"
+        }
+       ]
+      },
+      {
+       "id": "fp_menores",
+       "tipo": "escolha",
+       "rotulo": "Os fatos passados ocorreram na presença de menores de idade?",
+       "aparece": {
+        "pergunta": "fp_ha",
+        "opcao": "Sim"
+       },
+       "opcoes": [
+        {
+         "rotulo": "Sim, havia menores",
+         "texto": "QUE OS FATOS ANTERIORES OCORRERAM NA PRESENÇA DE {d}",
+         "detalhe": {
+          "rotulo": "Quem estava presente: vínculo com a vítima, nome e idade (ex.: SUA FILHA EVA, DE 4 ANOS DE IDADE)",
+          "obrigatorio": true,
+          "longo": false
+         }
+        },
+        {
+         "rotulo": "Não havia menores",
+         "texto": ""
+        }
+       ]
+      },
+      {
+       "id": "fp_testemunhas",
+       "tipo": "escolha",
+       "rotulo": "Possui testemunhas dos fatos passados?",
+       "aparece": {
+        "pergunta": "fp_ha",
+        "opcao": "Sim"
+       },
+       "opcoes": [
+        {
+         "rotulo": "Possui",
+         "texto": "QUE POSSUI TESTEMUNHAS DOS FATOS ANTERIORES, SENDO {d}",
+         "detalhe": {
+          "rotulo": "Qualificar e informar contato, endereço e se presenciou ou apenas tomou conhecimento",
+          "obrigatorio": true,
+          "longo": false
+         }
+        },
+        {
+         "rotulo": "Não possui",
+         "texto": "QUE NÃO POSSUI TESTEMUNHAS DOS FATOS ANTERIORES"
+        }
+       ],
+       "someSeMarcada": {
+        "pergunta": "fp_registro",
+        "item": "Teve testemunha das agressões e das lesões"
+       }
+      },
+      {
+       "id": "fp_provas",
+       "tipo": "escolha",
+       "rotulo": "Apresenta provas digitais dos fatos passados (prints, fotos, áudios, vídeos, etc.)?",
+       "aparece": {
+        "pergunta": "fp_ha",
+        "opcao": "Sim"
+       },
+       "opcoes": [
+        {
+         "rotulo": "Apresenta",
+         "texto": "QUE APRESENTA PROVAS DIGITAIS DOS FATOS ANTERIORES[, SENDO {d}]",
+         "detalhe": {
+          "rotulo": "Descreva o que está sendo apresentado",
+          "obrigatorio": true,
+          "longo": false,
+          "ph": "Ex.: PRINTS DE MENSAGENS DA ÉPOCA E FOTOS DAS LESÕES"
+         }
+        },
+        {
+         "rotulo": "Não possui",
+         "texto": "QUE NÃO POSSUI PROVAS DIGITAIS DOS FATOS ANTERIORES"
+        }
+       ]
       }
      ]
     },
@@ -1705,7 +1883,7 @@
        "tipo": "caixas",
        "rotulo": "É um caso fora da atribuição da DEAM? Marque o motivo",
        "ajuda": "Deixe em branco se o caso é da DEAM. Marcando, entra no fim do texto a orientação de que o caso será encaminhado à delegacia responsável.",
-       "texto": "QUE, TENDO EM VISTA {lista}, FOI ESCLARECIDO À DECLARANTE QUE OS FATOS NARRADOS NÃO SE ENQUADRAM, EM REGRA, NA ATRIBUIÇÃO DESTA UNIDADE ESPECIALIZADA, ESTANDO CIENTE DE QUE A OCORRÊNCIA SERÁ POSTERIORMENTE ENCAMINHADA À DELEGACIA RESPONSÁVEL",
+       "texto": "QUE, TENDO EM VISTA {lista}, FOI ESCLARECIDO À DECLARANTE QUE OS FATOS NARRADOS NÃO SE ENQUADRAM, EM REGRA, NA ATRIBUIÇÃO DESTA UNIDADE ESPECIALIZADA, ESTANDO CIENTE DE QUE A OCORRÊNCIA SERÁ POSTERIORMENTE ENCAMINHADA À DELEGACIA RESPONSÁVEL; QUE PARA OBTER INFORMAÇÕES SOBRE O ANDAMENTO DO PROCEDIMENTO DEVERÁ BUSCAR A REFERIDA UNIDADE",
        "itens": [
         {
          "rotulo": "Mulher idosa",
@@ -1910,32 +2088,16 @@
          "texto": "AS PARTES REATARAM O RELACIONAMENTO"
         },
         {
-         "rotulo": "Juiz indeferiu o pedido",
-         "texto": "O PEDIDO DE MPU’S FOI INDEFERIDO PELO JUÍZO"
+         "rotulo": "Ela pediu a revogação",
+         "texto": "A DECLARANTE SOLICITOU A REVOGAÇÃO DAS MPU’S"
+        },
+        {
+         "rotulo": "Mantiveram contato durante a vigência das MPU’S",
+         "texto": "AS PARTES MANTIVERAM CONTATO DURANTE A VIGÊNCIA DAS MPU’S"
         },
         {
          "rotulo": "Juiz revogou as MPU’S",
          "texto": "AS MPU’S FORAM REVOGADAS PELO JUÍZO"
-        },
-        {
-         "rotulo": "Prazo terminou",
-         "texto": "AS MPU’S PERDERAM A VALIDADE POR DECURSO DO PRAZO"
-        },
-        {
-         "rotulo": "Ela pediu a revogação: porque se entenderam",
-         "texto": "A DECLARANTE SOLICITOU A REVOGAÇÃO DAS MPU’S PORQUE HAVIAM SE ENTENDIDO"
-        },
-        {
-         "rotulo": "Ela pediu a revogação: pressão ou ameaça do(a) investigado(a)",
-         "texto": "A DECLARANTE SOLICITOU A REVOGAÇÃO DAS MPU’S POR PRESSÃO OU AMEAÇA DO INVESTIGADO"
-        },
-        {
-         "rotulo": "Ela pediu a revogação: pressão de familiares",
-         "texto": "A DECLARANTE SOLICITOU A REVOGAÇÃO DAS MPU’S POR PRESSÃO DE FAMILIARES"
-        },
-        {
-         "rotulo": "Ela pediu a revogação: por terem filhos em comum",
-         "texto": "A DECLARANTE SOLICITOU A REVOGAÇÃO DAS MPU’S POR POSSUÍREM FILHOS EM COMUM"
         },
         {
          "rotulo": "Outro motivo",
@@ -1993,75 +2155,17 @@
      "inicio": "PERGUNTADA SOBRE O VÍNCULO ENTRE AS PARTES, RESPONDEU",
      "perguntas": [
       {
-       "id": "relacao_partes",
-       "tipo": "caixas",
-       "rotulo": "Como é a relação entre as partes?",
-       "ajuda": "Marque tudo o que se aplica. O vínculo (irmão, pai, tio…) já foi informado no início; aqui é como a relação funciona no dia a dia.",
-       "texto": "QUE {lista}",
-       "itens": [
-        {
-         "rotulo": "Relação conflituosa",
-         "texto": "A RELAÇÃO ENTRE AS PARTES É CONFLITUOSA"
-        },
-        {
-         "rotulo": "Já houve episódios anteriores de violência",
-         "texto": "JÁ HOUVE EPISÓDIOS ANTERIORES DE VIOLÊNCIA ({d})",
-         "detalhe": {
-          "rotulo": "Descreva brevemente: quando, o que ocorreu e se houve registro",
-          "obrigatorio": true,
-          "longo": true,
-          "ph": "Ex.: EM 2024 FOI EMPURRADA; NÃO REGISTROU OCORRÊNCIA"
-         }
-        },
-        {
-         "rotulo": "Já houve ameaças anteriores",
-         "texto": "JÁ HOUVE AMEAÇAS ANTERIORES"
-        },
-        {
-         "rotulo": "Nunca houve violência ou ameaça anterior",
-         "texto": "NÃO HOUVE EPISÓDIOS ANTERIORES DE VIOLÊNCIA OU AMEAÇA"
-        },
-        {
-         "rotulo": "A declarante cuida do(a) investigado(a)",
-         "texto": "A DECLARANTE CUIDA DO INVESTIGADO"
-        },
-        {
-         "rotulo": "O(A) investigado(a) cuida da declarante",
-         "texto": "O INVESTIGADO CUIDA DA DECLARANTE"
-        },
-        {
-         "rotulo": "O(A) investigado(a) é dependente químico(a)",
-         "texto": "O INVESTIGADO POSSUI DEPENDÊNCIA QUÍMICA"
-        },
-        {
-         "rotulo": "Pouco contato entre as partes",
-         "texto": "AS PARTES TÊM POUCO CONTATO"
-        },
-        {
-         "rotulo": "Outra característica da relação",
-         "texto": "{d}",
-         "detalhe": {
-          "rotulo": "Descreva a relação",
-          "obrigatorio": true,
-          "longo": false,
-          "ph": "Ex.: A DECLARANTE ADMINISTRA OS BENS DA FAMÍLIA JUNTO COM O INVESTIGADO"
-         }
-        }
-       ],
-       "obrigatoria": true
-      },
-      {
        "id": "residencia",
        "tipo": "escolha",
        "rotulo": "Residem no mesmo local?",
        "opcoes": [
         {
          "rotulo": "Não residem",
-         "texto": ", INFORMANDO QUE NÃO RESIDEM NO MESMO LOCAL"
+         "texto": "QUE NÃO RESIDEM NO MESMO LOCAL"
         },
         {
          "rotulo": "Residem",
-         "texto": ", INFORMANDO QUE RESIDEM NO MESMO LOCAL[ ({d})]",
+         "texto": "QUE RESIDEM NO MESMO LOCAL[ ({d})]",
          "detalhe": {
           "rotulo": "Especificar (opcional)",
           "obrigatorio": false,
@@ -2071,7 +2175,7 @@
         },
         {
          "rotulo": "Residiam",
-         "texto": ", INFORMANDO QUE RESIDIAM NO MESMO LOCAL[ ({d})]",
+         "texto": "QUE RESIDIAM NO MESMO LOCAL[ ({d})]",
          "detalhe": {
           "rotulo": "Especificar (opcional)",
           "obrigatorio": false,
@@ -2448,6 +2552,10 @@
          "texto": "ALPRAZOLAM"
         },
         {
+         "rotulo": "Lítio",
+         "texto": "LÍTIO"
+        },
+        {
          "rotulo": "Outro medicamento",
          "texto": "{d}",
          "detalhe": {
@@ -2804,26 +2912,26 @@
        "id": "arma_sem_ver",
        "tipo": "caixas",
        "rotulo": "Mesmo sem nunca ter visto, tem informação de que o(a) investigado(a) possui arma de fogo?",
-       "texto": ", MAS {lista}",
+       "texto": ", MAS QUE O INVESTIGADO JÁ LHE ENVIOU {lista}",
        "itens": [
         {
-         "rotulo": "O(A) investigado(a) enviou foto ou vídeo da arma",
-         "texto": "QUE O INVESTIGADO JÁ LHE ENVIOU {d}",
+         "rotulo": "Foto da arma",
+         "texto": "UMA FOTO DA ARMA[ {d}]",
          "detalhe": {
-          "rotulo": "O que foi enviado e por qual meio",
-          "obrigatorio": true,
+          "rotulo": "Por qual meio e quando (opcional)",
+          "obrigatorio": false,
           "longo": false,
-          "ph": "Ex.: UMA FOTO DA ARMA POR WHATSAPP"
+          "ph": "Ex.: POR WHATSAPP, EM OUTUBRO DE 2026"
          }
         },
         {
-         "rotulo": "Outra pessoa viu o(a) investigado(a) com a arma",
-         "texto": "QUE {d} JÁ VIU O INVESTIGADO COM ARMA DE FOGO",
+         "rotulo": "Vídeo da arma",
+         "texto": "UM VÍDEO DA ARMA[ {d}]",
          "detalhe": {
-          "rotulo": "Quem viu (nome e, entre parênteses, o vínculo)",
-          "obrigatorio": true,
+          "rotulo": "Por qual meio e quando (opcional)",
+          "obrigatorio": false,
           "longo": false,
-          "ph": "Ex.: MARIA SILVA (VIZINHA)"
+          "ph": "Ex.: POR WHATSAPP, EM OUTUBRO DE 2026"
          }
         }
        ],
@@ -2856,23 +2964,56 @@
        "obrigatoria": true
       },
       {
-       "id": "inv_perfil",
-       "tipo": "escolha",
-       "rotulo": "Como é o(a) investigado(a) / a relação?",
-       "opcoes": [
+       "id": "relacao_partes",
+       "tipo": "caixas",
+       "rotulo": "Como é o(a) investigado(a) / a relação entre as partes?",
+       "ajuda": "Marque tudo o que se aplica. O vínculo (irmão, pai, tio…) já foi informado no início; aqui é como a relação funciona no dia a dia.",
+       "texto": ", QUE {lista}",
+       "itens": [
         {
-         "rotulo": "Hostil",
-         "texto": "QUE O INVESTIGADO É HOSTIL"
+         "rotulo": "Relação conflituosa",
+         "texto": "A RELAÇÃO ENTRE AS PARTES É CONFLITUOSA"
         },
         {
-         "rotulo": "Relação conturbada",
-         "texto": "QUE POSSUEM UMA RELAÇÃO CONTURBADA"
+         "rotulo": "O(A) investigado(a) é hostil",
+         "texto": "O INVESTIGADO É HOSTIL"
         },
         {
-         "rotulo": "Hostil e relação conturbada",
-         "texto": "QUE O INVESTIGADO É HOSTIL E QUE POSSUEM UMA RELAÇÃO CONTURBADA"
+         "rotulo": "Já houve ameaças anteriores",
+         "texto": "JÁ HOUVE AMEAÇAS ANTERIORES"
+        },
+        {
+         "rotulo": "Nunca houve violência ou ameaça anterior",
+         "texto": "NÃO HOUVE EPISÓDIOS ANTERIORES DE VIOLÊNCIA OU AMEAÇA"
+        },
+        {
+         "rotulo": "A declarante cuida do(a) investigado(a)",
+         "texto": "A DECLARANTE CUIDA DO INVESTIGADO"
+        },
+        {
+         "rotulo": "O(A) investigado(a) cuida da declarante",
+         "texto": "O INVESTIGADO CUIDA DA DECLARANTE"
+        },
+        {
+         "rotulo": "O(A) investigado(a) é dependente químico(a)",
+         "texto": "O INVESTIGADO POSSUI DEPENDÊNCIA QUÍMICA"
+        },
+        {
+         "rotulo": "Pouco contato entre as partes",
+         "texto": "AS PARTES TÊM POUCO CONTATO"
+        },
+        {
+         "rotulo": "Outra característica da relação",
+         "texto": "{d}",
+         "detalhe": {
+          "rotulo": "Descreva a relação",
+          "obrigatorio": true,
+          "longo": false,
+          "ph": "Ex.: A DECLARANTE ADMINISTRA OS BENS DA FAMÍLIA JUNTO COM O INVESTIGADO"
+         }
         }
-       ]
+       ],
+       "obrigatoria": true
       }
      ]
     },
@@ -2946,7 +3087,7 @@
       {
        "id": "registro_lesoes",
        "tipo": "caixas",
-       "rotulo": "Se mesmo não possuindo lesões no momento, houve lesão corporal anterior, no momento das agressões, houve alguma forma de registro das lesões?",
+       "rotulo": "Se desapareceram os vestígios do fato comunicado neste BU, houve alguma forma de registro das lesões? (Testemunhas, fotos, atendimento médico)",
        "texto": ", E QUE NA ÉPOCA {lista}",
        "itens": [
         {
@@ -2965,12 +3106,31 @@
           "obrigatorio": true,
           "longo": false
          }
+        },
+        {
+         "rotulo": "Atendimento médico",
+         "texto": "TEVE ATENDIMENTO MÉDICO EM {d}",
+         "detalhe": {
+          "rotulo": "Onde foi atendida?",
+          "obrigatorio": true,
+          "longo": false,
+          "ph": "Ex.: UPA, HOSPITAL OU POSTO DE SAÚDE (NOME E BAIRRO)"
+         }
         }
        ],
        "aparece": {
         "pergunta": "lesoes",
         "opcao": "Não possui"
-       }
+       },
+       "juntaItens": [
+        {
+         "itens": [
+          "Fotografou as lesões",
+          "Filmou as lesões"
+         ],
+         "texto": "FOTOGRAFOU E FILMOU AS LESÕES"
+        }
+       ]
       },
       {
        "id": "dor_agressao",
@@ -2983,7 +3143,7 @@
         },
         {
          "rotulo": "Sim",
-         "texto": ", MAS QUE NO MOMENTO RELATA DORES {d}, MOTIVO PELO QUAL ESTÁ SENDO ENCAMINHADA AO IML PARA EXAME DE CORPO DE DELITO",
+         "texto": ", MAS RELATA DORES {d} RELACIONADAS A AGRESSÃO, MOTIVO PELO QUAL ESTÁ SENDO ENCAMINHADA AO IML PARA EXAME DE CORPO DE DELITO",
          "detalhe": {
           "rotulo": "Onde?",
           "obrigatorio": true,
@@ -3037,7 +3197,11 @@
          "rotulo": "Não possui",
          "texto": "QUE NÃO POSSUI TESTEMUNHAS"
         }
-       ]
+       ],
+       "someSeMarcada": {
+        "pergunta": "registro_lesoes",
+        "item": "Teve testemunha das agressões e das lesões"
+       }
       },
       {
        "id": "provas_digitais",
@@ -3060,6 +3224,173 @@
         }
        ],
        "alerta": "Responda essa pergunta apenas se couberem provas digitais nos fatos (ex.: houve menção a prints ou mensagens). Se houver provas digitais, lembre-se de seguir as orientações sobre a coleta e de inserir os arquivos no Deon, além de imprimir os arquivos quando aplicável."
+      }
+     ]
+    },
+    {
+     "titulo": "Fatos passados",
+     "inicio": "PERGUNTADA SOBRE FATOS ANTERIORES, RESPONDEU",
+     "perguntas": [
+      {
+       "id": "fp_ha",
+       "tipo": "escolha",
+       "rotulo": "A declarante mencionou agressões anteriores (fatos passados)?",
+       "opcoes": [
+        {
+         "rotulo": "Não",
+         "texto": ""
+        },
+        {
+         "rotulo": "Sim",
+         "texto": ""
+        }
+       ],
+       "alerta": "Utilize este campo apenas caso a mulher mencione agressões anteriores e se houver testemunha, foto ou atendimento médico da lesão."
+      },
+      {
+       "id": "fp_relato",
+       "tipo": "texto",
+       "rotulo": "Relato dos fatos passados",
+       "texto": ": {d}",
+       "aparece": {
+        "pergunta": "fp_ha",
+        "opcao": "Sim"
+       },
+       "campos": [
+        {
+         "id": "d",
+         "rotulo": "",
+         "longo": true,
+         "ph": "Ex.: EM JUNHO DE 2025, NA RESIDÊNCIA DO CASAL, APÓS DISCUSSÃO POR CIÚMES, O INVESTIGADO A EMPURROU E A CHAMOU DE “…”"
+        }
+       ],
+       "obrigatoria": true,
+       "ajuda": "Descreva quando e onde ocorreu, a dinâmica e a motivação, usando as palavras da vítima sempre que possível."
+      },
+      {
+       "id": "fp_registro",
+       "tipo": "caixas",
+       "rotulo": "Houve alguma forma de registro das lesões da época? (Testemunhas, fotos, atendimento médico)",
+       "aparece": {
+        "pergunta": "fp_ha",
+        "opcao": "Sim"
+       },
+       "texto": "QUE NA ÉPOCA {lista}",
+       "itens": [
+        {
+         "rotulo": "Fotografou as lesões",
+         "texto": "FOTOGRAFOU AS LESÕES"
+        },
+        {
+         "rotulo": "Filmou as lesões",
+         "texto": "FILMOU AS LESÕES"
+        },
+        {
+         "rotulo": "Teve testemunha das agressões e das lesões",
+         "texto": "TEVE COMO TESTEMUNHA {d}",
+         "detalhe": {
+          "rotulo": "Quem (nome e contato)",
+          "obrigatorio": true,
+          "longo": false
+         }
+        },
+        {
+         "rotulo": "Atendimento médico",
+         "texto": "TEVE ATENDIMENTO MÉDICO EM {d}",
+         "detalhe": {
+          "rotulo": "Onde foi atendida?",
+          "obrigatorio": true,
+          "longo": false,
+          "ph": "Ex.: UPA, HOSPITAL OU POSTO DE SAÚDE (NOME E BAIRRO)"
+         }
+        }
+       ],
+       "juntaItens": [
+        {
+         "itens": [
+          "Fotografou as lesões",
+          "Filmou as lesões"
+         ],
+         "texto": "FOTOGRAFOU E FILMOU AS LESÕES"
+        }
+       ]
+      },
+      {
+       "id": "fp_menores",
+       "tipo": "escolha",
+       "rotulo": "Os fatos passados ocorreram na presença de menores de idade?",
+       "aparece": {
+        "pergunta": "fp_ha",
+        "opcao": "Sim"
+       },
+       "opcoes": [
+        {
+         "rotulo": "Sim, havia menores",
+         "texto": "QUE OS FATOS ANTERIORES OCORRERAM NA PRESENÇA DE {d}",
+         "detalhe": {
+          "rotulo": "Quem estava presente: vínculo com a vítima, nome e idade (ex.: SUA FILHA EVA, DE 4 ANOS DE IDADE)",
+          "obrigatorio": true,
+          "longo": false
+         }
+        },
+        {
+         "rotulo": "Não havia menores",
+         "texto": ""
+        }
+       ]
+      },
+      {
+       "id": "fp_testemunhas",
+       "tipo": "escolha",
+       "rotulo": "Possui testemunhas dos fatos passados?",
+       "aparece": {
+        "pergunta": "fp_ha",
+        "opcao": "Sim"
+       },
+       "opcoes": [
+        {
+         "rotulo": "Possui",
+         "texto": "QUE POSSUI TESTEMUNHAS DOS FATOS ANTERIORES, SENDO {d}",
+         "detalhe": {
+          "rotulo": "Qualificar e informar contato, endereço e se presenciou ou apenas tomou conhecimento",
+          "obrigatorio": true,
+          "longo": false
+         }
+        },
+        {
+         "rotulo": "Não possui",
+         "texto": "QUE NÃO POSSUI TESTEMUNHAS DOS FATOS ANTERIORES"
+        }
+       ],
+       "someSeMarcada": {
+        "pergunta": "fp_registro",
+        "item": "Teve testemunha das agressões e das lesões"
+       }
+      },
+      {
+       "id": "fp_provas",
+       "tipo": "escolha",
+       "rotulo": "Apresenta provas digitais dos fatos passados (prints, fotos, áudios, vídeos, etc.)?",
+       "aparece": {
+        "pergunta": "fp_ha",
+        "opcao": "Sim"
+       },
+       "opcoes": [
+        {
+         "rotulo": "Apresenta",
+         "texto": "QUE APRESENTA PROVAS DIGITAIS DOS FATOS ANTERIORES[, SENDO {d}]",
+         "detalhe": {
+          "rotulo": "Descreva o que está sendo apresentado",
+          "obrigatorio": true,
+          "longo": false,
+          "ph": "Ex.: PRINTS DE MENSAGENS DA ÉPOCA E FOTOS DAS LESÕES"
+         }
+        },
+        {
+         "rotulo": "Não possui",
+         "texto": "QUE NÃO POSSUI PROVAS DIGITAIS DOS FATOS ANTERIORES"
+        }
+       ]
       }
      ]
     },
@@ -3156,7 +3487,7 @@
        "tipo": "caixas",
        "rotulo": "É um caso fora da atribuição da DEAM? Marque o motivo",
        "ajuda": "Deixe em branco se o caso é da DEAM. Marcando, entra no fim do texto a orientação de que o caso será encaminhado à delegacia responsável.",
-       "texto": "QUE, TENDO EM VISTA {lista}, FOI ESCLARECIDO À DECLARANTE QUE OS FATOS NARRADOS NÃO SE ENQUADRAM, EM REGRA, NA ATRIBUIÇÃO DESTA UNIDADE ESPECIALIZADA, ESTANDO CIENTE DE QUE A OCORRÊNCIA SERÁ POSTERIORMENTE ENCAMINHADA À DELEGACIA RESPONSÁVEL",
+       "texto": "QUE, TENDO EM VISTA {lista}, FOI ESCLARECIDO À DECLARANTE QUE OS FATOS NARRADOS NÃO SE ENQUADRAM, EM REGRA, NA ATRIBUIÇÃO DESTA UNIDADE ESPECIALIZADA, ESTANDO CIENTE DE QUE A OCORRÊNCIA SERÁ POSTERIORMENTE ENCAMINHADA À DELEGACIA RESPONSÁVEL; QUE PARA OBTER INFORMAÇÕES SOBRE O ANDAMENTO DO PROCEDIMENTO DEVERÁ BUSCAR A REFERIDA UNIDADE",
        "itens": [
         {
          "rotulo": "Mulher idosa",
@@ -4121,6 +4452,10 @@
          "texto": "ALPRAZOLAM"
         },
         {
+         "rotulo": "Lítio",
+         "texto": "LÍTIO"
+        },
+        {
          "rotulo": "Outro medicamento",
          "texto": "{d}",
          "detalhe": {
@@ -4477,26 +4812,26 @@
        "id": "arma_sem_ver",
        "tipo": "caixas",
        "rotulo": "Mesmo sem nunca ter visto, tem informação de que o(a) investigado(a) possui arma de fogo?",
-       "texto": ", MAS {lista}",
+       "texto": ", MAS QUE O INVESTIGADO JÁ LHE ENVIOU {lista}",
        "itens": [
         {
-         "rotulo": "O(A) investigado(a) enviou foto ou vídeo da arma",
-         "texto": "QUE O INVESTIGADO JÁ LHE ENVIOU {d}",
+         "rotulo": "Foto da arma",
+         "texto": "UMA FOTO DA ARMA[ {d}]",
          "detalhe": {
-          "rotulo": "O que foi enviado e por qual meio",
-          "obrigatorio": true,
+          "rotulo": "Por qual meio e quando (opcional)",
+          "obrigatorio": false,
           "longo": false,
-          "ph": "Ex.: UMA FOTO DA ARMA POR WHATSAPP"
+          "ph": "Ex.: POR WHATSAPP, EM OUTUBRO DE 2026"
          }
         },
         {
-         "rotulo": "Outra pessoa viu o(a) investigado(a) com a arma",
-         "texto": "QUE {d} JÁ VIU O INVESTIGADO COM ARMA DE FOGO",
+         "rotulo": "Vídeo da arma",
+         "texto": "UM VÍDEO DA ARMA[ {d}]",
          "detalhe": {
-          "rotulo": "Quem viu (nome e, entre parênteses, o vínculo)",
-          "obrigatorio": true,
+          "rotulo": "Por qual meio e quando (opcional)",
+          "obrigatorio": false,
           "longo": false,
-          "ph": "Ex.: MARIA SILVA (VIZINHA)"
+          "ph": "Ex.: POR WHATSAPP, EM OUTUBRO DE 2026"
          }
         }
        ],
@@ -4619,7 +4954,7 @@
       {
        "id": "registro_lesoes",
        "tipo": "caixas",
-       "rotulo": "Se mesmo não possuindo lesões no momento, houve lesão corporal anterior, no momento das agressões, houve alguma forma de registro das lesões?",
+       "rotulo": "Se desapareceram os vestígios do fato comunicado neste BU, houve alguma forma de registro das lesões? (Testemunhas, fotos, atendimento médico)",
        "texto": ", E QUE NA ÉPOCA {lista}",
        "itens": [
         {
@@ -4638,12 +4973,31 @@
           "obrigatorio": true,
           "longo": false
          }
+        },
+        {
+         "rotulo": "Atendimento médico",
+         "texto": "TEVE ATENDIMENTO MÉDICO EM {d}",
+         "detalhe": {
+          "rotulo": "Onde foi atendida?",
+          "obrigatorio": true,
+          "longo": false,
+          "ph": "Ex.: UPA, HOSPITAL OU POSTO DE SAÚDE (NOME E BAIRRO)"
+         }
         }
        ],
        "aparece": {
         "pergunta": "lesoes",
         "opcao": "Não possui"
-       }
+       },
+       "juntaItens": [
+        {
+         "itens": [
+          "Fotografou as lesões",
+          "Filmou as lesões"
+         ],
+         "texto": "FOTOGRAFOU E FILMOU AS LESÕES"
+        }
+       ]
       },
       {
        "id": "dor_agressao",
@@ -4656,7 +5010,7 @@
         },
         {
          "rotulo": "Sim",
-         "texto": ", MAS QUE NO MOMENTO RELATA DORES {d}, MOTIVO PELO QUAL ESTÁ SENDO ENCAMINHADA AO IML PARA EXAME DE CORPO DE DELITO",
+         "texto": ", MAS RELATA DORES {d} RELACIONADAS A AGRESSÃO, MOTIVO PELO QUAL ESTÁ SENDO ENCAMINHADA AO IML PARA EXAME DE CORPO DE DELITO",
          "detalhe": {
           "rotulo": "Onde?",
           "obrigatorio": true,
@@ -4710,7 +5064,11 @@
          "rotulo": "Não possui",
          "texto": "QUE NÃO POSSUI TESTEMUNHAS"
         }
-       ]
+       ],
+       "someSeMarcada": {
+        "pergunta": "registro_lesoes",
+        "item": "Teve testemunha das agressões e das lesões"
+       }
       },
       {
        "id": "provas_digitais",
@@ -4733,6 +5091,173 @@
         }
        ],
        "alerta": "Responda essa pergunta apenas se couberem provas digitais nos fatos (ex.: houve menção a prints ou mensagens). Se houver provas digitais, lembre-se de seguir as orientações sobre a coleta e de inserir os arquivos no Deon, além de imprimir os arquivos quando aplicável."
+      }
+     ]
+    },
+    {
+     "titulo": "Fatos passados",
+     "inicio": "PERGUNTADA SOBRE FATOS ANTERIORES, RESPONDEU",
+     "perguntas": [
+      {
+       "id": "fp_ha",
+       "tipo": "escolha",
+       "rotulo": "A declarante mencionou agressões anteriores (fatos passados)?",
+       "opcoes": [
+        {
+         "rotulo": "Não",
+         "texto": ""
+        },
+        {
+         "rotulo": "Sim",
+         "texto": ""
+        }
+       ],
+       "alerta": "Utilize este campo apenas caso a mulher mencione agressões anteriores e se houver testemunha, foto ou atendimento médico da lesão."
+      },
+      {
+       "id": "fp_relato",
+       "tipo": "texto",
+       "rotulo": "Relato dos fatos passados",
+       "texto": ": {d}",
+       "aparece": {
+        "pergunta": "fp_ha",
+        "opcao": "Sim"
+       },
+       "campos": [
+        {
+         "id": "d",
+         "rotulo": "",
+         "longo": true,
+         "ph": "Ex.: EM JUNHO DE 2025, NA RESIDÊNCIA DO CASAL, APÓS DISCUSSÃO POR CIÚMES, O INVESTIGADO A EMPURROU E A CHAMOU DE “…”"
+        }
+       ],
+       "obrigatoria": true,
+       "ajuda": "Descreva quando e onde ocorreu, a dinâmica e a motivação, usando as palavras da vítima sempre que possível."
+      },
+      {
+       "id": "fp_registro",
+       "tipo": "caixas",
+       "rotulo": "Houve alguma forma de registro das lesões da época? (Testemunhas, fotos, atendimento médico)",
+       "aparece": {
+        "pergunta": "fp_ha",
+        "opcao": "Sim"
+       },
+       "texto": "QUE NA ÉPOCA {lista}",
+       "itens": [
+        {
+         "rotulo": "Fotografou as lesões",
+         "texto": "FOTOGRAFOU AS LESÕES"
+        },
+        {
+         "rotulo": "Filmou as lesões",
+         "texto": "FILMOU AS LESÕES"
+        },
+        {
+         "rotulo": "Teve testemunha das agressões e das lesões",
+         "texto": "TEVE COMO TESTEMUNHA {d}",
+         "detalhe": {
+          "rotulo": "Quem (nome e contato)",
+          "obrigatorio": true,
+          "longo": false
+         }
+        },
+        {
+         "rotulo": "Atendimento médico",
+         "texto": "TEVE ATENDIMENTO MÉDICO EM {d}",
+         "detalhe": {
+          "rotulo": "Onde foi atendida?",
+          "obrigatorio": true,
+          "longo": false,
+          "ph": "Ex.: UPA, HOSPITAL OU POSTO DE SAÚDE (NOME E BAIRRO)"
+         }
+        }
+       ],
+       "juntaItens": [
+        {
+         "itens": [
+          "Fotografou as lesões",
+          "Filmou as lesões"
+         ],
+         "texto": "FOTOGRAFOU E FILMOU AS LESÕES"
+        }
+       ]
+      },
+      {
+       "id": "fp_menores",
+       "tipo": "escolha",
+       "rotulo": "Os fatos passados ocorreram na presença de menores de idade?",
+       "aparece": {
+        "pergunta": "fp_ha",
+        "opcao": "Sim"
+       },
+       "opcoes": [
+        {
+         "rotulo": "Sim, havia menores",
+         "texto": "QUE OS FATOS ANTERIORES OCORRERAM NA PRESENÇA DE {d}",
+         "detalhe": {
+          "rotulo": "Quem estava presente: vínculo com a vítima, nome e idade (ex.: SUA FILHA EVA, DE 4 ANOS DE IDADE)",
+          "obrigatorio": true,
+          "longo": false
+         }
+        },
+        {
+         "rotulo": "Não havia menores",
+         "texto": ""
+        }
+       ]
+      },
+      {
+       "id": "fp_testemunhas",
+       "tipo": "escolha",
+       "rotulo": "Possui testemunhas dos fatos passados?",
+       "aparece": {
+        "pergunta": "fp_ha",
+        "opcao": "Sim"
+       },
+       "opcoes": [
+        {
+         "rotulo": "Possui",
+         "texto": "QUE POSSUI TESTEMUNHAS DOS FATOS ANTERIORES, SENDO {d}",
+         "detalhe": {
+          "rotulo": "Qualificar e informar contato, endereço e se presenciou ou apenas tomou conhecimento",
+          "obrigatorio": true,
+          "longo": false
+         }
+        },
+        {
+         "rotulo": "Não possui",
+         "texto": "QUE NÃO POSSUI TESTEMUNHAS DOS FATOS ANTERIORES"
+        }
+       ],
+       "someSeMarcada": {
+        "pergunta": "fp_registro",
+        "item": "Teve testemunha das agressões e das lesões"
+       }
+      },
+      {
+       "id": "fp_provas",
+       "tipo": "escolha",
+       "rotulo": "Apresenta provas digitais dos fatos passados (prints, fotos, áudios, vídeos, etc.)?",
+       "aparece": {
+        "pergunta": "fp_ha",
+        "opcao": "Sim"
+       },
+       "opcoes": [
+        {
+         "rotulo": "Apresenta",
+         "texto": "QUE APRESENTA PROVAS DIGITAIS DOS FATOS ANTERIORES[, SENDO {d}]",
+         "detalhe": {
+          "rotulo": "Descreva o que está sendo apresentado",
+          "obrigatorio": true,
+          "longo": false,
+          "ph": "Ex.: PRINTS DE MENSAGENS DA ÉPOCA E FOTOS DAS LESÕES"
+         }
+        },
+        {
+         "rotulo": "Não possui",
+         "texto": "QUE NÃO POSSUI PROVAS DIGITAIS DOS FATOS ANTERIORES"
+        }
+       ]
       }
      ]
     },
@@ -4833,7 +5358,7 @@
        "tipo": "caixas",
        "rotulo": "É um caso fora da atribuição da DEAM? Marque o motivo",
        "ajuda": "Deixe em branco se o caso é da DEAM. Marcando, entra no fim do texto a orientação de que o caso será encaminhado à delegacia responsável.",
-       "texto": "QUE, TENDO EM VISTA {lista}, FOI ESCLARECIDO À DECLARANTE QUE OS FATOS NARRADOS NÃO SE ENQUADRAM, EM REGRA, NA ATRIBUIÇÃO DESTA UNIDADE ESPECIALIZADA, ESTANDO CIENTE DE QUE A OCORRÊNCIA SERÁ POSTERIORMENTE ENCAMINHADA À DELEGACIA RESPONSÁVEL",
+       "texto": "QUE, TENDO EM VISTA {lista}, FOI ESCLARECIDO À DECLARANTE QUE OS FATOS NARRADOS NÃO SE ENQUADRAM, EM REGRA, NA ATRIBUIÇÃO DESTA UNIDADE ESPECIALIZADA, ESTANDO CIENTE DE QUE A OCORRÊNCIA SERÁ POSTERIORMENTE ENCAMINHADA À DELEGACIA RESPONSÁVEL; QUE PARA OBTER INFORMAÇÕES SOBRE O ANDAMENTO DO PROCEDIMENTO DEVERÁ BUSCAR A REFERIDA UNIDADE",
        "itens": [
         {
          "rotulo": "Mulher idosa",
@@ -5056,75 +5581,17 @@
      "inicio": "PERGUNTADA SOBRE O VÍNCULO ENTRE AS PARTES, RESPONDEU",
      "perguntas": [
       {
-       "id": "relacao_partes",
-       "tipo": "caixas",
-       "rotulo": "Como é a relação entre as partes?",
-       "ajuda": "Marque tudo o que se aplica. O vínculo (irmão, pai, tio…) já foi informado no início; aqui é como a relação funciona no dia a dia.",
-       "texto": "QUE {lista}",
-       "itens": [
-        {
-         "rotulo": "Relação conflituosa",
-         "texto": "A RELAÇÃO ENTRE AS PARTES É CONFLITUOSA"
-        },
-        {
-         "rotulo": "Já houve episódios anteriores de violência",
-         "texto": "JÁ HOUVE EPISÓDIOS ANTERIORES DE VIOLÊNCIA ({d})",
-         "detalhe": {
-          "rotulo": "Descreva brevemente: quando, o que ocorreu e se houve registro",
-          "obrigatorio": true,
-          "longo": true,
-          "ph": "Ex.: EM 2024 FOI EMPURRADA; NÃO REGISTROU OCORRÊNCIA"
-         }
-        },
-        {
-         "rotulo": "Já houve ameaças anteriores",
-         "texto": "JÁ HOUVE AMEAÇAS ANTERIORES"
-        },
-        {
-         "rotulo": "Nunca houve violência ou ameaça anterior",
-         "texto": "NÃO HOUVE EPISÓDIOS ANTERIORES DE VIOLÊNCIA OU AMEAÇA"
-        },
-        {
-         "rotulo": "A declarante cuida do(a) investigado(a)",
-         "texto": "A DECLARANTE CUIDA DO INVESTIGADO"
-        },
-        {
-         "rotulo": "O(A) investigado(a) cuida da declarante",
-         "texto": "O INVESTIGADO CUIDA DA DECLARANTE"
-        },
-        {
-         "rotulo": "O(A) investigado(a) é dependente químico(a)",
-         "texto": "O INVESTIGADO POSSUI DEPENDÊNCIA QUÍMICA"
-        },
-        {
-         "rotulo": "Pouco contato entre as partes",
-         "texto": "AS PARTES TÊM POUCO CONTATO"
-        },
-        {
-         "rotulo": "Outra característica da relação",
-         "texto": "{d}",
-         "detalhe": {
-          "rotulo": "Descreva a relação",
-          "obrigatorio": true,
-          "longo": false,
-          "ph": "Ex.: A DECLARANTE ADMINISTRA OS BENS DA FAMÍLIA JUNTO COM O INVESTIGADO"
-         }
-        }
-       ],
-       "obrigatoria": true
-      },
-      {
        "id": "residencia",
        "tipo": "escolha",
        "rotulo": "Residem no mesmo local?",
        "opcoes": [
         {
          "rotulo": "Não residem",
-         "texto": ", INFORMANDO QUE NÃO RESIDEM NO MESMO LOCAL"
+         "texto": "QUE NÃO RESIDEM NO MESMO LOCAL"
         },
         {
          "rotulo": "Residem",
-         "texto": ", INFORMANDO QUE RESIDEM NO MESMO LOCAL[ ({d})]",
+         "texto": "QUE RESIDEM NO MESMO LOCAL[ ({d})]",
          "detalhe": {
           "rotulo": "Especificar (opcional)",
           "obrigatorio": false,
@@ -5134,7 +5601,7 @@
         },
         {
          "rotulo": "Residiam",
-         "texto": ", INFORMANDO QUE RESIDIAM NO MESMO LOCAL[ ({d})]",
+         "texto": "QUE RESIDIAM NO MESMO LOCAL[ ({d})]",
          "detalhe": {
           "rotulo": "Especificar (opcional)",
           "obrigatorio": false,
@@ -5511,6 +5978,10 @@
          "texto": "ALPRAZOLAM"
         },
         {
+         "rotulo": "Lítio",
+         "texto": "LÍTIO"
+        },
+        {
          "rotulo": "Outro medicamento",
          "texto": "{d}",
          "detalhe": {
@@ -5867,26 +6338,26 @@
        "id": "arma_sem_ver",
        "tipo": "caixas",
        "rotulo": "Mesmo sem nunca ter visto, tem informação de que o(a) investigado(a) possui arma de fogo?",
-       "texto": ", MAS {lista}",
+       "texto": ", MAS QUE O INVESTIGADO JÁ LHE ENVIOU {lista}",
        "itens": [
         {
-         "rotulo": "O(A) investigado(a) enviou foto ou vídeo da arma",
-         "texto": "QUE O INVESTIGADO JÁ LHE ENVIOU {d}",
+         "rotulo": "Foto da arma",
+         "texto": "UMA FOTO DA ARMA[ {d}]",
          "detalhe": {
-          "rotulo": "O que foi enviado e por qual meio",
-          "obrigatorio": true,
+          "rotulo": "Por qual meio e quando (opcional)",
+          "obrigatorio": false,
           "longo": false,
-          "ph": "Ex.: UMA FOTO DA ARMA POR WHATSAPP"
+          "ph": "Ex.: POR WHATSAPP, EM OUTUBRO DE 2026"
          }
         },
         {
-         "rotulo": "Outra pessoa viu o(a) investigado(a) com a arma",
-         "texto": "QUE {d} JÁ VIU O INVESTIGADO COM ARMA DE FOGO",
+         "rotulo": "Vídeo da arma",
+         "texto": "UM VÍDEO DA ARMA[ {d}]",
          "detalhe": {
-          "rotulo": "Quem viu (nome e, entre parênteses, o vínculo)",
-          "obrigatorio": true,
+          "rotulo": "Por qual meio e quando (opcional)",
+          "obrigatorio": false,
           "longo": false,
-          "ph": "Ex.: MARIA SILVA (VIZINHA)"
+          "ph": "Ex.: POR WHATSAPP, EM OUTUBRO DE 2026"
          }
         }
        ],
@@ -5919,23 +6390,56 @@
        "obrigatoria": true
       },
       {
-       "id": "inv_perfil",
-       "tipo": "escolha",
-       "rotulo": "Como é o(a) investigado(a) / a relação?",
-       "opcoes": [
+       "id": "relacao_partes",
+       "tipo": "caixas",
+       "rotulo": "Como é o(a) investigado(a) / a relação entre as partes?",
+       "ajuda": "Marque tudo o que se aplica. O vínculo (irmão, pai, tio…) já foi informado no início; aqui é como a relação funciona no dia a dia.",
+       "texto": ", QUE {lista}",
+       "itens": [
         {
-         "rotulo": "Hostil",
-         "texto": "QUE O INVESTIGADO É HOSTIL"
+         "rotulo": "Relação conflituosa",
+         "texto": "A RELAÇÃO ENTRE AS PARTES É CONFLITUOSA"
         },
         {
-         "rotulo": "Relação conturbada",
-         "texto": "QUE POSSUEM UMA RELAÇÃO CONTURBADA"
+         "rotulo": "O(A) investigado(a) é hostil",
+         "texto": "O INVESTIGADO É HOSTIL"
         },
         {
-         "rotulo": "Hostil e relação conturbada",
-         "texto": "QUE O INVESTIGADO É HOSTIL E QUE POSSUEM UMA RELAÇÃO CONTURBADA"
+         "rotulo": "Já houve ameaças anteriores",
+         "texto": "JÁ HOUVE AMEAÇAS ANTERIORES"
+        },
+        {
+         "rotulo": "Nunca houve violência ou ameaça anterior",
+         "texto": "NÃO HOUVE EPISÓDIOS ANTERIORES DE VIOLÊNCIA OU AMEAÇA"
+        },
+        {
+         "rotulo": "A declarante cuida do(a) investigado(a)",
+         "texto": "A DECLARANTE CUIDA DO INVESTIGADO"
+        },
+        {
+         "rotulo": "O(A) investigado(a) cuida da declarante",
+         "texto": "O INVESTIGADO CUIDA DA DECLARANTE"
+        },
+        {
+         "rotulo": "O(A) investigado(a) é dependente químico(a)",
+         "texto": "O INVESTIGADO POSSUI DEPENDÊNCIA QUÍMICA"
+        },
+        {
+         "rotulo": "Pouco contato entre as partes",
+         "texto": "AS PARTES TÊM POUCO CONTATO"
+        },
+        {
+         "rotulo": "Outra característica da relação",
+         "texto": "{d}",
+         "detalhe": {
+          "rotulo": "Descreva a relação",
+          "obrigatorio": true,
+          "longo": false,
+          "ph": "Ex.: A DECLARANTE ADMINISTRA OS BENS DA FAMÍLIA JUNTO COM O INVESTIGADO"
+         }
         }
-       ]
+       ],
+       "obrigatoria": true
       }
      ]
     },
@@ -6009,7 +6513,7 @@
       {
        "id": "registro_lesoes",
        "tipo": "caixas",
-       "rotulo": "Se mesmo não possuindo lesões no momento, houve lesão corporal anterior, no momento das agressões, houve alguma forma de registro das lesões?",
+       "rotulo": "Se desapareceram os vestígios do fato comunicado neste BU, houve alguma forma de registro das lesões? (Testemunhas, fotos, atendimento médico)",
        "texto": ", E QUE NA ÉPOCA {lista}",
        "itens": [
         {
@@ -6028,12 +6532,31 @@
           "obrigatorio": true,
           "longo": false
          }
+        },
+        {
+         "rotulo": "Atendimento médico",
+         "texto": "TEVE ATENDIMENTO MÉDICO EM {d}",
+         "detalhe": {
+          "rotulo": "Onde foi atendida?",
+          "obrigatorio": true,
+          "longo": false,
+          "ph": "Ex.: UPA, HOSPITAL OU POSTO DE SAÚDE (NOME E BAIRRO)"
+         }
         }
        ],
        "aparece": {
         "pergunta": "lesoes",
         "opcao": "Não possui"
-       }
+       },
+       "juntaItens": [
+        {
+         "itens": [
+          "Fotografou as lesões",
+          "Filmou as lesões"
+         ],
+         "texto": "FOTOGRAFOU E FILMOU AS LESÕES"
+        }
+       ]
       },
       {
        "id": "dor_agressao",
@@ -6046,7 +6569,7 @@
         },
         {
          "rotulo": "Sim",
-         "texto": ", MAS QUE NO MOMENTO RELATA DORES {d}, MOTIVO PELO QUAL ESTÁ SENDO ENCAMINHADA AO IML PARA EXAME DE CORPO DE DELITO",
+         "texto": ", MAS RELATA DORES {d} RELACIONADAS A AGRESSÃO, MOTIVO PELO QUAL ESTÁ SENDO ENCAMINHADA AO IML PARA EXAME DE CORPO DE DELITO",
          "detalhe": {
           "rotulo": "Onde?",
           "obrigatorio": true,
@@ -6100,7 +6623,11 @@
          "rotulo": "Não possui",
          "texto": "QUE NÃO POSSUI TESTEMUNHAS"
         }
-       ]
+       ],
+       "someSeMarcada": {
+        "pergunta": "registro_lesoes",
+        "item": "Teve testemunha das agressões e das lesões"
+       }
       },
       {
        "id": "provas_digitais",
@@ -6123,6 +6650,173 @@
         }
        ],
        "alerta": "Responda essa pergunta apenas se couberem provas digitais nos fatos (ex.: houve menção a prints ou mensagens). Se houver provas digitais, lembre-se de seguir as orientações sobre a coleta e de inserir os arquivos no Deon, além de imprimir os arquivos quando aplicável."
+      }
+     ]
+    },
+    {
+     "titulo": "Fatos passados",
+     "inicio": "PERGUNTADA SOBRE FATOS ANTERIORES, RESPONDEU",
+     "perguntas": [
+      {
+       "id": "fp_ha",
+       "tipo": "escolha",
+       "rotulo": "A declarante mencionou agressões anteriores (fatos passados)?",
+       "opcoes": [
+        {
+         "rotulo": "Não",
+         "texto": ""
+        },
+        {
+         "rotulo": "Sim",
+         "texto": ""
+        }
+       ],
+       "alerta": "Utilize este campo apenas caso a mulher mencione agressões anteriores e se houver testemunha, foto ou atendimento médico da lesão."
+      },
+      {
+       "id": "fp_relato",
+       "tipo": "texto",
+       "rotulo": "Relato dos fatos passados",
+       "texto": ": {d}",
+       "aparece": {
+        "pergunta": "fp_ha",
+        "opcao": "Sim"
+       },
+       "campos": [
+        {
+         "id": "d",
+         "rotulo": "",
+         "longo": true,
+         "ph": "Ex.: EM JUNHO DE 2025, NA RESIDÊNCIA DO CASAL, APÓS DISCUSSÃO POR CIÚMES, O INVESTIGADO A EMPURROU E A CHAMOU DE “…”"
+        }
+       ],
+       "obrigatoria": true,
+       "ajuda": "Descreva quando e onde ocorreu, a dinâmica e a motivação, usando as palavras da vítima sempre que possível."
+      },
+      {
+       "id": "fp_registro",
+       "tipo": "caixas",
+       "rotulo": "Houve alguma forma de registro das lesões da época? (Testemunhas, fotos, atendimento médico)",
+       "aparece": {
+        "pergunta": "fp_ha",
+        "opcao": "Sim"
+       },
+       "texto": "QUE NA ÉPOCA {lista}",
+       "itens": [
+        {
+         "rotulo": "Fotografou as lesões",
+         "texto": "FOTOGRAFOU AS LESÕES"
+        },
+        {
+         "rotulo": "Filmou as lesões",
+         "texto": "FILMOU AS LESÕES"
+        },
+        {
+         "rotulo": "Teve testemunha das agressões e das lesões",
+         "texto": "TEVE COMO TESTEMUNHA {d}",
+         "detalhe": {
+          "rotulo": "Quem (nome e contato)",
+          "obrigatorio": true,
+          "longo": false
+         }
+        },
+        {
+         "rotulo": "Atendimento médico",
+         "texto": "TEVE ATENDIMENTO MÉDICO EM {d}",
+         "detalhe": {
+          "rotulo": "Onde foi atendida?",
+          "obrigatorio": true,
+          "longo": false,
+          "ph": "Ex.: UPA, HOSPITAL OU POSTO DE SAÚDE (NOME E BAIRRO)"
+         }
+        }
+       ],
+       "juntaItens": [
+        {
+         "itens": [
+          "Fotografou as lesões",
+          "Filmou as lesões"
+         ],
+         "texto": "FOTOGRAFOU E FILMOU AS LESÕES"
+        }
+       ]
+      },
+      {
+       "id": "fp_menores",
+       "tipo": "escolha",
+       "rotulo": "Os fatos passados ocorreram na presença de menores de idade?",
+       "aparece": {
+        "pergunta": "fp_ha",
+        "opcao": "Sim"
+       },
+       "opcoes": [
+        {
+         "rotulo": "Sim, havia menores",
+         "texto": "QUE OS FATOS ANTERIORES OCORRERAM NA PRESENÇA DE {d}",
+         "detalhe": {
+          "rotulo": "Quem estava presente: vínculo com a vítima, nome e idade (ex.: SUA FILHA EVA, DE 4 ANOS DE IDADE)",
+          "obrigatorio": true,
+          "longo": false
+         }
+        },
+        {
+         "rotulo": "Não havia menores",
+         "texto": ""
+        }
+       ]
+      },
+      {
+       "id": "fp_testemunhas",
+       "tipo": "escolha",
+       "rotulo": "Possui testemunhas dos fatos passados?",
+       "aparece": {
+        "pergunta": "fp_ha",
+        "opcao": "Sim"
+       },
+       "opcoes": [
+        {
+         "rotulo": "Possui",
+         "texto": "QUE POSSUI TESTEMUNHAS DOS FATOS ANTERIORES, SENDO {d}",
+         "detalhe": {
+          "rotulo": "Qualificar e informar contato, endereço e se presenciou ou apenas tomou conhecimento",
+          "obrigatorio": true,
+          "longo": false
+         }
+        },
+        {
+         "rotulo": "Não possui",
+         "texto": "QUE NÃO POSSUI TESTEMUNHAS DOS FATOS ANTERIORES"
+        }
+       ],
+       "someSeMarcada": {
+        "pergunta": "fp_registro",
+        "item": "Teve testemunha das agressões e das lesões"
+       }
+      },
+      {
+       "id": "fp_provas",
+       "tipo": "escolha",
+       "rotulo": "Apresenta provas digitais dos fatos passados (prints, fotos, áudios, vídeos, etc.)?",
+       "aparece": {
+        "pergunta": "fp_ha",
+        "opcao": "Sim"
+       },
+       "opcoes": [
+        {
+         "rotulo": "Apresenta",
+         "texto": "QUE APRESENTA PROVAS DIGITAIS DOS FATOS ANTERIORES[, SENDO {d}]",
+         "detalhe": {
+          "rotulo": "Descreva o que está sendo apresentado",
+          "obrigatorio": true,
+          "longo": false,
+          "ph": "Ex.: PRINTS DE MENSAGENS DA ÉPOCA E FOTOS DAS LESÕES"
+         }
+        },
+        {
+         "rotulo": "Não possui",
+         "texto": "QUE NÃO POSSUI PROVAS DIGITAIS DOS FATOS ANTERIORES"
+        }
+       ]
       }
      ]
     },
@@ -6223,7 +6917,7 @@
        "tipo": "caixas",
        "rotulo": "É um caso fora da atribuição da DEAM? Marque o motivo",
        "ajuda": "Deixe em branco se o caso é da DEAM. Marcando, entra no fim do texto a orientação de que o caso será encaminhado à delegacia responsável.",
-       "texto": "QUE, TENDO EM VISTA {lista}, FOI ESCLARECIDO À DECLARANTE QUE OS FATOS NARRADOS NÃO SE ENQUADRAM, EM REGRA, NA ATRIBUIÇÃO DESTA UNIDADE ESPECIALIZADA, ESTANDO CIENTE DE QUE A OCORRÊNCIA SERÁ POSTERIORMENTE ENCAMINHADA À DELEGACIA RESPONSÁVEL",
+       "texto": "QUE, TENDO EM VISTA {lista}, FOI ESCLARECIDO À DECLARANTE QUE OS FATOS NARRADOS NÃO SE ENQUADRAM, EM REGRA, NA ATRIBUIÇÃO DESTA UNIDADE ESPECIALIZADA, ESTANDO CIENTE DE QUE A OCORRÊNCIA SERÁ POSTERIORMENTE ENCAMINHADA À DELEGACIA RESPONSÁVEL; QUE PARA OBTER INFORMAÇÕES SOBRE O ANDAMENTO DO PROCEDIMENTO DEVERÁ BUSCAR A REFERIDA UNIDADE",
        "itens": [
         {
          "rotulo": "Mulher idosa",
@@ -6400,32 +7094,16 @@
          "texto": "AS PARTES REATARAM O RELACIONAMENTO"
         },
         {
-         "rotulo": "Juiz indeferiu o pedido",
-         "texto": "O PEDIDO DE MPU’S FOI INDEFERIDO PELO JUÍZO"
+         "rotulo": "Ela pediu a revogação",
+         "texto": "A DECLARANTE SOLICITOU A REVOGAÇÃO DAS MPU’S"
+        },
+        {
+         "rotulo": "Mantiveram contato durante a vigência das MPU’S",
+         "texto": "AS PARTES MANTIVERAM CONTATO DURANTE A VIGÊNCIA DAS MPU’S"
         },
         {
          "rotulo": "Juiz revogou as MPU’S",
          "texto": "AS MPU’S FORAM REVOGADAS PELO JUÍZO"
-        },
-        {
-         "rotulo": "Prazo terminou",
-         "texto": "AS MPU’S PERDERAM A VALIDADE POR DECURSO DO PRAZO"
-        },
-        {
-         "rotulo": "Ela pediu a revogação: porque se entenderam",
-         "texto": "A DECLARANTE SOLICITOU A REVOGAÇÃO DAS MPU’S PORQUE HAVIAM SE ENTENDIDO"
-        },
-        {
-         "rotulo": "Ela pediu a revogação: pressão ou ameaça do(a) investigado(a)",
-         "texto": "A DECLARANTE SOLICITOU A REVOGAÇÃO DAS MPU’S POR PRESSÃO OU AMEAÇA DO INVESTIGADO"
-        },
-        {
-         "rotulo": "Ela pediu a revogação: pressão de familiares",
-         "texto": "A DECLARANTE SOLICITOU A REVOGAÇÃO DAS MPU’S POR PRESSÃO DE FAMILIARES"
-        },
-        {
-         "rotulo": "Ela pediu a revogação: por terem filhos em comum",
-         "texto": "A DECLARANTE SOLICITOU A REVOGAÇÃO DAS MPU’S POR POSSUÍREM FILHOS EM COMUM"
         },
         {
          "rotulo": "Outro motivo",
@@ -7253,6 +7931,10 @@
          "texto": "ALPRAZOLAM"
         },
         {
+         "rotulo": "Lítio",
+         "texto": "LÍTIO"
+        },
+        {
          "rotulo": "Outro medicamento",
          "texto": "{d}",
          "detalhe": {
@@ -7609,26 +8291,26 @@
        "id": "arma_sem_ver",
        "tipo": "caixas",
        "rotulo": "Mesmo sem nunca ter visto, tem informação de que o(a) investigado(a) possui arma de fogo?",
-       "texto": ", MAS {lista}",
+       "texto": ", MAS QUE O INVESTIGADO JÁ LHE ENVIOU {lista}",
        "itens": [
         {
-         "rotulo": "O(A) investigado(a) enviou foto ou vídeo da arma",
-         "texto": "QUE O INVESTIGADO JÁ LHE ENVIOU {d}",
+         "rotulo": "Foto da arma",
+         "texto": "UMA FOTO DA ARMA[ {d}]",
          "detalhe": {
-          "rotulo": "O que foi enviado e por qual meio",
-          "obrigatorio": true,
+          "rotulo": "Por qual meio e quando (opcional)",
+          "obrigatorio": false,
           "longo": false,
-          "ph": "Ex.: UMA FOTO DA ARMA POR WHATSAPP"
+          "ph": "Ex.: POR WHATSAPP, EM OUTUBRO DE 2026"
          }
         },
         {
-         "rotulo": "Outra pessoa viu o(a) investigado(a) com a arma",
-         "texto": "QUE {d} JÁ VIU O INVESTIGADO COM ARMA DE FOGO",
+         "rotulo": "Vídeo da arma",
+         "texto": "UM VÍDEO DA ARMA[ {d}]",
          "detalhe": {
-          "rotulo": "Quem viu (nome e, entre parênteses, o vínculo)",
-          "obrigatorio": true,
+          "rotulo": "Por qual meio e quando (opcional)",
+          "obrigatorio": false,
           "longo": false,
-          "ph": "Ex.: MARIA SILVA (VIZINHA)"
+          "ph": "Ex.: POR WHATSAPP, EM OUTUBRO DE 2026"
          }
         }
        ],
@@ -7922,8 +8604,12 @@
          "texto": "QUE APÓS OS FATOS TROCOU DE ROUPA"
         },
         {
+         "rotulo": "Trocou de roupa e apresenta as roupas para a perícia",
+         "texto": "QUE APÓS OS FATOS TROCOU DE ROUPA, APRESENTANDO NESTE ATO AS ROUPAS QUE UTILIZAVA NOS FATOS PARA ENVIO À PERÍCIA"
+        },
+        {
          "rotulo": "Não trocou de roupa",
-         "texto": "QUE APÓS OS FATOS NÃO TROCOU DE ROUPA"
+         "texto": "QUE APÓS OS FATOS NÃO TROCOU DE ROUPA, PERMANECENDO COM AS ROUPAS DO MOMENTO DOS FATOS"
         }
        ],
        "ajuda": "Incluir apenas se o estupro for recente e se aplicar."
@@ -7967,7 +8653,11 @@
          "rotulo": "Não possui",
          "texto": "QUE NÃO POSSUI TESTEMUNHAS"
         }
-       ]
+       ],
+       "someSeMarcada": {
+        "pergunta": "registro_lesoes",
+        "item": "Teve testemunha das agressões e das lesões"
+       }
       },
       {
        "id": "lesoes",
@@ -7993,7 +8683,7 @@
       {
        "id": "registro_lesoes",
        "tipo": "caixas",
-       "rotulo": "Se mesmo não possuindo lesões no momento, houve lesão corporal anterior, no momento das agressões, houve alguma forma de registro das lesões?",
+       "rotulo": "Se desapareceram os vestígios do fato comunicado neste BU, houve alguma forma de registro das lesões? (Testemunhas, fotos, atendimento médico)",
        "texto": ", E QUE NA ÉPOCA {lista}",
        "itens": [
         {
@@ -8012,12 +8702,31 @@
           "obrigatorio": true,
           "longo": false
          }
+        },
+        {
+         "rotulo": "Atendimento médico",
+         "texto": "TEVE ATENDIMENTO MÉDICO EM {d}",
+         "detalhe": {
+          "rotulo": "Onde foi atendida?",
+          "obrigatorio": true,
+          "longo": false,
+          "ph": "Ex.: UPA, HOSPITAL OU POSTO DE SAÚDE (NOME E BAIRRO)"
+         }
         }
        ],
        "aparece": {
         "pergunta": "lesoes",
         "opcao": "Não possui"
-       }
+       },
+       "juntaItens": [
+        {
+         "itens": [
+          "Fotografou as lesões",
+          "Filmou as lesões"
+         ],
+         "texto": "FOTOGRAFOU E FILMOU AS LESÕES"
+        }
+       ]
       },
       {
        "id": "dor_agressao",
@@ -8030,7 +8739,7 @@
         },
         {
          "rotulo": "Sim",
-         "texto": ", MAS QUE NO MOMENTO RELATA DORES {d}",
+         "texto": ", MAS RELATA DORES {d} RELACIONADAS A AGRESSÃO",
          "detalhe": {
           "rotulo": "Onde?",
           "obrigatorio": true,
@@ -8087,6 +8796,173 @@
         }
        ],
        "alerta": "Responda essa pergunta apenas se couberem provas digitais nos fatos (ex.: houve menção a prints ou mensagens). Se houver provas digitais, lembre-se de seguir as orientações sobre a coleta e de inserir os arquivos no Deon, além de imprimir os arquivos quando aplicável."
+      }
+     ]
+    },
+    {
+     "titulo": "Fatos passados",
+     "inicio": "PERGUNTADA SOBRE FATOS ANTERIORES, RESPONDEU",
+     "perguntas": [
+      {
+       "id": "fp_ha",
+       "tipo": "escolha",
+       "rotulo": "A declarante mencionou agressões anteriores (fatos passados)?",
+       "opcoes": [
+        {
+         "rotulo": "Não",
+         "texto": ""
+        },
+        {
+         "rotulo": "Sim",
+         "texto": ""
+        }
+       ],
+       "alerta": "Utilize este campo apenas caso a mulher mencione agressões anteriores e se houver testemunha, foto ou atendimento médico da lesão."
+      },
+      {
+       "id": "fp_relato",
+       "tipo": "texto",
+       "rotulo": "Relato dos fatos passados",
+       "texto": ": {d}",
+       "aparece": {
+        "pergunta": "fp_ha",
+        "opcao": "Sim"
+       },
+       "campos": [
+        {
+         "id": "d",
+         "rotulo": "",
+         "longo": true,
+         "ph": "Ex.: EM JUNHO DE 2025, NA RESIDÊNCIA DO CASAL, APÓS DISCUSSÃO POR CIÚMES, O INVESTIGADO A EMPURROU E A CHAMOU DE “…”"
+        }
+       ],
+       "obrigatoria": true,
+       "ajuda": "Descreva quando e onde ocorreu, a dinâmica e a motivação, usando as palavras da vítima sempre que possível."
+      },
+      {
+       "id": "fp_registro",
+       "tipo": "caixas",
+       "rotulo": "Houve alguma forma de registro das lesões da época? (Testemunhas, fotos, atendimento médico)",
+       "aparece": {
+        "pergunta": "fp_ha",
+        "opcao": "Sim"
+       },
+       "texto": "QUE NA ÉPOCA {lista}",
+       "itens": [
+        {
+         "rotulo": "Fotografou as lesões",
+         "texto": "FOTOGRAFOU AS LESÕES"
+        },
+        {
+         "rotulo": "Filmou as lesões",
+         "texto": "FILMOU AS LESÕES"
+        },
+        {
+         "rotulo": "Teve testemunha das agressões e das lesões",
+         "texto": "TEVE COMO TESTEMUNHA {d}",
+         "detalhe": {
+          "rotulo": "Quem (nome e contato)",
+          "obrigatorio": true,
+          "longo": false
+         }
+        },
+        {
+         "rotulo": "Atendimento médico",
+         "texto": "TEVE ATENDIMENTO MÉDICO EM {d}",
+         "detalhe": {
+          "rotulo": "Onde foi atendida?",
+          "obrigatorio": true,
+          "longo": false,
+          "ph": "Ex.: UPA, HOSPITAL OU POSTO DE SAÚDE (NOME E BAIRRO)"
+         }
+        }
+       ],
+       "juntaItens": [
+        {
+         "itens": [
+          "Fotografou as lesões",
+          "Filmou as lesões"
+         ],
+         "texto": "FOTOGRAFOU E FILMOU AS LESÕES"
+        }
+       ]
+      },
+      {
+       "id": "fp_menores",
+       "tipo": "escolha",
+       "rotulo": "Os fatos passados ocorreram na presença de menores de idade?",
+       "aparece": {
+        "pergunta": "fp_ha",
+        "opcao": "Sim"
+       },
+       "opcoes": [
+        {
+         "rotulo": "Sim, havia menores",
+         "texto": "QUE OS FATOS ANTERIORES OCORRERAM NA PRESENÇA DE {d}",
+         "detalhe": {
+          "rotulo": "Quem estava presente: vínculo com a vítima, nome e idade (ex.: SUA FILHA EVA, DE 4 ANOS DE IDADE)",
+          "obrigatorio": true,
+          "longo": false
+         }
+        },
+        {
+         "rotulo": "Não havia menores",
+         "texto": ""
+        }
+       ]
+      },
+      {
+       "id": "fp_testemunhas",
+       "tipo": "escolha",
+       "rotulo": "Possui testemunhas dos fatos passados?",
+       "aparece": {
+        "pergunta": "fp_ha",
+        "opcao": "Sim"
+       },
+       "opcoes": [
+        {
+         "rotulo": "Possui",
+         "texto": "QUE POSSUI TESTEMUNHAS DOS FATOS ANTERIORES, SENDO {d}",
+         "detalhe": {
+          "rotulo": "Qualificar e informar contato, endereço e se presenciou ou apenas tomou conhecimento",
+          "obrigatorio": true,
+          "longo": false
+         }
+        },
+        {
+         "rotulo": "Não possui",
+         "texto": "QUE NÃO POSSUI TESTEMUNHAS DOS FATOS ANTERIORES"
+        }
+       ],
+       "someSeMarcada": {
+        "pergunta": "fp_registro",
+        "item": "Teve testemunha das agressões e das lesões"
+       }
+      },
+      {
+       "id": "fp_provas",
+       "tipo": "escolha",
+       "rotulo": "Apresenta provas digitais dos fatos passados (prints, fotos, áudios, vídeos, etc.)?",
+       "aparece": {
+        "pergunta": "fp_ha",
+        "opcao": "Sim"
+       },
+       "opcoes": [
+        {
+         "rotulo": "Apresenta",
+         "texto": "QUE APRESENTA PROVAS DIGITAIS DOS FATOS ANTERIORES[, SENDO {d}]",
+         "detalhe": {
+          "rotulo": "Descreva o que está sendo apresentado",
+          "obrigatorio": true,
+          "longo": false,
+          "ph": "Ex.: PRINTS DE MENSAGENS DA ÉPOCA E FOTOS DAS LESÕES"
+         }
+        },
+        {
+         "rotulo": "Não possui",
+         "texto": "QUE NÃO POSSUI PROVAS DIGITAIS DOS FATOS ANTERIORES"
+        }
+       ]
       }
      ]
     },
@@ -8242,7 +9118,7 @@
        "tipo": "caixas",
        "rotulo": "É um caso fora da atribuição da DEAM? Marque o motivo",
        "ajuda": "Deixe em branco se o caso é da DEAM. Marcando, entra no fim do texto a orientação de que o caso será encaminhado à delegacia responsável.",
-       "texto": "QUE, TENDO EM VISTA {lista}, FOI ESCLARECIDO À DECLARANTE QUE OS FATOS NARRADOS NÃO SE ENQUADRAM, EM REGRA, NA ATRIBUIÇÃO DESTA UNIDADE ESPECIALIZADA, ESTANDO CIENTE DE QUE A OCORRÊNCIA SERÁ POSTERIORMENTE ENCAMINHADA À DELEGACIA RESPONSÁVEL",
+       "texto": "QUE, TENDO EM VISTA {lista}, FOI ESCLARECIDO À DECLARANTE QUE OS FATOS NARRADOS NÃO SE ENQUADRAM, EM REGRA, NA ATRIBUIÇÃO DESTA UNIDADE ESPECIALIZADA, ESTANDO CIENTE DE QUE A OCORRÊNCIA SERÁ POSTERIORMENTE ENCAMINHADA À DELEGACIA RESPONSÁVEL; QUE PARA OBTER INFORMAÇÕES SOBRE O ANDAMENTO DO PROCEDIMENTO DEVERÁ BUSCAR A REFERIDA UNIDADE",
        "itens": [
         {
          "rotulo": "Mulher idosa",
@@ -8559,6 +9435,10 @@
          "texto": "ALPRAZOLAM"
         },
         {
+         "rotulo": "Lítio",
+         "texto": "LÍTIO"
+        },
+        {
          "rotulo": "Outro medicamento",
          "texto": "{d}",
          "detalhe": {
@@ -8873,8 +9753,12 @@
          "texto": "QUE APÓS OS FATOS TROCOU DE ROUPA"
         },
         {
+         "rotulo": "Trocou de roupa e apresenta as roupas para a perícia",
+         "texto": "QUE APÓS OS FATOS TROCOU DE ROUPA, APRESENTANDO NESTE ATO AS ROUPAS QUE UTILIZAVA NOS FATOS PARA ENVIO À PERÍCIA"
+        },
+        {
          "rotulo": "Não trocou de roupa",
-         "texto": "QUE APÓS OS FATOS NÃO TROCOU DE ROUPA"
+         "texto": "QUE APÓS OS FATOS NÃO TROCOU DE ROUPA, PERMANECENDO COM AS ROUPAS DO MOMENTO DOS FATOS"
         }
        ],
        "ajuda": "Incluir apenas se o estupro for recente e se aplicar."
@@ -8918,7 +9802,33 @@
          "rotulo": "Não possui",
          "texto": "QUE NÃO POSSUI TESTEMUNHAS"
         }
-       ]
+       ],
+       "someSeMarcada": {
+        "pergunta": "registro_lesoes",
+        "item": "Teve testemunha das agressões e das lesões"
+       }
+      },
+      {
+       "id": "cameras",
+       "tipo": "escolha",
+       "rotulo": "A vítima relata ter visualizado a presença de câmeras no local dos fatos?",
+       "opcoes": [
+        {
+         "rotulo": "Sim",
+         "texto": "QUE VISUALIZOU A PRESENÇA DE CÂMERAS NO LOCAL DOS FATOS[, {d}]",
+         "detalhe": {
+          "rotulo": "Onde ficam e de quem são (opcional)",
+          "obrigatorio": false,
+          "longo": false,
+          "ph": "Ex.: NA PORTA DO BAR E NA ENTRADA DO PRÉDIO"
+         }
+        },
+        {
+         "rotulo": "Não",
+         "texto": "QUE NÃO VISUALIZOU A PRESENÇA DE CÂMERAS NO LOCAL DOS FATOS"
+        }
+       ],
+       "ajuda": "Câmeras no local ajudam a requisitar imagens. Se a vítima souber de quem são, informe."
       },
       {
        "id": "lesoes",
@@ -8944,7 +9854,7 @@
       {
        "id": "registro_lesoes",
        "tipo": "caixas",
-       "rotulo": "Se mesmo não possuindo lesões no momento, houve lesão corporal anterior, no momento das agressões, houve alguma forma de registro das lesões?",
+       "rotulo": "Se desapareceram os vestígios do fato comunicado neste BU, houve alguma forma de registro das lesões? (Testemunhas, fotos, atendimento médico)",
        "texto": ", E QUE NA ÉPOCA {lista}",
        "itens": [
         {
@@ -8963,12 +9873,31 @@
           "obrigatorio": true,
           "longo": false
          }
+        },
+        {
+         "rotulo": "Atendimento médico",
+         "texto": "TEVE ATENDIMENTO MÉDICO EM {d}",
+         "detalhe": {
+          "rotulo": "Onde foi atendida?",
+          "obrigatorio": true,
+          "longo": false,
+          "ph": "Ex.: UPA, HOSPITAL OU POSTO DE SAÚDE (NOME E BAIRRO)"
+         }
         }
        ],
        "aparece": {
         "pergunta": "lesoes",
         "opcao": "Não possui"
-       }
+       },
+       "juntaItens": [
+        {
+         "itens": [
+          "Fotografou as lesões",
+          "Filmou as lesões"
+         ],
+         "texto": "FOTOGRAFOU E FILMOU AS LESÕES"
+        }
+       ]
       },
       {
        "id": "dor_agressao",
@@ -8981,7 +9910,7 @@
         },
         {
          "rotulo": "Sim",
-         "texto": ", MAS QUE NO MOMENTO RELATA DORES {d}",
+         "texto": ", MAS RELATA DORES {d} RELACIONADAS A AGRESSÃO",
          "detalhe": {
           "rotulo": "Onde?",
           "obrigatorio": true,
@@ -9354,6 +10283,10 @@
          "texto": "ALPRAZOLAM"
         },
         {
+         "rotulo": "Lítio",
+         "texto": "LÍTIO"
+        },
+        {
          "rotulo": "Outro medicamento",
          "texto": "{d}",
          "detalhe": {
@@ -9487,7 +10420,7 @@
       {
        "id": "registro_lesoes",
        "tipo": "caixas",
-       "rotulo": "Se mesmo não possuindo lesões no momento, houve lesão corporal anterior, no momento das agressões, houve alguma forma de registro das lesões?",
+       "rotulo": "Se desapareceram os vestígios do fato comunicado neste BU, houve alguma forma de registro das lesões? (Testemunhas, fotos, atendimento médico)",
        "texto": ", E QUE NA ÉPOCA {lista}",
        "itens": [
         {
@@ -9506,12 +10439,31 @@
           "obrigatorio": true,
           "longo": false
          }
+        },
+        {
+         "rotulo": "Atendimento médico",
+         "texto": "TEVE ATENDIMENTO MÉDICO EM {d}",
+         "detalhe": {
+          "rotulo": "Onde foi atendida?",
+          "obrigatorio": true,
+          "longo": false,
+          "ph": "Ex.: UPA, HOSPITAL OU POSTO DE SAÚDE (NOME E BAIRRO)"
+         }
         }
        ],
        "aparece": {
         "pergunta": "lesoes",
         "opcao": "Não possui"
-       }
+       },
+       "juntaItens": [
+        {
+         "itens": [
+          "Fotografou as lesões",
+          "Filmou as lesões"
+         ],
+         "texto": "FOTOGRAFOU E FILMOU AS LESÕES"
+        }
+       ]
       },
       {
        "id": "dor_agressao",
@@ -9524,7 +10476,7 @@
         },
         {
          "rotulo": "Sim",
-         "texto": ", MAS QUE NO MOMENTO RELATA DORES {d}, MOTIVO PELO QUAL ESTÁ SENDO ENCAMINHADA AO IML PARA EXAME DE CORPO DE DELITO",
+         "texto": ", MAS RELATA DORES {d} RELACIONADAS A AGRESSÃO, MOTIVO PELO QUAL ESTÁ SENDO ENCAMINHADA AO IML PARA EXAME DE CORPO DE DELITO",
          "detalhe": {
           "rotulo": "Onde?",
           "obrigatorio": true,
@@ -9557,7 +10509,11 @@
          "rotulo": "Não possui",
          "texto": "QUE NÃO POSSUI TESTEMUNHAS"
         }
-       ]
+       ],
+       "someSeMarcada": {
+        "pergunta": "registro_lesoes",
+        "item": "Teve testemunha das agressões e das lesões"
+       }
       },
       {
        "id": "provas_digitais",
@@ -9929,6 +10885,10 @@
          "texto": "ALPRAZOLAM"
         },
         {
+         "rotulo": "Lítio",
+         "texto": "LÍTIO"
+        },
+        {
          "rotulo": "Outro medicamento",
          "texto": "{d}",
          "detalhe": {
@@ -10118,7 +11078,7 @@
       {
        "id": "registro_lesoes",
        "tipo": "caixas",
-       "rotulo": "Se mesmo não possuindo lesões no momento, houve lesão corporal anterior, no momento das agressões, houve alguma forma de registro das lesões?",
+       "rotulo": "Se desapareceram os vestígios do fato comunicado neste BU, houve alguma forma de registro das lesões? (Testemunhas, fotos, atendimento médico)",
        "texto": ", E QUE NA ÉPOCA {lista}",
        "itens": [
         {
@@ -10137,12 +11097,31 @@
           "obrigatorio": true,
           "longo": false
          }
+        },
+        {
+         "rotulo": "Atendimento médico",
+         "texto": "TEVE ATENDIMENTO MÉDICO EM {d}",
+         "detalhe": {
+          "rotulo": "Onde foi atendida?",
+          "obrigatorio": true,
+          "longo": false,
+          "ph": "Ex.: UPA, HOSPITAL OU POSTO DE SAÚDE (NOME E BAIRRO)"
+         }
         }
        ],
        "aparece": {
         "pergunta": "lesoes",
         "opcao": "Não possui"
-       }
+       },
+       "juntaItens": [
+        {
+         "itens": [
+          "Fotografou as lesões",
+          "Filmou as lesões"
+         ],
+         "texto": "FOTOGRAFOU E FILMOU AS LESÕES"
+        }
+       ]
       },
       {
        "id": "dor_agressao",
@@ -10155,7 +11134,7 @@
         },
         {
          "rotulo": "Sim",
-         "texto": ", MAS QUE NO MOMENTO RELATA DORES {d}, MOTIVO PELO QUAL ESTÁ SENDO ENCAMINHADA AO IML PARA EXAME DE CORPO DE DELITO",
+         "texto": ", MAS RELATA DORES {d} RELACIONADAS A AGRESSÃO, MOTIVO PELO QUAL ESTÁ SENDO ENCAMINHADA AO IML PARA EXAME DE CORPO DE DELITO",
          "detalhe": {
           "rotulo": "Onde?",
           "obrigatorio": true,
@@ -10188,7 +11167,33 @@
          "rotulo": "Não possui",
          "texto": "QUE NÃO POSSUI TESTEMUNHAS"
         }
-       ]
+       ],
+       "someSeMarcada": {
+        "pergunta": "registro_lesoes",
+        "item": "Teve testemunha das agressões e das lesões"
+       }
+      },
+      {
+       "id": "cameras",
+       "tipo": "escolha",
+       "rotulo": "A vítima relata ter visualizado a presença de câmeras no local dos fatos?",
+       "opcoes": [
+        {
+         "rotulo": "Sim",
+         "texto": "QUE VISUALIZOU A PRESENÇA DE CÂMERAS NO LOCAL DOS FATOS[, {d}]",
+         "detalhe": {
+          "rotulo": "Onde ficam e de quem são (opcional)",
+          "obrigatorio": false,
+          "longo": false,
+          "ph": "Ex.: NA PORTA DO BAR E NA ENTRADA DO PRÉDIO"
+         }
+        },
+        {
+         "rotulo": "Não",
+         "texto": "QUE NÃO VISUALIZOU A PRESENÇA DE CÂMERAS NO LOCAL DOS FATOS"
+        }
+       ],
+       "ajuda": "Câmeras no local ajudam a requisitar imagens. Se a vítima souber de quem são, informe."
       },
       {
        "id": "provas_digitais",
@@ -10380,6 +11385,30 @@
        "ajuda": "Indique as condutas praticadas pelo(a) investigado(a): ameaças, perseguições, agressões, constrangimentos ou outras formas de violência."
       },
       {
+       "id": "testemunhas",
+       "tipo": "escolha",
+       "rotulo": "Possui testemunhas?",
+       "opcoes": [
+        {
+         "rotulo": "Possui",
+         "texto": "QUE POSSUI TESTEMUNHAS, SENDO {d}",
+         "detalhe": {
+          "rotulo": "Qualificar e informar contato",
+          "obrigatorio": true,
+          "longo": false
+         }
+        },
+        {
+         "rotulo": "Não possui",
+         "texto": "QUE NÃO POSSUI TESTEMUNHAS"
+        }
+       ],
+       "someSeMarcada": {
+        "pergunta": "registro_lesoes",
+        "item": "Teve testemunha das agressões e das lesões"
+       }
+      },
+      {
        "id": "lesao",
        "tipo": "escolha",
        "rotulo": "Apresenta alguma lesão corporal?",
@@ -10430,7 +11459,7 @@
       {
        "id": "registro_lesoes",
        "tipo": "caixas",
-       "rotulo": "Se mesmo não possuindo lesões no momento, houve lesão corporal anterior, no momento das agressões, houve alguma forma de registro das lesões?",
+       "rotulo": "Se desapareceram os vestígios do fato comunicado neste BU, houve alguma forma de registro das lesões? (Testemunhas, fotos, atendimento médico)",
        "texto": ", E QUE NA ÉPOCA {lista}",
        "itens": [
         {
@@ -10449,12 +11478,31 @@
           "obrigatorio": true,
           "longo": false
          }
+        },
+        {
+         "rotulo": "Atendimento médico",
+         "texto": "TEVE ATENDIMENTO MÉDICO EM {d}",
+         "detalhe": {
+          "rotulo": "Onde foi atendida?",
+          "obrigatorio": true,
+          "longo": false,
+          "ph": "Ex.: UPA, HOSPITAL OU POSTO DE SAÚDE (NOME E BAIRRO)"
+         }
         }
        ],
        "aparece": {
         "pergunta": "lesao",
         "opcao": "Não"
-       }
+       },
+       "juntaItens": [
+        {
+         "itens": [
+          "Fotografou as lesões",
+          "Filmou as lesões"
+         ],
+         "texto": "FOTOGRAFOU E FILMOU AS LESÕES"
+        }
+       ]
       },
       {
        "id": "dor_agressao",
@@ -10467,7 +11515,7 @@
         },
         {
          "rotulo": "Sim",
-         "texto": ", MAS QUE NO MOMENTO RELATA DORES {d}, MOTIVO PELO QUAL ESTÁ SENDO ENCAMINHADA AO IML PARA EXAME DE CORPO DE DELITO",
+         "texto": ", MAS RELATA DORES {d} RELACIONADAS A AGRESSÃO, MOTIVO PELO QUAL ESTÁ SENDO ENCAMINHADA AO IML PARA EXAME DE CORPO DE DELITO",
          "detalhe": {
           "rotulo": "Onde?",
           "obrigatorio": true,
@@ -10512,7 +11560,7 @@
       {
        "id": "esclarecimento",
        "tipo": "fixo",
-       "texto": "APÓS O RELATO, FOI ESCLARECIDA À DECLARANTE QUE, EMBORA A POSSIBILIDADE DE CONCESSÃO DE MEDIDAS PROTETIVAS DE URGÊNCIA NÃO ESTEJA MAIS RESTRITA ÀS SITUAÇÕES DE VIOLÊNCIA OCORRIDAS NO ÂMBITO DOMÉSTICO, FAMILIAR OU EM RELAÇÃO ÍNTIMA DE AFETO, OS FATOS NARRADOS NÃO SE ENQUADRAM, EM REGRA, NA ATRIBUIÇÃO INVESTIGATIVA DESTA UNIDADE ESPECIALIZADA, RAZÃO PELA QUAL A OCORRÊNCIA SERÁ ENCAMINHADA À UNIDADE POLICIAL COMPETENTE PARA A APURAÇÃO DOS FATOS, SEM PREJUÍZO DA APRECIAÇÃO DO PEDIDO DE MEDIDA PROTETIVA DE URGÊNCIA PELO JUÍZO COMPETENTE"
+       "texto": "APÓS O RELATO, FOI ESCLARECIDA À DECLARANTE QUE, EMBORA A POSSIBILIDADE DE CONCESSÃO DE MEDIDAS PROTETIVAS DE URGÊNCIA NÃO ESTEJA MAIS RESTRITA ÀS SITUAÇÕES DE VIOLÊNCIA OCORRIDAS NO ÂMBITO DOMÉSTICO, FAMILIAR OU EM RELAÇÃO ÍNTIMA DE AFETO, OS FATOS NARRADOS NÃO SE ENQUADRAM, EM REGRA, NA ATRIBUIÇÃO INVESTIGATIVA DESTA UNIDADE ESPECIALIZADA, RAZÃO PELA QUAL A OCORRÊNCIA SERÁ ENCAMINHADA À UNIDADE POLICIAL COMPETENTE PARA A APURAÇÃO DOS FATOS, SEM PREJUÍZO DA APRECIAÇÃO DO PEDIDO DE MEDIDA PROTETIVA DE URGÊNCIA PELO JUÍZO COMPETENTE; QUE PARA OBTER INFORMAÇÕES SOBRE O ANDAMENTO DO PROCEDIMENTO DEVERÁ BUSCAR A REFERIDA UNIDADE"
       }
      ]
     }
@@ -10632,7 +11680,11 @@
          "rotulo": "Não possui",
          "texto": "QUE NÃO POSSUI TESTEMUNHAS"
         }
-       ]
+       ],
+       "someSeMarcada": {
+        "pergunta": "registro_lesoes",
+        "item": "Teve testemunha das agressões e das lesões"
+       }
       },
       {
        "id": "lesoes",
@@ -10685,7 +11737,7 @@
       {
        "id": "registro_lesoes",
        "tipo": "caixas",
-       "rotulo": "Se mesmo não possuindo lesões no momento, houve lesão corporal anterior, no momento das agressões, houve alguma forma de registro das lesões?",
+       "rotulo": "Se desapareceram os vestígios do fato comunicado neste BU, houve alguma forma de registro das lesões? (Testemunhas, fotos, atendimento médico)",
        "texto": ", E QUE NA ÉPOCA {lista}",
        "itens": [
         {
@@ -10704,12 +11756,31 @@
           "obrigatorio": true,
           "longo": false
          }
+        },
+        {
+         "rotulo": "Atendimento médico",
+         "texto": "TEVE ATENDIMENTO MÉDICO EM {d}",
+         "detalhe": {
+          "rotulo": "Onde foi atendida?",
+          "obrigatorio": true,
+          "longo": false,
+          "ph": "Ex.: UPA, HOSPITAL OU POSTO DE SAÚDE (NOME E BAIRRO)"
+         }
         }
        ],
        "aparece": {
         "pergunta": "lesoes",
         "opcao": "Não possui"
-       }
+       },
+       "juntaItens": [
+        {
+         "itens": [
+          "Fotografou as lesões",
+          "Filmou as lesões"
+         ],
+         "texto": "FOTOGRAFOU E FILMOU AS LESÕES"
+        }
+       ]
       },
       {
        "id": "dor_agressao",
@@ -10722,7 +11793,7 @@
         },
         {
          "rotulo": "Sim",
-         "texto": ", MAS QUE NO MOMENTO RELATA DORES {d}, MOTIVO PELO QUAL ESTÁ SENDO ENCAMINHADA AO IML PARA EXAME DE CORPO DE DELITO",
+         "texto": ", MAS RELATA DORES {d} RELACIONADAS A AGRESSÃO, MOTIVO PELO QUAL ESTÁ SENDO ENCAMINHADA AO IML PARA EXAME DE CORPO DE DELITO",
          "detalhe": {
           "rotulo": "Onde?",
           "obrigatorio": true,
@@ -10761,7 +11832,7 @@
       {
        "id": "esclarecimento",
        "tipo": "fixo",
-       "texto": "QUE, APÓS O RELATO, FOI ESCLARECIDO À DECLARANTE QUE OS FATOS NARRADOS NÃO SE ENQUADRAM, EM REGRA, NA ATRIBUIÇÃO DESTA UNIDADE ESPECIALIZADA, ESTANDO CIENTE DE QUE A OCORRÊNCIA SERÁ POSTERIORMENTE ENCAMINHADA À DELEGACIA RESPONSÁVEL"
+       "texto": "QUE, APÓS O RELATO, FOI ESCLARECIDO À DECLARANTE QUE OS FATOS NARRADOS NÃO SE ENQUADRAM, EM REGRA, NA ATRIBUIÇÃO DESTA UNIDADE ESPECIALIZADA, ESTANDO CIENTE DE QUE A OCORRÊNCIA SERÁ POSTERIORMENTE ENCAMINHADA À DELEGACIA RESPONSÁVEL; QUE PARA OBTER INFORMAÇÕES SOBRE O ANDAMENTO DO PROCEDIMENTO DEVERÁ BUSCAR A REFERIDA UNIDADE"
       }
      ]
     }
