@@ -1,6 +1,6 @@
 {
- "versao": "2026.11.62",
- "atualizadoEm": "2026-11-14",
+ "versao": "2026.11.64",
+ "atualizadoEm": "2026-11-25",
  "modelos": [
   {
    "id": "relacao-intima",
@@ -2979,28 +2979,12 @@
          "texto": "O INVESTIGADO É HOSTIL"
         },
         {
-         "rotulo": "Já houve ameaças anteriores",
-         "texto": "JÁ HOUVE AMEAÇAS ANTERIORES"
-        },
-        {
-         "rotulo": "Nunca houve violência ou ameaça anterior",
-         "texto": "NÃO HOUVE EPISÓDIOS ANTERIORES DE VIOLÊNCIA OU AMEAÇA"
-        },
-        {
-         "rotulo": "A declarante cuida do(a) investigado(a)",
-         "texto": "A DECLARANTE CUIDA DO INVESTIGADO"
-        },
-        {
-         "rotulo": "O(A) investigado(a) cuida da declarante",
-         "texto": "O INVESTIGADO CUIDA DA DECLARANTE"
-        },
-        {
          "rotulo": "O(A) investigado(a) é dependente químico(a)",
          "texto": "O INVESTIGADO POSSUI DEPENDÊNCIA QUÍMICA"
         },
         {
          "rotulo": "Pouco contato entre as partes",
-         "texto": "AS PARTES TÊM POUCO CONTATO"
+         "texto": "POSSUEM POUCO CONTATO"
         },
         {
          "rotulo": "Outra característica da relação",
@@ -6405,28 +6389,12 @@
          "texto": "O INVESTIGADO É HOSTIL"
         },
         {
-         "rotulo": "Já houve ameaças anteriores",
-         "texto": "JÁ HOUVE AMEAÇAS ANTERIORES"
-        },
-        {
-         "rotulo": "Nunca houve violência ou ameaça anterior",
-         "texto": "NÃO HOUVE EPISÓDIOS ANTERIORES DE VIOLÊNCIA OU AMEAÇA"
-        },
-        {
-         "rotulo": "A declarante cuida do(a) investigado(a)",
-         "texto": "A DECLARANTE CUIDA DO INVESTIGADO"
-        },
-        {
-         "rotulo": "O(A) investigado(a) cuida da declarante",
-         "texto": "O INVESTIGADO CUIDA DA DECLARANTE"
-        },
-        {
          "rotulo": "O(A) investigado(a) é dependente químico(a)",
          "texto": "O INVESTIGADO POSSUI DEPENDÊNCIA QUÍMICA"
         },
         {
          "rotulo": "Pouco contato entre as partes",
-         "texto": "AS PARTES TÊM POUCO CONTATO"
+         "texto": "POSSUEM POUCO CONTATO"
         },
         {
          "rotulo": "Outra característica da relação",
@@ -11558,6 +11526,21 @@
        "texto": "A DECLARANTE MANIFESTA INTERESSE NA CONCESSÃO DE MEDIDAS PROTETIVAS DE URGÊNCIA"
       },
       {
+       "id": "representar",
+       "tipo": "escolha",
+       "rotulo": "Deseja representar criminalmente?",
+       "opcoes": [
+        {
+         "rotulo": "Sim",
+         "texto": "QUE DESEJA REPRESENTAR CRIMINALMENTE"
+        },
+        {
+         "rotulo": "Não",
+         "texto": "QUE NÃO DESEJA REPRESENTAR CRIMINALMENTE"
+        }
+       ]
+      },
+      {
        "id": "esclarecimento",
        "tipo": "fixo",
        "texto": "APÓS O RELATO, FOI ESCLARECIDA À DECLARANTE QUE, EMBORA A POSSIBILIDADE DE CONCESSÃO DE MEDIDAS PROTETIVAS DE URGÊNCIA NÃO ESTEJA MAIS RESTRITA ÀS SITUAÇÕES DE VIOLÊNCIA OCORRIDAS NO ÂMBITO DOMÉSTICO, FAMILIAR OU EM RELAÇÃO ÍNTIMA DE AFETO, OS FATOS NARRADOS NÃO SE ENQUADRAM, EM REGRA, NA ATRIBUIÇÃO INVESTIGATIVA DESTA UNIDADE ESPECIALIZADA, RAZÃO PELA QUAL A OCORRÊNCIA SERÁ ENCAMINHADA À UNIDADE POLICIAL COMPETENTE PARA A APURAÇÃO DOS FATOS, SEM PREJUÍZO DA APRECIAÇÃO DO PEDIDO DE MEDIDA PROTETIVA DE URGÊNCIA PELO JUÍZO COMPETENTE; QUE PARA OBTER INFORMAÇÕES SOBRE O ANDAMENTO DO PROCEDIMENTO DEVERÁ BUSCAR A REFERIDA UNIDADE"
@@ -11828,6 +11811,21 @@
         }
        ],
        "obrigatoria": true
+      },
+      {
+       "id": "representar",
+       "tipo": "escolha",
+       "rotulo": "Deseja representar criminalmente?",
+       "opcoes": [
+        {
+         "rotulo": "Sim",
+         "texto": "QUE DESEJA REPRESENTAR CRIMINALMENTE"
+        },
+        {
+         "rotulo": "Não",
+         "texto": "QUE NÃO DESEJA REPRESENTAR CRIMINALMENTE"
+        }
+       ]
       },
       {
        "id": "esclarecimento",
