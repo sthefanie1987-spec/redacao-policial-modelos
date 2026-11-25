@@ -1,5 +1,5 @@
 {
- "versao": "2026.11.63",
+ "versao": "2026.11.64",
  "atualizadoEm": "2026-11-25",
  "modelos": [
   {
@@ -2979,28 +2979,12 @@
          "texto": "O INVESTIGADO É HOSTIL"
         },
         {
-         "rotulo": "Já houve ameaças anteriores",
-         "texto": "JÁ HOUVE AMEAÇAS ANTERIORES"
-        },
-        {
-         "rotulo": "Nunca houve violência ou ameaça anterior",
-         "texto": "NÃO HOUVE EPISÓDIOS ANTERIORES DE VIOLÊNCIA OU AMEAÇA"
-        },
-        {
-         "rotulo": "A declarante cuida do(a) investigado(a)",
-         "texto": "A DECLARANTE CUIDA DO INVESTIGADO"
-        },
-        {
-         "rotulo": "O(A) investigado(a) cuida da declarante",
-         "texto": "O INVESTIGADO CUIDA DA DECLARANTE"
-        },
-        {
          "rotulo": "O(A) investigado(a) é dependente químico(a)",
          "texto": "O INVESTIGADO POSSUI DEPENDÊNCIA QUÍMICA"
         },
         {
          "rotulo": "Pouco contato entre as partes",
-         "texto": "AS PARTES TÊM POUCO CONTATO"
+         "texto": "POSSUEM POUCO CONTATO"
         },
         {
          "rotulo": "Outra característica da relação",
@@ -6405,28 +6389,12 @@
          "texto": "O INVESTIGADO É HOSTIL"
         },
         {
-         "rotulo": "Já houve ameaças anteriores",
-         "texto": "JÁ HOUVE AMEAÇAS ANTERIORES"
-        },
-        {
-         "rotulo": "Nunca houve violência ou ameaça anterior",
-         "texto": "NÃO HOUVE EPISÓDIOS ANTERIORES DE VIOLÊNCIA OU AMEAÇA"
-        },
-        {
-         "rotulo": "A declarante cuida do(a) investigado(a)",
-         "texto": "A DECLARANTE CUIDA DO INVESTIGADO"
-        },
-        {
-         "rotulo": "O(A) investigado(a) cuida da declarante",
-         "texto": "O INVESTIGADO CUIDA DA DECLARANTE"
-        },
-        {
          "rotulo": "O(A) investigado(a) é dependente químico(a)",
          "texto": "O INVESTIGADO POSSUI DEPENDÊNCIA QUÍMICA"
         },
         {
          "rotulo": "Pouco contato entre as partes",
-         "texto": "AS PARTES TÊM POUCO CONTATO"
+         "texto": "POSSUEM POUCO CONTATO"
         },
         {
          "rotulo": "Outra característica da relação",
